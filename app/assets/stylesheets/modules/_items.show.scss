@@ -8,8 +8,9 @@
 }
   .show{
     width: 700px;
-    margin: 40px auto;
+    margin: 0 auto;
     height: 100%;
+    padding: 40px;
 
 
     &__main{
@@ -128,6 +129,9 @@
           &__child{
             margin: 2px;
           }
+        }
+        .optional__link{
+          text-decoration: none;
         }
         .optional__link:hover{
           opacity: 0.5;

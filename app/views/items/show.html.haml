@@ -3,14 +3,14 @@
     .show__main
       .show__main__name
         product3
-      %img{class: "show__main__image",src:"https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png", alt: "商品画像"}
+      = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png", class: "show__main__image", alt: "イメージ1"
       %ul.show__main__list
         %li.show__main__child
-          %img{src:"https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png",class:"show__main__child__image"}
+          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png", class: "show__main__child__image", alt: "イメージ2"  
         %li.show__main__child
-          %img{src:"https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/14/a001.png",class:"show__main__child__image"}
+          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/14/a001.png", class: "show__main__child__image", alt: "イメージ3" 
         %li.show__main__child
-          %img{src:"https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/15/a003.png",class:"show__main__child__image"}
+          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/15/a003.png", class: "show__main__child__image", alt: "イメージ4"
       .show__main__box
         .show__main__box__price
           ¥30000

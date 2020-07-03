@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
   root 'items#index'
-  resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show] do
+    member do
+      get 'purchase'
+    end
+  end
 end

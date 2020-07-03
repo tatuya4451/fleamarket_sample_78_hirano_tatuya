@@ -1,0 +1,242 @@
+* {
+  box-sizing: border-box;
+}
+
+.BuyWrapper{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f8f8;
+  font-family: "Arial","游ゴシック体","YuGothic","メイリオ","Meiryo","sans-serif";
+  
+  .Header{
+    -webkit-box-align: center;
+    align-items: center;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 56px;
+  }
+
+  .ItemField{
+    max-width: 700px;
+    width: 100%;
+    margin: 0px auto;
+    .ItemInfo{
+      background-color: white;
+
+      .Contents:not(:first-child){
+        border-top: 1px solid #f8f8f8;
+      }
+
+      .Contents{
+        padding: 24px 16px;
+        max-width: 375px;
+        margin: 0px auto;
+
+        .BuySiteTitle{
+          text-align: center;
+          font-weight: 600;
+        }
+
+        .BuyItem{
+          display: flex;
+          justify-content: space-between;
+          
+          &__image{
+            height: 80px;
+            width: 80px;
+            border-radius: 4px;
+          }
+          &__Info{
+            width: 100%;
+            margin-left: 16px;
+      
+            &__Name{
+              font-size: 14px;
+              line-height: 1.4em;
+              margin-bottom: 8px;
+            }
+            &__Price{
+              text-align: right;
+              display: block;
+              margin: 0px;
+              padding: 0px;
+              border-width: 0px;
+              border-style: initial;
+              border-color: initial;
+              border-image: initial;
+              font: inherit;
+            }
+            .PriceDetail{
+              font-size: 12px;
+            }
+            .Price{
+              font-size: 15px;
+              font-weight: 600;
+              margin-left: 8px;
+            }
+          }
+        }
+
+        .PayPrice{
+          display: flex;
+          font-size: 18px;
+          font-weight: 600;
+          -webkit-box-pack: justify;
+          justify-content: space-between;
+          -webkit-box-align: center;
+          align-items: center;
+          .Price{
+            font-size: 24px;
+            font-family: Arial, Helvetica, sans-serif;
+          }
+        }
+  
+        .PayMethod{
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 16px;
+          h3{
+            font-size: 14px;
+            font-weight: 600;
+          }
+        }
+
+        .CardInfo{
+          p{
+            line-height: 1.4em;
+            font-size: 14px;
+          }
+          &__Logo{
+            .image{
+              margin-top: 8px;
+              max-height: 32px;
+              max-width: 48px;
+            }
+          }
+        }
+
+        .DeliveryAddress{
+          display: flex;
+          justify-content: space-between;
+          h3{
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+          }
+        }
+      
+        .AddressInfo{
+          p{
+            line-height: 1.4rem;
+            font-size: 14px;
+          }
+        }
+        
+        .BuyBtn{
+          -webkit-box-align: center;
+          align-items: center;
+          background-color: rgb(234, 53, 45);
+          color: rgb(255, 255, 255);
+          cursor: pointer;
+          display: flex;
+          font-size: 14px;
+          font-weight: 600;
+          height: 50px;
+          -webkit-box-pack: center;
+          justify-content: center;
+          width: 100%;
+          -webkit-appearance: none;
+          border-width: initial;
+          border-style: none;
+          border-color: initial;
+          border-image: initial;
+          border-radius: 4px;
+          outline: none;
+          padding: 0px;
+          transition: all 0.3s ease-out 0s;
+        }
+
+        .GuideLink{
+          font-size: 14px;
+          align-items: center;
+          color: #0095ee;
+          cursor: pointer;
+          display: inline-flex;
+          line-height: 1.4em;
+          text-decoration: none;
+          word-break: normal;
+        }
+
+        .GuideLink:hover{
+          text-decoration: underline;
+          opacity: 0.5;
+        }
+      
+      }
+      
+      .Contents:last-of-type{
+        padding: 24px 16px 48px;
+      }
+
+
+    }
+  }
+
+  .Footer{
+    margin-top: auto;
+    text-align: center;
+    padding: 40px 0px 11px;
+
+    .Notice{
+      ul{
+        display: inline-block;
+        margin: -16px 0px 40px -16px;
+        font-size: 12px;
+
+        li{
+          display: block;
+          margin: 16px 0px 0px 16px;
+
+          .link{
+            font-size: 12px;
+            text-decoration: none;
+            color: inherit;
+          }
+        }
+      }
+    }
+
+    .Logo{
+      .CompanyName{
+        font-size: 12px;
+      }
+    }
+
+    li:hover{
+      text-decoration: underline;
+      opacity: 0.5;
+      }
+  }
+
+  @media(min-width: 768px){
+    .ResponsiveTitle{
+      font-size: 24px;
+      line-height: 34px;
+    }
+    .ResponsiveLogo{
+      height: 49px;
+      width: 185px;
+    }
+    .ResponsiveHeader{
+      height: 128px !important;
+    }
+  }
+  @media(max-width: 767px){
+    .ResponsiveTitle{
+      font-size: 17px;
+      line-height: 24px;
+    }
+  }
+}

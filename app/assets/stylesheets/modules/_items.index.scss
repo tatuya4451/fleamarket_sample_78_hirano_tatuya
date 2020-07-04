@@ -1,4 +1,3 @@
-
 .header{
   font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
   padding:0 60px;
@@ -84,6 +83,7 @@
 .main{
   font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
   padding-top: 98px;
+  box-sizing: border-box;
   .main-visual{
     width:100%;
     height:560px;
@@ -474,7 +474,7 @@
     }
   }
   .pickup-category{
-    padding: 80px 0 0;
+    padding: 80px 0 60px 0;
     background-color: #f8f8f8;
     height: 100%;
     .pickup-category__title{
@@ -496,6 +496,7 @@
         }
       }
       .pickup-category__product-lists{
+        background-color:  #f8f8f8;
         width: 780px;
         margin: 26px auto;
         display: flex;
@@ -564,7 +565,7 @@
     }
   }
   .pickup-brand{
-    padding: 80px 0 0;
+    padding-bottom: 60px ;
     background-color: #f8f8f8;
     height: 100%;
     .pickup-brand__title{
@@ -692,6 +693,7 @@
 
 .footer{
   font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
+  box-sizing: border-box;
   padding: 60px 0;
   color: #fff;
   background-color: #272727;
@@ -751,8 +753,8 @@
 a{
   .purchase-btn{
     font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
-    width: 85px;
-    height:88px;
+    box-sizing: border-box;
+    width: 120px;
     background: #3CCACE;
     text-align: center;
     border-radius: 4%;
@@ -769,7 +771,7 @@ a{
     }
     .purchase-btn__img{
       image{
-        vertical-align: bottom;
+        width: 60%;
       }
     }
   }

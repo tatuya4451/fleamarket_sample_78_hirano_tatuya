@@ -1,0 +1,80 @@
+.BuyWrapper
+  .Header.ResponsiveHeader
+    = image_tag 'logo/logo.png',class:'ResponsiveLogo', alt:"FURIMA", height:"33px", width:"120px"
+  .ItemField
+    .ItemInfo
+      %section.Contents
+        %h2.BuySiteTitle.ResponsiveTitle
+          購入内容の確認
+      %section.Contents
+        .BuyItem
+          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png",class:"BuyItem__image", alt: "商品画像"
+          .BuyItem__Info
+            %p.BuyItem__Info__Name
+              冷凍パック 焼き魚定食
+            %p.BuyItem__Info__Price
+              %span.PriceDetail
+                送料込み (税込)
+              %span.Price
+                ¥1,700
+      %section.Contents
+        .PayPrice
+          %span
+            支払い金額
+          %span.Price
+            ¥1,700
+      %section.Contents
+        .PayMethod
+          %h3
+            支払い方法
+          = link_to '#', class:"GuideLink" do
+            変更する
+            %svg.style_right__2qI2e{"aria-hidden" => "true", :fill => "#0095ee", "fill-rule" => "evenodd", :height => "16", :viewbox => "0 0 24 24", :width => "16"}
+              %path{:d => "M9,19a.7.7,0,0,1-.49-.2.69.69,0,0,1,0-1l5.62-5.63a.28.28,0,0,0,.09-.21.27.27,0,0,0-.09-.2L8.6,6.19a.7.7,0,1,1,1-1l5.58,5.58A1.71,1.71,0,0,1,15.66,12a1.73,1.73,0,0,1-.49,1.2L9.54,18.8A.74.74,0,0,1,9,19Z"}
+
+        .CardInfo
+          %p
+            クレジットカード
+          %p
+            ************1111
+          %p
+            有効期限
+            14 / 24
+          %p.CardInfo__Logo
+            =image_tag "https://web-jp-assets.mercdn.net/_next/static/images/mastercard-8b5b68c12b7a2fc8619c71f49ef9209b.svg",class: "image", alt: "カード会社ロゴ"
+      %section.Contents
+        .DeliveryAddress
+          %h3
+            配送先
+          = link_to '#', class:"GuideLink" do
+            変更する
+            %svg.style_right__2qI2e{"aria-hidden" => "true", :fill => "#0095ee", "fill-rule" => "evenodd", :height => "16", :viewbox => "0 0 24 24", :width => "16"}
+              %path{:d => "M9,19a.7.7,0,0,1-.49-.2.69.69,0,0,1,0-1l5.62-5.63a.28.28,0,0,0,.09-.21.27.27,0,0,0-.09-.2L8.6,6.19a.7.7,0,1,1,1-1l5.58,5.58A1.71,1.71,0,0,1,15.66,12a1.73,1.73,0,0,1-.49,1.2L9.54,18.8A.74.74,0,0,1,9,19Z"}
+
+        .AddressInfo
+          %p
+            〒123-4567
+          %p
+            東京都 板橋区 志村三丁目 20
+          %p
+            振魔 太郎
+      %section.Contents
+        .BuyBtn
+          購入する
+  .Footer
+    .Notice
+      %ul
+        %li
+          = link_to "#",class:"link" do
+            プライバシーポリシー
+        %li
+          = link_to "#",class:"link" do
+            FURIMA利用規約
+        %li
+          = link_to "#",class:"link" do
+            特定商取引に関する表記
+    .Logo
+      = link_to "#",class:"link" do
+        = image_tag 'logo/logo.png', alt:"FURIMA", height:"33px", width:"120px"
+      %p.CompanyName
+        ©︎ FURIMA, Inc.

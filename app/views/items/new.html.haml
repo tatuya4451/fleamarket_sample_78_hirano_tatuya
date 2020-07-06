@@ -1,0 +1,135 @@
+.news
+  .new
+    = form_with url:"#", class: 'new__items' do |f|
+      .new__photo
+        .new__photo__pop
+          %label.new__all-terop
+            出品画像
+          %span.new__all-must
+            必須
+        .new__photo__terop
+          最大4枚までアップロードできます
+        .new__photo__container
+          .new__photo__container-image
+            = f.label :image, class: "form-image" do
+              = icon('fas','camera', class:'new__photo__icon')
+              = f.file_field :image, class:"new__photo__uploader"
+      .new__explanation
+        .new__explanation__pop
+          %label.new__all-terop
+            商品名
+          %span.new__all-must
+            必須  
+        .new__all-box
+          = f.text_field :explantion, class:"new__all__text-field", placeholder: "40文字まで", maxlength: 40
+        .new__all-heading
+          %label.new__all-terop
+            商品の説明
+          %span.new__all-must
+            必須  
+        .new__explanation__area
+          = f.text_area :explantion, class: "new__all__text-field new__explanation__area-field", placeholder: "商品の説明 （必須 1,000文字以内)&#13;&#10;(色、素材、重さ、定価、注意点など)&#13;&#10;&#13;&#10;例) 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでお勧めです。".html_safe
+        .new__explanation__length
+          %span.new__length-child
+            0/1000
+          .new__length-par
+      .new__show
+        .new__show__pop
+          商品の詳細
+        .new__all-heading
+          %label.new__all-terop
+            カテゴリー
+          %span.new__all-must
+            必須  
+        .new__all-box
+          = f.select :category, [["キッズ",1], ["レディース",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
+        .new__all-heading
+          %label.new__all-terop
+            ブランド
+          %span.new__any
+            任意  
+        .new__all-box
+          = f.text_field :brand, class: "new__all__text-field", placeholder: "例) シャネル"
+        .new__all-heading
+          %label.new__all-terop
+            商品の状態
+          %span.new__all-must
+            必須  
+        .new__all-box
+          = f.select :status, [["新品",1], ["未使用",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
+      .new__send
+        .new__send__pop
+          .new__send__pop-msg
+            配送について
+          .new__send__pop-question
+            = link_to "#", class:'new__send__pop-question new__all-link' do
+              = icon('far','question-circle', class:'send__question__icon')
+        .new__sall-heading
+          %label.new__all-terop
+            配送料の負担
+          %span.new__all-must
+            必須  
+        .new__all-box
+          = f.select :burden, [["送料込み(出品者負担)",1], ["着払い",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
+        .new__all-heading
+          %label.new__all-terop
+            発送元の地域
+          %span.new__all-must
+            必須
+        .new__all-box
+          = f.select :area, [["北海道",1], ["青森",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
+        .new__all-heading
+          %label.new__all-terop
+            発送までの日数
+          %span.new__all-must  
+            必須
+        .new__all-box
+          = f.select :days, [["1〜2日で発送",1]], {prompt: "選択してください"}, {class: "new__all__text-field"}
+      .new__price
+        .new__price__pop
+          .new__price__pop
+            .new__price__pop-msg
+              価格 (¥300〜9,999,999)
+            .new__price__pop-question
+              = link_to "#", class:'new__send__pop-question new__all-link' do
+                = icon('far','question-circle', class:'price__question__icon')
+        .new__price__price
+          %label.new__all-terop
+            販売価格
+          %span.new__all-must
+            必須 
+          = f.number_field :price, class: "new__price__field"  
+          %span.span__price
+            ¥  
+        .new__price__fee
+          .new__price__fee-price
+            販売手数料 (10%)
+          %span.new__price__fee-data
+            ー
+        .new__price__profit
+          販売利益
+          %span.new__price__profit-data
+            ー
+      .new__form
+        = f.submit "出品する", class: "new__form-submit new__all-submit"
+        = f.submit "下書きに保存", class: "new__form-draft new__all-submit"
+        .new__form-back
+          = link_to "#", class:'new__form-back__link new__all-link' do
+            もどる
+      .new__bottom
+        禁止されている
+        = link_to "#", class:"new__all-link" do
+          行為
+        および
+        = link_to "#", class:"new__all-link" do
+          出品物
+        を必ずご確認ください。
+        = link_to "#", class:"new__all-link" do
+          偽ブランド品
+        や
+        = link_to "#", class:"new__all-link" do
+          盗品物
+        などの販売は犯罪であり、法律により処罰される可能性があります。また、出品を持ちまして
+        = link_to "#", class:"new__all-link" do
+          加盟店規約
+        に同意したことになります。

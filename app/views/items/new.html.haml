@@ -10,10 +10,16 @@
         .new__photo__terop
           最大4枚までアップロードできます
         .new__photo__container
-          .new__photo__container-image
-            = f.label :image, class: "form-image" do
-              = icon('fas','camera', class:'new__photo__icon')
-              = f.file_field :image, class:"new__photo__uploader"
+
+          .new__photo__container-image#image-box
+            = f.fields_for :images do |i|
+              .js-file_group{"data-index" => "#{i.index}"}
+              = i.label :url, class: "form-image" do
+                = icon('fas','camera', class:'new__photo__icon')
+              = i.file_field :url, class:"new__photo__uploader", id:"img-file"
+              %span.js-remove
+                削除
+
       .new__explanation
         .new__explanation__pop
           %label.new__all-terop

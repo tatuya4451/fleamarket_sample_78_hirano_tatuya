@@ -34,7 +34,6 @@ Things you may want to cover:
 ##  profilesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|avatar|string||
 |introduction|text||
 |user|references|null: false, foreign_key: true|
 ### Association
@@ -48,7 +47,7 @@ Things you may want to cover:
 |destination_last_name_kana|string|null: false|
 |destination_first_name_kana|string|null: false|
 |post_code|integer(7)|null: false|
-|prefecture_id|integer|null: false|
+|prefecture|references|null: false, foreign_key: true|
 |city|string|null: false|
 |address|string|null: false|
 |building_name|string||
@@ -56,7 +55,7 @@ Things you may want to cover:
 |user|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
-- Gemのjp_prefecture か active_hash にて都道府県取得
+- belongs_to_active_hash :prefecture
 
 ##  credit_cardsテーブル
 |Column|Type|Options|
@@ -65,31 +64,32 @@ Things you may want to cover:
 |expirations_month|integer|null: false|
 |expirations_year|integer|null: false|
 |security_code|integer|null: false|
-|user|references|null: false|
+|user|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 
 ##  itemsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|item_image|references|null: false|
+|item_image|references|null: false, foreign_key: true|
 |name|string|null: false|
 |introduce|text|null: false|
-|category|references|null: false|
-|size|references|null: false|
+|category|references|null: false, foreign_key: true|
+|size|references|null: false, foreign_key: true|
 |brand|references||
-|item_condition|references|null: false|
-|postage_payer|references|null: false|
-|delivery_method|references|null: false|
-|preparation_days|references|null: false|
-|buyer|references||
-|seller|references|null: false|
+|item_condition|references|null: false, foreign_key: true|
+|postage_payer|references|null: false, foreign_key: true|
+|delivery_method|references|null: false, foreign_key: true|
+|prefecture|references|null: false, foreign_key: true|
+|preparation_days|references|null: false, foreign_key: true|
+|buyer|references|foreign_key: true|
+|seller|references|null: false, foreign_key: true|
 |price|integer|null: false|
-|trading_status|string|null: false|
+|trading_status|enum|null: false|
 |deal_closed_date|timestamp||
 ### Association
 - has_many: item_images, dependent: :destroy
-- belongs_to_active_hash :category
+- belongs_to :category
 - belongs_to_active_hash :size
 - belongs_to :brand
 - belongs_to_active_hash :item_condition
@@ -98,12 +98,12 @@ Things you may want to cover:
 - belongs_to_active_hash :preparation_day
 - belongs_to :seller, class_name: "User"
 - belongs_to :buyer, class_name: "User
-- Gemのjp_prefecture か active_hash にて都道府県取得
+- belongs_to_active_hash :prefecture
 
 ##  item_imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|item|references|null: false|
+|item|references|null: false, foreign_key: true|
 |url|string|null: false|
 ### Association
 - belongs_to :item
@@ -157,6 +157,14 @@ Things you may want to cover:
 |preparation_days|string|null: false|
 ### Association
 - has_many: items
+
+##  prefecturesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|prefecture|string|null: false|
+### Association
+- has_many: items
+- has_many: sending_destinations
 
 * Database initialization
 

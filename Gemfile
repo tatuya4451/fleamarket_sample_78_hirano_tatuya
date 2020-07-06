@@ -75,8 +75,7 @@ gem 'rubocop', require: false
 gem 'active_hash'
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'jquery-rails'
-
+gem 'jquery-rails
 
 group :production do
   gem 'unicorn'

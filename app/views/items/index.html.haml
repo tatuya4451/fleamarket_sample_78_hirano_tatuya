@@ -1,7 +1,7 @@
 
 %body
-  .Header
-    =render partial: 'header'
+  .Toppage-header
+    =render partial: 'Toppage-header'
 
   .Main
     .Main-visual
@@ -17,9 +17,9 @@
             フリマアプリです
           .Main-visual__section__title__btn-content
             =link_to '#'  do
-              =image_tag 'logo/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg' ,width: 180,height: 53
+              =image_tag 'logo/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg' ,alt:"画像表示エラー" ,width: 180,height: 53
             =link_to  '#'  do
-              =image_tag 'logo/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg' ,width: 180,height: 53
+              =image_tag 'logo/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg' ,alt:"画像表示エラー" ,width: 180,height: 53
     .Main__introduction
       .Main__introduction__title
         %h2
@@ -29,7 +29,7 @@
         %li.Main__introduction__list__left-list
           .Main__introduction__list__left-list__left-img
             %span.number 1
-            =image_tag 'pict/pict-reason-01.jpg' , size:261
+            =image_tag 'pict/pict-reason-01.jpg' ,alt:"画像表示エラー" , size:261
           .Main__introduction__list__left-list__left-text
             %h3
               %span 3分
@@ -40,7 +40,7 @@
         %li.Main__introduction__list__center-list
           .Main__introduction__list__center-list__center-img
             %span.number 2
-            =image_tag 'pict/pict-reason-02.jpg', size:261
+            =image_tag 'pict/pict-reason-02.jpg',alt:"画像表示エラー" , size:261
           .Main__introduction__list__center-list__center-text
             %h3
               %span シンプル
@@ -51,7 +51,7 @@
         %li.Main__introduction__list__right-list
           .Main__introduction__list__right-list__right-img
             %span.number 3
-            =image_tag 'pict/pict-reason-03.jpg' , size:261
+            =image_tag 'pict/pict-reason-03.jpg' ,alt:"画像表示エラー" , size:261
           .Main__introduction__list__right-list__right-text
             %h3
               手数料
@@ -70,9 +70,9 @@
           ほしかったあの商品に出会えるかもしれません。
         .Main__middle-visual__inner__btn-content
           =link_to '#'  do
-            =image_tag 'logo/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg' ,width: 180,height: 53
+            =image_tag 'logo/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg',alt:"画像表示エラー"  ,width: 180,height: 53
           =link_to  '#'  do
-            =image_tag 'logo/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg' ,width: 180,height: 53
+            =image_tag 'logo/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg' ,alt:"画像表示エラー" ,width: 180,height: 53
     .Main__top-features
       %h2.Main__top-features__title 
         FURIMAの特徴
@@ -80,19 +80,19 @@
       .Main__top-features__list
         .Main__top-features__list__left-list
           %figure.Main__top-features__list__left-list__left-img
-            =image_tag 'icon/icon-01.png' , width:160 ,height:247
+            =image_tag 'icon/icon-01.png' ,alt:"画像表示エラー" , width:160 ,height:247
           %h3.Main__top-features__list__left-list__left-subtitle 簡単に売り買いできる
           %p.Main__top-features__list__left-list__left-detail
             スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
         .Main__top-features__list__center-list
           %figure.Main__top-features__list__center-list__center-img
-            =image_tag 'icon/icon-03.png' , width:160 ,height:247
+            =image_tag 'icon/icon-03.png' ,alt:"画像表示エラー" , width:160 ,height:247
           %h3.Main__top-features__list__center-list__center-subtitle 売上金は即日振込みに対応
           %p.Main__top-features__list__center-list__center-detail
             午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします!
         .Main__top-features__list__right-list
           %figure.Main__top-features__list__right-list__right-img
-            =image_tag 'icon/icon-04.png' , width:160 ,height:247
+            =image_tag 'icon/icon-04.png' ,alt:"画像表示エラー" , width:160 ,height:247
           %h3.Main__top-features__list__right-list__right-subtitle 様々な支払いに対応
           %p.Main__top-features__list__right-list__right-detail
             お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
@@ -112,7 +112,7 @@
           .Main__pickup-category__box__lists__list
             =link_to "/products/8" do
               .Main__pickup-category__box__lists__list__img
-                =image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG"
+                =image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG",alt:"画像表示エラー" 
               .Main__pickup-category__box__lists__list__body
                 %h3.name ee
                 .Main__pickup-category__box__lists__list__body__details
@@ -126,7 +126,7 @@
           .Main__pickup-category__box__lists__list
             =link_to "/products/3" do
               .Main__pickup-category__box__lists__list__img
-                =image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"
+                =image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png",alt:"画像表示エラー" 
               .Main__pickup-category__box__lists__list__body
                 %h3.name product3
                 .Main__pickup-category__box__lists__list__body__details
@@ -139,7 +139,7 @@
           .Main__pickup-category__box__lists__list
             =link_to "/products/2" do
               .Main__pickup-category__box__lists__list__img
-                =image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png"
+                =image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png",alt:"画像表示エラー" 
               .Main__pickup-category__box__lists__list__body
                 %h3.name product2
                 .Main__pickup-category__box__lists__list__body__details
@@ -152,7 +152,7 @@
           .Main__pickup-category__box__lists__list
             =link_to "/products/1" do
               .Main__pickup-category__box__lists__list__img
-                =image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png"
+                =image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png",alt:"画像表示エラー" 
               .Main__pickup-category__box__lists__list__body
                 %h3.name product1
                 .Main__pickup-category__box__lists__list__body__details
@@ -176,7 +176,7 @@
           .Main__pickup-brand__box__lists__list
             =link_to "/products/8" do
               .Main__pickup-brand__box__lists__list__img
-                =image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG"
+                =image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG",alt:"画像表示エラー" 
               .Main__pickup-brand__box__lists__list__body
                 %h3.name ee
                 .Main__pickup-brand__box__lists__list__body__details
@@ -190,7 +190,7 @@
           .Main__pickup-brand__box__lists__list
             =link_to "/products/3" do
               .Main__pickup-brand__box__lists__list__img
-                =image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png"
+                =image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png",alt:"画像表示エラー" 
               .Main__pickup-brand__box__lists__list__body
                 %h3.name product3
                 .Main__pickup-brand__box__lists__list__body__details
@@ -204,7 +204,7 @@
           .Main__pickup-brand__box__lists__list
             =link_to "/products/2" do
               .Main__pickup-brand__box__lists__list__img
-                =image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png"
+                =image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png",alt:"画像表示エラー" 
               .Main__pickup-brand__box__lists__list__body
                 %h3.name product2
                 .Main__pickup-brand__box__lists__list__body__details
@@ -218,7 +218,7 @@
           .Main__pickup-brand__box__lists__list
             =link_to "/products/1" do
               .Main__pickup-brand__box__lists__list__img
-                =image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png"
+                =image_tag  "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/7/a001.png" ,alt:"画像表示エラー" 
               .Main__pickup-brand__box__lists__list__body
                 %h3.name product1
                 .Main__pickup-brand__box__lists__list__body__details
@@ -235,12 +235,12 @@
         %p.Main__banner__inner__text 今すぐ無料ダウンロード！
         .Main__banner__inner__icon
           =link_to '#'  do
-            =image_tag 'logo/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg' ,width: 180,height: 53
+            =image_tag 'logo/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg', alt:"画像表示エラー" ,width: 180,height: 53
           =link_to  '#'  do
-            =image_tag 'logo/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg' ,width: 180,height: 53
+            =image_tag 'logo/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg', alt:"画像表示エラー",width: 180,height: 53
   
-  .Footer
-    =render partial: 'footer'
+  .Toppage-footer
+    =render partial: 'Toppage-footer'
 
 
 
@@ -249,5 +249,5 @@
     %span.purchase-btn__text 
       出品する
     .purchase-btn__img
-      =image_tag 'icon/icon_camera.png' ,size:54
+      =image_tag 'icon/icon_camera.png',alt:"画像表示エラー" ,size:54
 

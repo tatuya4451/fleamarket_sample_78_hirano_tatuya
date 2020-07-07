@@ -1,0 +1,23 @@
+.Toppage-header__content
+  .Toppage-header__content__top
+    %h1.Toppage-header__content__top__icon
+      =link_to '#' , target: '_self' do
+        =image_tag 'logo/logo.png' ,alt:"画像表示エラー" ,width: 140,height: 41
+    .Toppage-header__content__top__form
+      =form_with  url:"#",method: :post, local:true do |form|
+        =form.text_field :search, placeholder: 'キーワードから探す',class: 'search-box'
+        .search-btn
+          =link_to  '#'  do
+            =image_tag 'icon/icon-search 1.png',alt:"画像表示エラー" , size:20
+  .Toppage-header__content__bottom
+    .Toppage-header__content__bottom__button
+      %ul.Toppage-header__content__bottom__button__left-menu
+        %li.Toppage-header__content__bottom__button__left-menu__category-list 
+          =link_to "カテゴリー", '#' 
+        %li.Toppage-header__content__bottom__button__left-menu__brand-list
+          =link_to "ブランド", '#' 
+      %ul.Toppage-header__content__bottom__button__right-menu
+        %li.Toppage-header__content__bottom__button__right-menu__login
+          =link_to "ログイン", '#' 
+        %li.Toppage-header__content__bottom__button__right-menu__sign-up
+          =link_to "新規会員登録", '#'

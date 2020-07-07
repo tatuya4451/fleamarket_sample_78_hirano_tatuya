@@ -1,6 +1,6 @@
 .news
   .new
-    = form_with url:"#", class: 'new__items' do |f|
+    = form_with model:@item  do |f|
       .new__photo
         .new__photo__pop
           %label.new__all-terop
@@ -10,10 +10,14 @@
         .new__photo__terop
           最大4枚までアップロードできます
         .new__photo__container
-          .new__photo__container-image
-            = f.label :image, class: "form-image" do
-              = icon('fas','camera', class:'new__photo__icon')
-              = f.file_field :image, class:"new__photo__uploader"
+          .new__photo__container-image#image-box
+            = f.fields_for :images do |i|
+              .js-file_group{"data-index" => "#{i.index}"}
+              = i.label :url, class: "form-image" do
+                = icon('fas','camera', class:'new__photo__icon')
+              = i.file_field :url, class:"new__photo__uploader", id:"img-file"
+              %span.js-remove
+                削除
       .new__explanation
         .new__explanation__pop
           %label.new__all-terop
@@ -21,14 +25,14 @@
           %span.new__all-must
             必須  
         .new__all-box
-          = f.text_field :explantion, class:"new__all__text-field", placeholder: "40文字まで", maxlength: 40
+          = f.text_field :name, class:"new__all__text-field", placeholder: "40文字まで", maxlength: 40
         .new__all-heading
           %label.new__all-terop
             商品の説明
           %span.new__all-must
             必須  
         .new__explanation__area
-          = f.text_area :explantion, class: "new__all__text-field new__explanation__area-field", placeholder: "商品の説明 （必須 1,000文字以内)&#13;&#10;(色、素材、重さ、定価、注意点など)&#13;&#10;&#13;&#10;例) 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでお勧めです。".html_safe
+          = f.text_area :introduce, class: "new__all__text-field new__explanation__area-field", placeholder: "商品の説明 （必須 1,000文字以内)&#13;&#10;(色、素材、重さ、定価、注意点など)&#13;&#10;&#13;&#10;例) 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでお勧めです。".html_safe
         .new__explanation__length
           %span.new__length-child
             0/1000
@@ -42,7 +46,7 @@
           %span.new__all-must
             必須  
         .new__all-box
-          = f.select :category, [["キッズ",1], ["レディース",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
+          -# = f.select :category, [["キッズ",1], ["レディース",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
         .new__all-heading
           %label.new__all-terop
             ブランド
@@ -56,7 +60,7 @@
           %span.new__all-must
             必須  
         .new__all-box
-          = f.select :status, [["新品",1], ["未使用",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
+          = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "選択してください"}, {class:"new__all__text-field"}
       .new__send
         .new__send__pop
           .new__send__pop-msg
@@ -70,21 +74,21 @@
           %span.new__all-must
             必須  
         .new__all-box
-          = f.select :burden, [["送料込み(出品者負担)",1], ["着払い",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
+          -# = f.select :burden, [["送料込み(出品者負担)",1], ["着払い",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
         .new__all-heading
           %label.new__all-terop
             発送元の地域
           %span.new__all-must
             必須
         .new__all-box
-          = f.select :area, [["北海道",1], ["青森",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {class:"new__all__text-field"}
         .new__all-heading
           %label.new__all-terop
             発送までの日数
           %span.new__all-must  
             必須
         .new__all-box
-          = f.select :days, [["1〜2日で発送",1]], {prompt: "選択してください"}, {class: "new__all__text-field"}
+          = f.collection_select :preparation_id, Preparation.all, :id, :days, {prompt: "選択してください"}, {class:"new__all__text-field"}
       .new__price
         .new__price__pop
           .new__price__pop
@@ -118,18 +122,19 @@
             もどる
       .new__bottom
         禁止されている
-        = link_to "#", class:"new__all-link" do
+        %a{ href:"#", class:"new__all-link"}
           行為
         および
-        = link_to "#", class:"new__all-link" do
+        %a{ href:"#", class:"new__all-link"}
           出品物
         を必ずご確認ください。
-        = link_to "#", class:"new__all-link" do
+        %a{ href:"#", class:"new__all-link"}
           偽ブランド品
         や
-        = link_to "#", class:"new__all-link" do
+        %a{ href:"#", class:"new__all-link"}
           盗品物
         などの販売は犯罪であり、法律により処罰される可能性があります。また、出品を持ちまして
-        = link_to "#", class:"new__all-link" do
+        %a{ href:"#", class:"new__all-link"}        
           加盟店規約
         に同意したことになります。
+

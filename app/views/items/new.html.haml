@@ -38,13 +38,15 @@
       .new__show
         .new__show__pop
           商品の詳細
-        .new__all-heading
-          %label.new__all-terop
-            カテゴリー
-          %span.new__all-must
-            必須  
-        .new__all-box
-          -# = f.select :category, [["キッズ",1], ["レディース",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
+        %label.new__all-terop
+          カテゴリー
+        %span.new__all-must
+          必須  
+        .listing-form-box
+          .listing-product-detail__category
+            .listing-select-wrapper
+              .listing-select-wrapper__box.new__all-box
+                = f.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select new__all__text-field', id: 'parent_category'}
         .new__all-heading
           %label.new__all-terop
             ブランド
@@ -72,7 +74,7 @@
           %span.new__all-must
             必須  
         .new__all-box
-          -# = f.select :burden, [["送料込み(出品者負担)",1], ["着払い",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
+          = f.select :burden, [["送料込み(出品者負担)",1], ["着払い",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
         .new__all-heading
           %label.new__all-terop
             発送元の地域

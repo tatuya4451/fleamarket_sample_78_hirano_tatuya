@@ -74,6 +74,11 @@ gem "haml-rails", ">=1.0", '<= 2.0.1'
 gem 'jquery-rails'
 gem 'mini_magick'
 gem 'rubocop', require: false
+gem 'active_hash'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'ancestry'
+
 
 group :production do
   gem 'unicorn'

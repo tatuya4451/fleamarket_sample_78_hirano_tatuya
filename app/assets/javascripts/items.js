@@ -1,11 +1,9 @@
 $(function(){
-
- 
   var dataBox = new DataTransfer();
-
   var file_field = document.querySelector('input[type=file]')
   $('#img-file').change(function(){
     var files = $('input[type="file"]').prop('files')[0];
+    
     $.each(this.files, function(i, file){
       var fileReader = new FileReader();
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers:{sessions: 'users/sessions',  registrations: 'users/registrations',}
   root 'items#index'
   resources :items, only: [:index, :show, :new, :create] do
     member do
@@ -10,6 +11,5 @@ Rails.application.routes.draw do
       get 'get_delivery_children', defaults: { format: 'json'}
     end
   end
-
 end
 

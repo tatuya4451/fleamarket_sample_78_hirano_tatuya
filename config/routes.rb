@@ -5,6 +5,6 @@ Rails.application.routes.draw do
       get 'purchase'
     end
   end
-
+  resources :categories, only: [:index]
 end
 

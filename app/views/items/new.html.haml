@@ -73,8 +73,11 @@
             配送料の負担
           %span.new__all-must
             必須  
-        .new__all-box
-          = f.select :burden, [["送料込み(出品者負担)",1], ["着払い",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
+          .listing-form-delivery
+          .listing-item-detail__delivery
+            .listing-select-wrap
+              .listing-select-wrap__box.new__all-box
+                = f.select :delivery_id, @delivery_parent_array, {}, {class: 'listing-select-wrap__box--select new__all__text-field', id: 'parent_delivery'}
         .new__all-heading
           %label.new__all-terop
             発送元の地域

@@ -12,7 +12,7 @@
     width:100%;
     min-height:82px;
     margin: 0 auto;
-    padding:10px 0;
+    padding-top:10px;
     &__top{
       display: flex;
       &__icon{
@@ -51,6 +51,7 @@
       &__button{
         display: flex;
         justify-content: space-between;
+        margin-top: 10px;
         &__left-menu{
           display:flex;
           position:relative;
@@ -59,6 +60,74 @@
             text-decoration: none;
             background-size: 18px;
             padding-right: 30px;
+            .category__child, .category__parent, .category__grandchild{
+              display: none;
+            }
+            .category__icon, .brands__icon{
+              color: #3CCACE;
+            }
+
+            .category__list{
+              background-color: white;
+              height: 560px;
+              position: absolute;
+              border-right: 1px solid rgba(245, 245, 245, 0.678);
+              border-bottom: 1px solid rgba(245, 245, 245, 0.337);
+            }
+            
+            .category__child--name{
+              background-color: white;
+              width: 100%;
+              color: black;
+              display: inline-block;
+              padding: 3px 15px;
+              font-size: 11px;
+              letter-spacing: 2px;
+              &:hover{
+                background-color: rgba(211, 211, 211, 1);
+              }
+            }
+            .categories{
+              padding-bottom: 10px;
+              &:hover{
+                .category__parent{
+                  width: 260px;
+                  top: 30px;
+                  display: block;
+                  &--name{
+                    width: 100%;
+                    color: black;
+                    display: inline-block;
+                    padding: 10px 10px;
+                    font-size: 13px;
+                    letter-spacing: 2px;
+                    &:hover{
+                      background-color: rgba(58, 217, 166, 0.63);
+                    }
+                  }
+                  li {
+                    &:hover{
+                      .category__child{
+                        width: 100%;
+                        display: block;
+                        top: 0;
+                        left: 240px;
+                        li {
+                          &:hover{
+                            .category__grandchild{
+                              width: 300px;
+                              display: block;
+                              top: 0;
+                              left: 239px;
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
           &__brand-list{
             background-size: 18px;

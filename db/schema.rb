@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
  ユーザー登録実装
 ActiveRecord::Schema.define(version: 2020_07_07_114928) do
 

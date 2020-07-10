@@ -11,5 +11,7 @@ Rails.application.routes.draw do
       get 'get_delivery_children', defaults: { format: 'json'}
     end
   end
+
+  resources :categories, only: [:index]
 end
 

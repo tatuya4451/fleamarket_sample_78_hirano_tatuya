@@ -3,3 +3,4 @@ seller_1 = seller.children.create([{method: "未定"},{method: "らくらくメ�
 
 buyer = Delivery.create(method: "着払い(購入者負担)")
 buyer_1 = buyer.children.create([{method: "未定"},{method:"クロネコヤマト"},{method: "ゆうパック"},{method: "ゆうメール"}])
+

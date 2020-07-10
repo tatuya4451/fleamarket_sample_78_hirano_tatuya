@@ -34,9 +34,11 @@
         %li.Toppage-header__content__bottom__button__left-menu__brand-list
           =link_to "ブランド", '#' 
       %ul.Toppage-header__content__bottom__button__right-menu
-        %li.Toppage-header__content__bottom__button__right-menu__logout
-          = link_to "ログアウト", destroy_user_session_path, method: :delete
-        %li.Toppage-header__content__bottom__button__right-menu__login
-          = link_to "ログイン", new_user_session_path, method: :get
-        %li.Toppage-header__content__bottom__button__right-menu__sign-up
-          =link_to "新規会員登録", new_user_registration_path, method: :get 
+        - if user_signed_in?
+          %li.Toppage-header__content__bottom__button__right-menu_mypage
+            = link_to "マイページ", edit_user_registration_path, method: :get
+        - else
+          %li.Toppage-header__content__bottom__button__right-menu__login
+            = link_to "ログイン", new_user_session_path, method: :get
+          %li.Toppage-header__content__bottom__button__right-menu__sign-up
+            =link_to "新規会員登録", new_user_registration_path, method: :get 

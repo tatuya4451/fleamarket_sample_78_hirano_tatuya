@@ -69,28 +69,29 @@
 
             .category__list{
               background-color: white;
+              height: 560px;
               position: absolute;
-              background-color: white;
               border-right: 1px solid rgba(245, 245, 245, 0.678);
               border-bottom: 1px solid rgba(245, 245, 245, 0.337);
             }
             
             .category__child--name{
+              background-color: white;
               width: 100%;
               color: black;
               display: inline-block;
               padding: 3px 15px;
-              font-size: 13px;
+              font-size: 11px;
               letter-spacing: 2px;
               &:hover{
-                background:black, lightgray, 1;
+                background-color: rgba(211, 211, 211, 1);
               }
             }
             .categories{
               padding-bottom: 10px;
               &:hover{
                 .category__parent{
-                  width: 240px;
+                  width: 260px;
                   top: 30px;
                   display: block;
                   &--name{
@@ -100,7 +101,9 @@
                     padding: 10px 10px;
                     font-size: 13px;
                     letter-spacing: 2px;
-                    // @include hover__color(white, skyblue, 1);
+                    &:hover{
+                      background-color: rgba(58, 217, 166, 0.63);
+                    }
                   }
                   li {
                     &:hover{

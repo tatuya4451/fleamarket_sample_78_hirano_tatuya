@@ -66,6 +66,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'carrierwave'
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 gem 'fog-aws'
 gem 'font-awesome-sass'
 gem "haml-rails", ">=1.0", '<= 2.0.1'
@@ -76,7 +78,6 @@ gem 'active_hash'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'ancestry'
-
 
 group :production do
   gem 'unicorn'

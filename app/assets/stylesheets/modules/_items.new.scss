@@ -173,7 +173,6 @@
 
         &__send{
           padding: 40px;
-          height: 444px;
           border-top: solid 1px #eee;
           &__pop{
             height: 19px;
@@ -194,7 +193,6 @@
 
         &__price{
           padding: 40px ;
-          height: 293px;
           border-top: solid 1px #eee;
           &__pop{
             height: 19px;
@@ -280,3 +278,10 @@
     }
 }
   
+.alert {
+  color:#262626; 
+  background:#FFEBE8;
+  text-align: center;
+  border:2px solid #990000;
+  padding:12px; font-weight:850;
+}

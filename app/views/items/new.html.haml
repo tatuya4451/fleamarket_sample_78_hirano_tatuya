@@ -1,6 +1,6 @@
 .news
   .new
-    = form_with model:@item  do |f|
+    = form_with model:@item, local: true do |f| 
       .new__photo
         .new__photo__pop
           %label.new__all-terop
@@ -24,6 +24,7 @@
             必須  
         .new__all-box
           = f.text_field :name, class:"new__all__text-field", placeholder: "40文字まで", maxlength: 40
+          = render partial: 'error-messages', locals: {item: @item, column: "name"} 
         .new__all-heading
           %label.new__all-terop
             商品の説明
@@ -46,7 +47,8 @@
           .listing-product-detail__category
             .listing-select-wrapper
               .listing-select-wrapper__box.new__all-box
-                = f.select :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select new__all__text-field', id: 'parent_category'}
+                -# collection_select(オブジェクト名, メソッド名, 要素の配列, value属性の項目, テキストの項目 [, オプション or HTML属性 or イベント属性])
+                = f.collection_select :category_id, Category.roots, :id , :name, {include_blank: "選択してください", selected: @item.category&.root_id}, required: true, class: "listing-select-wrapper__box--select new__all__text-field", id: "parent_category"
         .new__all-heading
           %label.new__all-terop
             ブランド
@@ -60,7 +62,8 @@
           %span.new__all-must
             必須  
         .new__all-box
-          = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "選択してください"}, {class:"new__all__text-field"}
+          -# = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "選択してください"}, {class:"new__all__text-field"}
+          = f.collection_select :condition_id, Condition.all, :id , :name, {include_blank: "選択してください", selected: @item.condition}, required: true, class: " new__all__text-field"
       .new__send
         .new__send__pop
           .new__send__pop-msg
@@ -73,22 +76,28 @@
             配送料の負担
           %span.new__all-must
             必須  
-        .new__all-box
-          = f.select :burden, [["送料込み(出品者負担)",1], ["着払い",2]], {prompt: "選択してください"}, {class: "new__all__text-field"}
+          .listing-form-delivery
+          .listing-item-detail__delivery
+            .listing-select-wrap
+              .listing-select-wrap__box.new__all-box
+                -# = f.select :delivery_id, @delivery_parent_array, {}, {class: 'listing-select-wrap__box--select new__all__text-field', id: 'parent_delivery'}
+                = f.collection_select :delivery_id, Delivery.roots, :id , :method, {include_blank: "選択してください", selected: @item.delivery&.root_id}, required: true, class: "listing-select-wrap__box--select new__all__text-field", id: "parent_delivery"  
         .new__all-heading
           %label.new__all-terop
             発送元の地域
           %span.new__all-must
             必須
         .new__all-box
-          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {class:"new__all__text-field"}
+          -# = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {include_blank: "選択してください"}, {class:"new__all__text-field"}
+          = f.collection_select :prefecture_id, Prefecture.all, :id , :name, {include_blank: "選択してください", selected: @item.prefecture}, required: true, class: " new__all__text-field"
         .new__all-heading
           %label.new__all-terop
             発送までの日数
           %span.new__all-must  
             必須
         .new__all-box
-          = f.collection_select :preparation_id, Preparation.all, :id, :days, {prompt: "選択してください"}, {class:"new__all__text-field"}
+          -# = f.collection_select :preparation_id, Preparation.all, :id, :days, {prompt: "選択してください"}, {class:"new__all__text-field"}
+          = f.collection_select :preparation_id, Preparation.all, :id , :days, {include_blank: "選択してください", selected: @item.preparation}, required: true, class: " new__all__text-field"
       .new__price
         .new__price__pop
           .new__price__pop

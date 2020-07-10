@@ -326,3 +326,9 @@ others_8 = others.children.create(name: "事務/店舗用品")
 others_8.children.create([{name: "オフィス用品一般"},{name: "オフィス家具"},{name: "店舗用品"},{name: "OA機器"},{name: "ラッピング/包装"},{name: "その他"}])
 others_9 = others.children.create(name: "その他")
 others_9.children.create([{name: "すべて"}])
+
+seller = Delivery.create(method: "送料込み(出品者負担)")
+seller_1 = seller.children.create([{method: "未定"},{method: "らくらくメルカリ便"},{method: "ゆうゆうメルカリ便"},{method:"ゆうメール"},{method: "レターパック"},{method: "普通郵便(定形、定形外)"},{method: "クロネコヤマト"},{method: "ゆうパック"},{method: "クリックポスト"},{method: "ゆうパケット"}])
+
+buyer = Delivery.create(method: "着払い(購入者負担)")
+buyer_1 = buyer.children.create([{method: "未定"},{method:"クロネコヤマト"},{method: "ゆうパック"},{method: "ゆうメール"}])

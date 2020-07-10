@@ -1,7 +1,7 @@
 .Toppage-header__content
   .Toppage-header__content__top
     %h1.Toppage-header__content__top__icon
-      =link_to '#' , target: '_self' do
+      =link_to '/' , target: '_self' do
         =image_tag 'logo/logo.png' ,alt:"画像表示エラー" ,width: 140,height: 41
     .Toppage-header__content__top__form
       =form_with  url:"#",method: :post, local:true do |form|
@@ -13,7 +13,24 @@
     .Toppage-header__content__bottom__button
       %ul.Toppage-header__content__bottom__button__left-menu
         %li.Toppage-header__content__bottom__button__left-menu__category-list 
-          =link_to "カテゴリー", '#' 
+          .categories
+            = link_to "categories", class: "category__search search__btn" do
+              カテゴリー
+            %ul.category__parent.category__list
+              - @parents.each do |parent|
+                %li
+                  = link_to "#", class: "category__parent--name" do
+                    = parent.name
+                  %ul.category__child.category__list
+                    - parent.children.each do |child|
+                      %li
+                        = link_to "#", class: "category__child--name" do
+                          = child.name
+                        %ul.category__grandchild.category__list
+                          - child.children.each do |grandchild|
+                            %li
+                              = link_to "#", class: " category__child--name" do
+                                = grandchild.name 
         %li.Toppage-header__content__bottom__button__left-menu__brand-list
           =link_to "ブランド", '#' 
       %ul.Toppage-header__content__bottom__button__right-menu

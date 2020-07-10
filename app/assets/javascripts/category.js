@@ -33,14 +33,12 @@ $(document).on('turbolinks:load',function(){
       $.ajax({
         url: 'get_category_children',
         type: 'GET',
-        data: { parent_name: parentCategory },
+        data: { parent_id: parentCategory },
         dataType: 'json'
       })
       .done(function(children){
         $('#children_wrapper').remove(); 
         $('#grandchildren_wrapper').remove();
-        $('#size_wrapper').remove();
-        $('#brand_wrapper').remove();
         var insertHTML = '';
         children.forEach(function(child){
           insertHTML += appendOption(child);
@@ -53,8 +51,6 @@ $(document).on('turbolinks:load',function(){
     }else{
       $('#children_wrapper').remove(); 
       $('#grandchildren_wrapper').remove();
-      $('#size_wrapper').remove();
-      $('#brand_wrapper').remove();
     }
   });
 

@@ -10,28 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
- ユーザー登録実装
-ActiveRecord::Schema.define(version: 2020_07_07_114928) do
-
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "nickname", null: false
-    t.string "last_name", null: false
-    t.string "first_name", null: false
-    t.string "last_name_kana", null: false
-    t.string "first_name_kana", null: false
-    t.date "birthday", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-end
-
-ActiveRecord::Schema.define(version: 2020_07_08_090125) do
+ActiveRecord::Schema.define(version: 2020_07_09_071919) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -69,12 +48,29 @@ ActiveRecord::Schema.define(version: 2020_07_08_090125) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_id"
     t.bigint "delivery_id", null: false
+    t.integer "saler_id", null: false
+    t.integer "buyer_id"
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["delivery_id"], name: "index_items_on_delivery_id"
+  end
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "nickname", null: false
+    t.string "last_name", null: false
+    t.string "first_name", null: false
+    t.string "last_name_kana", null: false
+    t.string "first_name_kana", null: false
+    t.date "birthday", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "images", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "deliveries"
 end
-master

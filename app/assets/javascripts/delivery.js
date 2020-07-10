@@ -22,7 +22,7 @@ $(document).on('turbolinks:load',function(){
       $.ajax({
         url: 'get_delivery_children',
         type: 'GET',
-        data: { parent_method: parentDelivery },
+        data: { parent_id: parentDelivery },
         dataType: 'json'
       })
       .done(function(children){

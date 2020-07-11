@@ -7,8 +7,8 @@
       %h2.single 会員情報入力
       .account__main__area__form
         .account__main__area__form__input
-          = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-            = render "devise/shared/error_messages", resource: resource
+          = form_for(@user, url: user_registration_path) do |f|
+            = render "devise/shared/error_messages", resource: @user
             .form-group
               = f.label :ニックネーム
               %span.required 必須
@@ -48,7 +48,7 @@
                 必須
               %br/
               = f.text_field :last_name, placeholder: "例）山田", class: "input-type"
-              = f.text_field :first_name,  placeholder: "例）例太郎", class: "input-type"
+              = f.text_field :first_name,  placeholder: "例）太郎", class: "input-type"
 
             .form-group
               = f.label :お名前カナ（全角）
@@ -68,7 +68,7 @@
                 
             %p.text ※本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
             .form-btn
-              = submit_tag :"登録する", class: "btn",  id:"btn"
+              = f.submit :"次へ", class: "btn",  id:"btn"
             %p.form-text
               = link_to "#" do
                 本人情報の登録について

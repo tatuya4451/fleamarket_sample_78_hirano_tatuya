@@ -1,0 +1,6 @@
+class Address < ApplicationRecord
+  belongs_to :user, optional: true
+  validates :destination_last_name, :destination_first_name,:destination_last_name_kana,:destination_first_name_kana,:post_code,:prefecture_id,:city,:address,:buliding_name,presence: true
+  validates :post_code, format: { with: /\A\d{7}\z/}
+  validates :phone_number, uniqueness: true
+end

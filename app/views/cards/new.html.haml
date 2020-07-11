@@ -1,0 +1,48 @@
+.CardRegWrapper
+  .CardInputForm
+    %h2.MainTitle クレジットカード情報入力
+    = form_with url: cards_path, html:{class: 'InputBox'}, id: "charge-form", local: true, method: :post do |f|
+      .CardInput
+        .InputTitle
+          %h2.Title カード番号
+          %span.form-require 必須
+        = f.text_field "number", class: "input__default", placeholder: "半角数字のみ", type: "text", id: "card_number", maxlength: "16"
+        -# %input#card_number.form-control{:placeholder => "カード番号", :type => "text"}/
+        %ul.Signup-card-list
+          %li
+            %img{:alt => "", :height => "20", :src => "//pcweb-assets.mercdn.net/assets/img/card/visa.svg?3122088302", :width => "49"}/
+          %li
+            %img{:alt => "", :height => "20", :src => "//pcweb-assets.mercdn.net/assets/img/card/master-card.svg?3122088302", :width => "34"}/
+          %li
+            %img{:alt => "", :height => "20", :src => "//pcweb-assets.mercdn.net/assets/img/card/saison-card.svg?3122088302", :width => "30"}/
+          %li
+            %img{:alt => "", :height => "20", :src => "//pcweb-assets.mercdn.net/assets/img/card/jcb.svg?3122088302", :width => "32"}/
+          %li
+            %img{:alt => "", :height => "20", :src => "//pcweb-assets.mercdn.net/assets/img/card/american_express.svg?3122088302", :width => "21"}/
+          %li
+            %img{:alt => "", :height => "20", :src => "//pcweb-assets.mercdn.net/assets/img/card/dinersclub.svg?3122088302", :width => "32"}/
+          %li
+            %img{:alt => "", :height => "20", :src => "//pcweb-assets.mercdn.net/assets/img/card/discover.svg?3122088302", :width => "32"}/
+      .CardInput
+        .InputTitle
+          %h2.Title 有効期限
+          %span.form-require 必須
+        .row
+          .col-md-6
+            = f.text_field "exp_year", class: "input__default", placeholder: "年", type: "text", id: "exp_year", maxlength: "4"
+            -# %input#exp_year.form-control{:placeholder => "年", :type => "text"}/
+          .col-md-6
+            = f.text_field "exp_month", class: "input__default", placeholder: "月", type: "text", id: "exp_month", maxlength: "2"
+            -# %input#exp_month.form-control{:placeholder => "月", :type => "text"}/
+      .CardInput
+        .InputTitle
+          %h2.Title セキュリティーコード
+          %span.form-require 必須
+        = f.text_field "CVV", class:"input__default", placeholder: "CVV", type: "text", id: "cvv", maxlength: "4"
+        -# %input#cvv.form-control{:placeholder => "CVV", :type => "text"}/
+        = link_to "#" , class:"CodeDes" do
+          ?カード裏面の番号とは？
+      =f.submit "登録する", class: "SubmitBtn", id: "token"
+      -# =link_to "#", class:"SendToken", id:"token" do
+        トークン
+      / 今回はHTML上に結果を表示します

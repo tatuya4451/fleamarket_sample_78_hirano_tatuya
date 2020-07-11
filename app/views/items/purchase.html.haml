@@ -1,6 +1,7 @@
 .BuyWrapper
   .Header.ResponsiveHeader
-    = image_tag 'logo/logo.png',class:'ResponsiveLogo', alt:"FURIMA", height:"33px", width:"120px"
+    = link_to items_path do
+      = image_tag 'logo/logo.png',class:'ResponsiveLogo', alt:"FURIMA", height:"33px", width:"120px"
   .ItemField
     .ItemInfo
       %section.Contents
@@ -36,12 +37,14 @@
           %p
             クレジットカード
           %p
-            ************1111
+            = "**** **** **** " + @default_card_information.last4
           %p
             有効期限
-            14 / 24
+            - exp_month = @default_card_information.exp_month.to_s
+            - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+            = exp_month + " / " + exp_year
           %p.CardInfo__Logo
-            =image_tag "https://web-jp-assets.mercdn.net/_next/static/images/mastercard-8b5b68c12b7a2fc8619c71f49ef9209b.svg",class: "image", alt: "カード会社ロゴ"
+            =image_tag "#{@card_src}",class: "image", alt: "カード会社ロゴ"
       %section.Contents
         .DeliveryAddress
           %h3
@@ -60,7 +63,8 @@
             振魔 太郎
       %section.Contents
         .BuyBtn
-          購入する
+          = link_to pay_cards_path, class: "DoneBtn", method: :post do
+            購入する
   .Footer
     .Notice
       %ul

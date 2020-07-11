@@ -27,7 +27,7 @@ $(document).on('turbolinks:load',function(){
                             </div>`;
     $('.listing-product-detail__category').append(grandchildSelectHtml);
   }
-  $('#parent_category').on('change', function(){
+  $('.listing-select-wrapper__box--select').on('change', function(){
     var parentCategory = document.getElementById('parent_category').value; 
     if (parentCategory != "選択してください"){
       $.ajax({
@@ -37,8 +37,6 @@ $(document).on('turbolinks:load',function(){
         dataType: 'json'
       })
       .done(function(children){
-        $('#children_wrapper').remove(); 
-        $('#grandchildren_wrapper').remove();
         var insertHTML = '';
         children.forEach(function(child){
           insertHTML += appendOption(child);
@@ -65,9 +63,6 @@ $(document).on('turbolinks:load',function(){
       })
       .done(function(grandchildren){
         if (grandchildren.length != 0) {
-          $('#grandchildren_wrapper').remove(); 
-          $('#size_wrapper').remove();
-          $('#brand_wrapper').remove();
           var insertHTML = '';
           grandchildren.forEach(function(grandchild){
             insertHTML += appendOption(grandchild);

@@ -1,0 +1,33 @@
+.new__all__text-field.invalid{
+  border: #ff0211 1px solid;
+}
+#item_price.invalid{
+  border: #ff0211 1px solid;
+}
+.new__all__text-field.valid{
+  border: #3CCACE 1px solid;
+}
+#item_price.valid{
+  border: #3CCACE 1px solid;
+}
+#item__name-error,
+#item__introduce-error,
+#parent_category-error,
+#item_condition_id-error,
+#parent_delivery-error,
+#item_prefecture_id-error,
+#item_preparation_id-error{
+  color: #ff0211;
+    font-size: 14px;
+    line-height: 1.4em;
+    margin: 10px 0 20px;
+}
+#item_price-error{
+  color: #ff0211;
+  font-size: 14px;
+  line-height: 1.4em;
+  margin-top: 10px;
+  margin-left: 430px;
+}
+
+  

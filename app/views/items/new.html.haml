@@ -1,6 +1,6 @@
 .news
   .new
-    = form_with model:@item, local: true do |f| 
+    = form_with model:@item, id: "new__items__form", local: true do |f| 
       .new__photo
         .new__photo__pop
           %label.new__all-terop
@@ -23,15 +23,16 @@
           %span.new__all-must
             必須  
         .new__all-box
-          = f.text_field :name, class:"new__all__text-field", placeholder: "40文字まで", maxlength: 40
-          = render partial: 'error-messages', locals: {item: @item, column: "name"} 
+          = f.text_field :name, class:"new__all__text-field", id: "item__name", placeholder: "40文字まで", maxlength: 40
+          -# = render partial: 'error-messages', locals: {item: @item, column: "name"} 
         .new__all-heading
           %label.new__all-terop
             商品の説明
           %span.new__all-must
             必須  
         .new__explanation__area
-          = f.text_area :introduce, class: "new__all__text-field new__explanation__area-field", placeholder: "商品の説明 （必須 1,000文字以内)&#13;&#10;(色、素材、重さ、定価、注意点など)&#13;&#10;&#13;&#10;例) 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでお勧めです。".html_safe
+          = f.text_area :introduce, class: "new__all__text-field new__explanation__area-field", id:"item__introduce",placeholder: "商品の説明 （必須 1,000文字以内)&#13;&#10;(色、素材、重さ、定価、注意点など)&#13;&#10;&#13;&#10;例) 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでお勧めです。".html_safe
+          -# = render partial: 'error-messages', locals: {item: @item, column: "introduce"}   
         .new__explanation__length
           %span.new__length-child
             0/1000
@@ -111,9 +112,9 @@
             販売価格
           %span.new__all-must
             必須 
-          = f.number_field :price, class: "new__price__field"  
           %span.span__price
-            ¥  
+            ¥    
+          = f.number_field :price, class: "new__price__field"
         .new__price__fee
           .new__price__fee-price
             販売手数料 (10%)

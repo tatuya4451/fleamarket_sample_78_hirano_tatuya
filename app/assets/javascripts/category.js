@@ -20,7 +20,7 @@ $(document).on('turbolinks:load',function(){
     grandchildSelectHtml = `<div class='listing-select-wrapper__added' id= 'grandchildren_wrapper'>
                               <div class='listing-select-wrapper__box new__all-box'>
                                 <select class="listing-select-wrapper__box--select new__all__text-field" id="grandchild_category" name="item[category_id]">
-                                  <option value="---" data-category="---">選択してください</option>
+                                  <option value="選択してください" data-category="選択してください">選択してください</option>
                                   ${insertHTML}
                                 </select>
                               </div>
@@ -29,7 +29,7 @@ $(document).on('turbolinks:load',function(){
   }
   $('.listing-select-wrapper__box--select').on('change', function(){
     var parentCategory = document.getElementById('parent_category').value; 
-    if (parentCategory != "選択してください"){
+    if (parentCategory!= "選択してください"){
       $.ajax({
         url: 'get_category_children',
         type: 'GET',

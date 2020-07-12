@@ -20,16 +20,16 @@ $(document).on('turbolinks:load',function(){
     grandchildSelectHtml = `<div class='listing-select-wrapper__added' id= 'grandchildren_wrapper'>
                               <div class='listing-select-wrapper__box new__all-box'>
                                 <select class="listing-select-wrapper__box--select new__all__text-field" id="grandchild_category" name="item[category_id]">
-                                  <option value="選択してください" data-category="選択してください">選択してください</option>
+                                  <option value="---" data-category="---">選択してください</option>
                                   ${insertHTML}
                                 </select>
                               </div>
                             </div>`;
     $('.listing-product-detail__category').append(grandchildSelectHtml);
   }
-  $('.listing-select-wrapper__box--select').on('change', function(){
+  $('#parent_category').on('change', function(){
     var parentCategory = document.getElementById('parent_category').value; 
-    if (parentCategory!= "選択してください"){
+    if (parentCategory != "選択してください"){
       $.ajax({
         url: 'get_category_children',
         type: 'GET',
@@ -37,6 +37,8 @@ $(document).on('turbolinks:load',function(){
         dataType: 'json'
       })
       .done(function(children){
+        $('#children_wrapper').remove(); 
+        $('#grandchildren_wrapper').remove();
         var insertHTML = '';
         children.forEach(function(child){
           insertHTML += appendOption(child);
@@ -63,6 +65,7 @@ $(document).on('turbolinks:load',function(){
       })
       .done(function(grandchildren){
         if (grandchildren.length != 0) {
+          $('#grandchildren_wrapper').remove(); 
           var insertHTML = '';
           grandchildren.forEach(function(grandchild){
             insertHTML += appendOption(grandchild);

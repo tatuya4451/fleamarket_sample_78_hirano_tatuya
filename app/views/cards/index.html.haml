@@ -1,16 +1,19 @@
 .CardInfoWrapper
-  %h2 お客様のカード情報
-  .CardNum
-    カード番号：  
-    = "**** **** **** " + @default_card_information.last4
-  .CardExp
-    有効期限：
-    - exp_month = @default_card_information.exp_month.to_s
-    - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-    = exp_month + " / " + exp_year
-  .CardInfo__Logo
-    =image_tag "#{@card_src}",class: "image", alt: "カード会社"
-
+  
+  .CardInfo
+    .CardInfo__Title
+      お客様のカード情報   
+    .CardContents
+      .CardContents__Num
+        カード番号：  
+      = "**** **** **** " + @default_card_information.last4
+      .CardContents__Brand
+        =image_tag "#{@card_src}",class: "image", alt: "カード会社"
+    .CardInfo__Exp
+      有効期限：
+      - exp_month = @default_card_information.exp_month.to_s
+      - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+      = exp_month + " / " + exp_year
   .DeleteCardBtn
     = link_to card_path(:id), class: "deletebtn", method: :delete do
       削除する

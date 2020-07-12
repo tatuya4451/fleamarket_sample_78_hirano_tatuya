@@ -3,7 +3,6 @@ $(function(){
   
   Payjp.setPublicKey('pk_test_89de1046715f962e6dfd6f71');
   
-  // ボタンのイベントハンドリング
   const btn = document.getElementById('token');
   $(btn).on('click', function(e){
     e.preventDefault();
@@ -26,7 +25,7 @@ $(function(){
         $("#charge-form").append($('<input type="hidden" name="card_token" class="payjp-token" />').val(token));
         $("#charge-form").get(0).submit();
       }else{
-        alert("Error");
+        alert("カード情報が有効ではありません");
       }
     });
   });

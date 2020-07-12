@@ -4,25 +4,27 @@ class CardsController < ApplicationController
   
   def index
     card = CreditCard.where(user_id: current_user.id).first
-    #保管した顧客IDでpayjpから情報取得
-    customer = Payjp::Customer.retrieve(card.customer_id)
-    #保管したカードIDでpayjpから情報取得、カード情報表示のためインスタンス変数に代入
-    @default_card_information = customer.cards.retrieve(card.card_id)
-
-    @card_brand = @default_card_information.brand
-    case @card_brand
-    when "Visa"
-      @card_src = "cards/visa.png"
-    when "JCB"
-      @card_src = "cards/jcb.png"
-    when "MasterCard"
-      @card_src = "cards/master.png"
-    when "American Express"
-      @card_src = "cards/amex.png"
-    when "Diners Club"
-      @card_src = "cards/diners.png"
-    when "Discover"
-      @card_src = "cards/discover.png"
+    if card.blank?
+      @default_card_information = nil
+    else
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @default_card_information = customer.cards.retrieve(card.card_id)
+      
+      @card_brand = @default_card_information.brand
+      case @card_brand
+      when "Visa"
+        @card_src = "cards/visa.png"
+      when "JCB"
+        @card_src = "cards/jcb.png"
+      when "MasterCard"
+        @card_src = "cards/master.png"
+      when "American Express"
+        @card_src = "cards/amex.png"
+      when "Diners Club"
+        @card_src = "cards/diners.png"
+      when "Discover"
+        @card_src = "cards/discover.png"
+      end
     end
   end
 

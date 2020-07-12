@@ -27,15 +27,17 @@
       font-size: 14px;
     }
   }
-
+    .NoCard{
+      margin-top: 10px;
+    }
 
     .DeleteCardBtn{
       text-align: center;
       background-color: red;
       border-radius: 4px;
       padding: 1px 4px;
-      margin-top: 4px;
-      .deletebtn{
+      margin-top: 10px;
+      .cardbtn{
         text-decoration: none;
         color: white;
       }

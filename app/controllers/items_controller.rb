@@ -46,23 +46,27 @@ class ItemsController < ApplicationController
     Payjp.api_key = Rails.application.credentials.PAYJP[:PRIVATE_KEY]
 
     card = CreditCard.where(user_id: current_user.id).first
-    customer = Payjp::Customer.retrieve(card.customer_id)
-    @default_card_information = customer.cards.retrieve(card.card_id)
-    
-    @card_brand = @default_card_information.brand
-    case @card_brand
-    when "Visa"
-      @card_src = "cards/visa.png"
-    when "JCB"
-      @card_src = "cards/jcb.png"
-    when "MasterCard"
-      @card_src = "cards/master.png"
-    when "American Express"
-      @card_src = "cards/amex.png"
-    when "Diners Club"
-      @card_src = "cards/diners.png"
-    when "Discover"
-      @card_src = "cards/discover.png"
+    if card.blank?
+      @default_card_information = nil
+    else
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @default_card_information = customer.cards.retrieve(card.card_id)
+      
+      @card_brand = @default_card_information.brand
+      case @card_brand
+      when "Visa"
+        @card_src = "cards/visa.png"
+      when "JCB"
+        @card_src = "cards/jcb.png"
+      when "MasterCard"
+        @card_src = "cards/master.png"
+      when "American Express"
+        @card_src = "cards/amex.png"
+      when "Diners Club"
+        @card_src = "cards/diners.png"
+      when "Discover"
+        @card_src = "cards/discover.png"
+      end
     end
   end
 

@@ -17,6 +17,9 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :preparation_id
     validates :price
+    validates :saler_id
+    validates :category_id
+    validates :delivery_id
   end
   validates_associated :images
   validates :images, presence: true

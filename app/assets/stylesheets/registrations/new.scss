@@ -9,14 +9,54 @@
   padding: 0;
   font-size: 14px;
 
-
   &__header{
-  height: 128px;
+  height: 160px;
   text-align: center;
-
+  display: flex;
+  justify-content: center;
 
     &--logo{
       margin-top: 40px;
+    }
+  }
+}
+.memberStatus{
+  display: flex;
+  justify-content: center;
+  width: 280px;
+  margin-left: 40px;
+  position: relative;
+  color:lightgray;
+  margin: 40px 0px 0px 50px;
+
+  &__line{
+    border-bottom: 2px solid lightgray;
+    position: absolute;
+    width: 150px;
+    top: 32px;
+    left: 70px;
+    z-index: 1;
+  }
+  
+  &__list{
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+  }
+  &__listItem{
+    font-size: 12px;
+    font-weight: 600;
+    &--next{
+      margin-left: 20px;
+    }
+    &--last{
+      margin-left: 34px;
+    }
+    &--point{
+      font-size:24px;
+    }
+    &--active{
+      color: red;
     }
   }
 }
@@ -29,16 +69,97 @@
     width: 700px;
     margin: 0 auto;    
     background-color: #fff;
-    
 
+    .single{
+      font-size: 22px;
+      font-weight: bold;
+      padding: 32px;
+      border-bottom: 1px solid black;
+      text-align: center;
+      }
+
+      h2{
+        font-size: 16px;
+      }
+            
       &__form{
         padding: 24px 16px 40px;
         display: block;
 
-
         &__input{
           max-width: 343px;
           margin: 0 auto;
+          label{
+            font-weight: 600;
+            }
+            .required {
+              color: #fff;
+              background-color: red;
+              padding: 2px 4px;
+              font-size: 12px;
+              margin: 0 0 0 4px;
+            }
+            .any{
+              background-color: #ccc;
+              color: #fff;
+            }
+            .input-type{
+              width: 100%;
+              height: 48px;
+              padding: 10px 16px 8px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              background: #fff;
+              line-height: 1.5;
+              font-size: 16px;
+            }
+            .input-name{
+              padding: 7px 10px 8px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              font-size: 16px;
+              line-height: 1.5;
+              background: #fff;
+            }
+            .birthday{
+              padding: 7px 10px 8px;
+              border-radius: 4px;
+              border: 1px solid #ccc;
+              font-size: 16px;
+              line-height: 1.5;
+              background: #fff;
+            }
+            .form-group{
+              margin: 24px 0 0;  
+            }
+            .text{
+              color: #888;
+            }
+            .btn{
+              margin: 24px 0 0;
+              cursor: pointer;
+              border-radius: 4px;
+              font-size: 14px;
+              line-height: 48px;
+              width: 100%;
+              background-color: red;
+              color: #fff;
+              border-color: red;
+            }
+            .form-text{
+              color: #0099e8;
+              text-align: right;
+              margin: 40px 0 0;
+              a{
+                text-decoration: none;
+              }
+            }
+            .recaptcha{
+              margin: 24px 0 0;
+              background-color: #f5f5f5;
+              padding: 8px 16px;
+              font-size: 10px;
+          }            
         }
       }
     }
@@ -49,7 +170,6 @@
   text-align: center;
   padding: 40px 0px 11px;
   
-
   .Notice{
     ul{
       display: inline-block;
@@ -58,13 +178,11 @@
       display: flex;
       justify-content: center;
       
-
       li{
         display: block;
         margin: 16px 0px 0px 16px;
         color: #333;
-
-        
+  
         .link{
           font-size: 12px;
           color: inherit;
@@ -73,100 +191,3 @@
       }
     }
   }
-
-.single{
-font-size: 22px;
-font-weight: bold;
-padding: 32px;
-border-bottom: 1px solid black;
-text-align: center;
-}
-
-.required {
-color: #fff;
-background-color: red;
-padding: 2px 4px;
-font-size: 12px;
-margin: 0 0 0 4px;
-}
-
-label{
-font-weight: 600;
-}
-
-.input-type{
-  width: 100%;
-  height: 48px;
-  padding: 10px 16px 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  background: #fff;
-  line-height: 1.5;
-  font-size: 16px;
-}
-
-.input-name{
-  padding: 7px 10px 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  line-height: 1.5;
-  background: #fff;
-}
-
-.birthday{
-  padding: 7px 10px 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  line-height: 1.5;
-  background: #fff;
-}
-
-
-.form-group{
-  margin: 24px 0 0;  
-}
-
-
-.any{
-background-color: #ccc;
-color: #fff;
-}
-
-.text{
-  color: #888;
-}
-
-.btn{
-  margin: 24px 0 0;
-  cursor: pointer;
-  border-radius: 4px;
-  font-size: 14px;
-  line-height: 48px;
-  width: 100%;
-  background-color: red;
-  color: #fff;
-  border-color: red;
-}
-
-.form-text{
-  color: #0099e8;
-  text-align: right;
-  margin: 40px 0 0;
-  a{
-    text-decoration: none;
-  }
-}
-
-.recaptcha{
-  margin: 24px 0 0;
-  background-color: #f5f5f5;
-  padding: 8px 16px;
-  font-size: 10px;
-}
-
-h2{
-  font-size: 16px;
-}
-

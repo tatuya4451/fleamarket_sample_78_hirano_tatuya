@@ -1,0 +1,42 @@
+.create{
+  height: 100vh;
+  background: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  &__header{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+}
+
+.memberCreate{
+  &__content{
+    margin: 0 auto 30px;
+    width: 700px;
+    background-color: white;
+    padding: 30px;
+    text-align: center;
+    .single3{
+      font-size: 22px;
+      font-weight: bold;
+      padding: 30px;
+      border-bottom: 1px solid black;
+      text-align: center;
+    }
+  }
+  &__message{
+    margin-top: 60px;
+  }
+  &__btn{
+    margin: 50px auto 40px;
+    width:400px;
+    height:60px;
+    color: #fff;
+    background-color: #3ccace;
+    border-radius: 4px;
+    line-height: 60px;
+  }
+}

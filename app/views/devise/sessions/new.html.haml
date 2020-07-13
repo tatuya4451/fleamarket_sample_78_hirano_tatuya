@@ -1,34 +1,55 @@
-.box
-  .box__inner
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      %h1 ログイン
-      .box-email
-        = f.label :email, "Eメール"
-        %br/
-        = f.email_field :email, autofocus: true, autocomplete: "email"
-      .box-password
-        .a-row
-          .column-left
-            = f.label :password, "パスワード"
-          .column-right
-            = link_to "パスワードを忘れた場合"
-        = f.password_field :password, autocomplete: "current-password"
-      .box-login
-        = f.submit "ログイン"
-        .legal-text
-          続行することで、FURIMAの
-          \#{link_to "利用規約", "#"}
-          および
-          \#{link_to "プライバシー規約", "#"}
-          に同意するものとみなされます。
-        - if devise_mapping.rememberable?
-          .remember
-            = f.check_box :remember_me
-            = f.label :remember, "ログインしたままにする"
-    .box-newusr
-      %p
-        %span ---------
-        アカウントをお持ちでない方はこちら
-        %span ---------
-      = link_to "FURIMAのアカウントを作成", new_user_registration_path
+.login
+  .login__header
+    .login__header__logo
+      = image_tag 'logo/logo.png',class:'account__header--logo', alt:"FURIMA", width:"200px"
+  .login__box
+    .login__box__inner
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        %h1 ログイン
+        .box-email
+          = f.label :email, "Eメール"
+          %br/
+          = f.email_field :email, autofocus: true, autocomplete: "email"
+        .box-password
+          .a-row
+            .column-left
+              = f.label :password, "パスワード"
+            .column-right
+              = link_to "パスワードを忘れた場合"
+          = f.password_field :password, autocomplete: "current-password"
+        .box-login
+          = f.submit "ログイン"
+          .legal-text
+            続行することで、FURIMAの
+            \#{link_to "利用規約", "#"}
+            および
+            \#{link_to "プライバシー規約", "#"}
+            に同意するものとみなされます。
+          - if devise_mapping.rememberable?
+            .remember
+              = f.check_box :remember_me
+              = f.label :remember, "ログインしたままにする"
+      .box-newusr
+        %p
+          %span ---------
+          アカウントをお持ちでない方はこちら
+          %span ---------
+        = link_to "FURIMAのアカウントを作成", new_user_registration_path
+  .account__footer
+    .Notice
+      %ul
+        %li
+          = link_to "#",class:"link" do
+            プライバシーポリシー
+        %li
+          = link_to "#",class:"link" do
+            FURIMA利用規約
+        %li
+          = link_to "#",class:"link" do
+            特定商取引に関する表記
+    .Logo
+      = link_to "#",class:"link" do
+        = image_tag "logo/logo-white.png",class:'account__header__Logo', alt:"FURIMA", width:"200px"
+      %p.CompanyName
+        ©︎ FURIMA, Inc.
 

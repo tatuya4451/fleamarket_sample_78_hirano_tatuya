@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  belongs_to :saler, class_name: "User"
+  belongs_to :buyer, class_name: "User", optional: true
   has_many :images
   belongs_to :category
   belongs_to :delivery
@@ -15,6 +17,9 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :preparation_id
     validates :price
+    validates :saler_id
+    validates :category_id
+    validates :delivery_id
   end
   validates_associated :images
   validates :images, presence: true

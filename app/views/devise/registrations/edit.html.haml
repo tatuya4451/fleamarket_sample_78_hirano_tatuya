@@ -1,0 +1,12 @@
+.mypage
+  = render partial: 'items/Toppage-header'
+  .mypage__main
+  
+    マイページ 
+  = @user.nickname
+  %h3
+  = link_to "トップページに戻る", :back
+  %h4
+  = link_to "ログアウト", destroy_user_session_path, method: :delete
+
+  = render partial: 'items/Toppage-footer'

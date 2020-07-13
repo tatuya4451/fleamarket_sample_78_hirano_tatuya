@@ -1,0 +1,35 @@
+%body
+  .Toppage-header
+    =render 'items/Toppage-header'
+
+.category__container
+  .search__section
+    %h2.search__section--title カテゴリー一覧
+    %ul.search__section--nav
+      - @parents.each do |parent|
+        %li.search__section--nav-parent
+          = link_to parent.name, "#category-#{parent.id}", id: "scroll"
+
+  .list__section
+    .category__box
+      - @parents.each do |parent|
+        .category__box--title{id: "category-#{parent.id}"}
+          %h3.title--name
+            = parent.name
+        .category__box--inner
+          .list__parent-all
+            = link_to "すべて", "category/#/", class: "parent--all"
+          .list__child
+            - parent.children.each do |child|
+              .list__child--name
+                = child.name
+                .list__child--box
+                  .list__child--all
+                    = link_to "すべて", "category/#/", class: "child--all"
+                  .list__grandchild
+                    - child.children.each do |grandchild|
+                      .list__grandchild--name
+                        = link_to "#{grandchild.name}", "category/#/", class: "grandchild--name"
+
+.Toppage-footer
+  =render 'items/Toppage-footer'

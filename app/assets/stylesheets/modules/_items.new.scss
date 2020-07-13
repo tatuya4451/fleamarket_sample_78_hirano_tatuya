@@ -211,13 +211,14 @@
           &__price{
             padding-bottom: 20px;
             line-height: 46px;
+            #new__price__must{
+              margin-right: 346px;
+            }
             .span__price{
-              float: right;
               font-size: 14px;
               margin-right: 8px;
             }
             .new__price__field{
-              float: right;
               border: 1px solid #ccc;
               border-radius: 4px;
               box-sizing: border-box;

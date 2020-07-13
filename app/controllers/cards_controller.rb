@@ -4,7 +4,7 @@ class CardsController < ApplicationController
   
   def index
     @@previous_page2 = request.referrer
-    card = CreditCard.where(user_id: current_user.id).first
+    card = CreditCard.find_by(user_id: current_user.id)
     if card.blank?
       @default_card_information = nil
     else
@@ -35,7 +35,7 @@ class CardsController < ApplicationController
 
   def pay
     # 支払い情報の作成
-    card = CreditCard.where(user_id: current_user.id).first
+    card = CreditCard.find_by(user_id: current_user.id)
     #保管した顧客IDでpayjpから情報取得
     customer = Payjp::Customer.retrieve(card.customer_id)
     #保管したカードIDでpayjpから情報取得、カード情報表示のためインスタンス変数に代入

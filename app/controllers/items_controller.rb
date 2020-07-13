@@ -46,7 +46,7 @@ class ItemsController < ApplicationController
     if user_signed_in?
       Payjp.api_key = Rails.application.credentials.PAYJP[:PRIVATE_KEY]
       
-      card = CreditCard.where(user_id: current_user.id).first
+      card = CreditCard.find_by(user_id: current_user.id)
       if card.blank?
         @default_card_information = nil
       else

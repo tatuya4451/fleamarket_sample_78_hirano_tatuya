@@ -1,0 +1,41 @@
+.CardRegWrapper
+  .CardInputForm
+    %h2.MainTitle クレジットカード情報入力
+    = form_with url: cards_path, html:{class: 'InputBox'}, id: "charge-form", local: true, method: :post do |f|
+      .CardInput
+        .InputTitle
+          %h2.Title カード番号
+          %span.form-require 必須
+        = f.text_field "number", class: "input__default", placeholder: "半角数字のみ", type: "text", id: "card_number", maxlength: "16"
+        %ul.Signup-card-list
+          %li
+            = image_tag "//pcweb-assets.mercdn.net/assets/img/card/visa.svg?3122088302", alt: "Visa", height: "20", width: "49"
+          %li
+            = image_tag "//pcweb-assets.mercdn.net/assets/img/card/master-card.svg?3122088302", alt: "master", height: "20", width: "32"
+          %li
+            = image_tag "//pcweb-assets.mercdn.net/assets/img/card/saison-card.svg?3122088302", alt: "saison", height: "20", width: "32"
+          %li
+            = image_tag "//pcweb-assets.mercdn.net/assets/img/card/jcb.svg?3122088302", alt: "jcb", height: "20", width: "32"
+          %li
+            = image_tag "//pcweb-assets.mercdn.net/assets/img/card/american_express.svg?3122088302", alt: "amex", height: "20", width: "21"
+          %li
+            = image_tag "//pcweb-assets.mercdn.net/assets/img/card/dinersclub.svg?3122088302", alt: "diners", height: "20", width: "32"
+          %li
+            = image_tag "//pcweb-assets.mercdn.net/assets/img/card/discover.svg?3122088302", alt: "discover", height: "20", width: "32"
+      .CardInput
+        .InputTitle
+          %h2.Title 有効期限
+          %span.form-require 必須
+        .row
+          .col-md-6
+            = f.text_field "exp_year", class: "input__default", placeholder: "年", type: "text", id: "exp_year", maxlength: "4"
+          .col-md-6
+            = f.text_field "exp_month", class: "input__default", placeholder: "月", type: "text", id: "exp_month", maxlength: "2"
+      .CardInput
+        .InputTitle
+          %h2.Title セキュリティーコード
+          %span.form-require 必須
+        = f.text_field "CVV", class:"input__default", placeholder: "CVV", type: "text", id: "cvv", maxlength: "4"
+        = link_to "#" , class:"CodeDes" do
+          ?カード裏面の番号とは？
+      =f.submit "登録する", class: "SubmitBtn", id: "token"

@@ -1,0 +1,48 @@
+.BuyWrapper
+  .Header.ResponsiveHeader
+    = link_to items_path do
+      = image_tag 'logo/logo.png',class:'ResponsiveLogo', alt:"FURIMA", height:"33px", width:"120px"
+  .ItemField
+    .ItemInfo
+      %section.Contents
+        .PurchaseDone.ResponsiveTitle
+          購入しました
+
+      %section.Contents
+        .BuyItem
+          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png",class:"BuyItem__image", alt: "商品画像"
+          .BuyItem__Info
+            %p.BuyItem__Info__Name
+              冷凍パック 焼き魚定食
+            %p.BuyItem__Info__Price
+              %span.PriceDetail
+                送料込み (税込)
+              %span.Price
+                ¥1,700
+      %section.Contents
+        .PayPrice
+          %span
+            支払い金額
+          %span.Price
+            ¥1,700
+      %section.Contents
+        .GotoTop
+          =link_to items_path, class:'GotoTop__link' do
+            トップページにもどる
+  .Footer
+    .Notice
+      %ul
+        %li
+          = link_to "#",class:"link" do
+            プライバシーポリシー
+        %li
+          = link_to "#",class:"link" do
+            FURIMA利用規約
+        %li
+          = link_to "#",class:"link" do
+            特定商取引に関する表記
+    .Logo
+      = link_to "#",class:"link" do
+        = image_tag 'logo/logo.png', alt:"FURIMA", height:"33px", width:"120px"
+      %p.CompanyName
+        ©︎ FURIMA, Inc.

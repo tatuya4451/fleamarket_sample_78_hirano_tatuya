@@ -67,7 +67,7 @@ class CardsController < ApplicationController
   end
 
   def destroy
-    card = CreditCard.where(user_id: current_user.id).first
+    card = CreditCard.find_by(user_id: current_user.id)
     customer = Payjp::Customer.retrieve(card.customer_id)
     customer.delete
     card.delete

@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_07_11_062846) do
 
-
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "destination_last_name", null: false
     t.string "destination_first_name", null: false
@@ -29,7 +28,6 @@ ActiveRecord::Schema.define(version: 2020_07_11_062846) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
-
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false

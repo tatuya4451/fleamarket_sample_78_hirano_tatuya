@@ -24,56 +24,69 @@
             支払い金額
           %span.Price
             ¥1,700
-      %section.Contents
-        - if @default_card_information.blank?
-          カード情報がありません
-        - else
-          .PayMethod
+      - if user_signed_in?
+        %section.Contents
+          - if @default_card_information.blank?
+            カード情報がありません
+          - else
+            .PayMethod
+              %h3
+                支払い方法
+              = link_to cards_path, class:"GuideLink" do
+                変更する
+                %svg.style_right__2qI2e{"aria-hidden" => "true", :fill => "#0095ee", "fill-rule" => "evenodd", :height => "16", :viewbox => "0 0 24 24", :width => "16"}
+                  %path{:d => "M9,19a.7.7,0,0,1-.49-.2.69.69,0,0,1,0-1l5.62-5.63a.28.28,0,0,0,.09-.21.27.27,0,0,0-.09-.2L8.6,6.19a.7.7,0,1,1,1-1l5.58,5.58A1.71,1.71,0,0,1,15.66,12a1.73,1.73,0,0,1-.49,1.2L9.54,18.8A.74.74,0,0,1,9,19Z"}
+            .CardInfo
+              %p
+                クレジットカード
+              %p
+                = "**** **** **** " + @default_card_information.last4
+              %p
+                有効期限
+                - exp_month = @default_card_information.exp_month.to_s
+                - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
+                = exp_month + " / " + exp_year
+              %p.CardInfo__Logo
+                =image_tag "#{@card_src}",class: "image", alt: "カード会社ロゴ"
+
+        %section.Contents
+          .DeliveryAddress
             %h3
-              支払い方法
-            = link_to cards_path, class:"GuideLink" do
+              配送先
+            = link_to '#', class:"GuideLink" do
               変更する
               %svg.style_right__2qI2e{"aria-hidden" => "true", :fill => "#0095ee", "fill-rule" => "evenodd", :height => "16", :viewbox => "0 0 24 24", :width => "16"}
                 %path{:d => "M9,19a.7.7,0,0,1-.49-.2.69.69,0,0,1,0-1l5.62-5.63a.28.28,0,0,0,.09-.21.27.27,0,0,0-.09-.2L8.6,6.19a.7.7,0,1,1,1-1l5.58,5.58A1.71,1.71,0,0,1,15.66,12a1.73,1.73,0,0,1-.49,1.2L9.54,18.8A.74.74,0,0,1,9,19Z"}
-          .CardInfo
-            %p
-              クレジットカード
-            %p
-              = "**** **** **** " + @default_card_information.last4
-            %p
-              有効期限
-              - exp_month = @default_card_information.exp_month.to_s
-              - exp_year = @default_card_information.exp_year.to_s.slice(2,3)
-              = exp_month + " / " + exp_year
-            %p.CardInfo__Logo
-              =image_tag "#{@card_src}",class: "image", alt: "カード会社ロゴ"
 
-      %section.Contents
-        .DeliveryAddress
-          %h3
-            配送先
-          = link_to '#', class:"GuideLink" do
-            変更する
-            %svg.style_right__2qI2e{"aria-hidden" => "true", :fill => "#0095ee", "fill-rule" => "evenodd", :height => "16", :viewbox => "0 0 24 24", :width => "16"}
-              %path{:d => "M9,19a.7.7,0,0,1-.49-.2.69.69,0,0,1,0-1l5.62-5.63a.28.28,0,0,0,.09-.21.27.27,0,0,0-.09-.2L8.6,6.19a.7.7,0,1,1,1-1l5.58,5.58A1.71,1.71,0,0,1,15.66,12a1.73,1.73,0,0,1-.49,1.2L9.54,18.8A.74.74,0,0,1,9,19Z"}
-
-        .AddressInfo
-          %p
-            〒123-4567
-          %p
-            東京都 板橋区 志村三丁目 20
-          %p
-            振魔 太郎
-      - if  @default_card_information.blank?
-        %section.Contents
-          .BuyBtn
-            = link_to new_card_path, class: "DoneBtn", method: :get do
-              カード情報を登録する
+          .AddressInfo
+            %p
+              〒123-4567
+            %p
+              東京都 板橋区 志村三丁目 20
+            %p
+              振魔 太郎
+        - if  @default_card_information.blank?
+          %section.Contents
+            .BuyBtn
+              = link_to cards_path, class: "DoneBtn", method: :get do
+                カード情報を登録する
+        - else
+          %section.Contents
+            .BuyBtn
+              = link_to pay_cards_path, class: "DoneBtn", method: :post do
+                購入する
       - else
-        %section.Contents
-          .BuyBtn
-            = link_to pay_cards_path, class: "DoneBtn", method: :post do
-              購入する
+        .NoLogin
+          .Msg
+            購入にはログインまたはユーザー登録が必要です
+          .SelectBtns
+            .Btn
+              = link_to new_user_session_path, class: "Btn", method: :get do
+                ログイン
+            .Btn
+              = link_to new_user_registration_path, class: "Btn", method: :get do
+                新規登録
+
   .Footer
     .Notice
       %ul

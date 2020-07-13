@@ -3,6 +3,7 @@ class CardsController < ApplicationController
   Payjp.api_key = Rails.application.credentials.PAYJP[:PRIVATE_KEY]
   
   def index
+    @@previous_page2 = request.referrer
     card = CreditCard.where(user_id: current_user.id).first
     if card.blank?
       @default_card_information = nil
@@ -29,6 +30,7 @@ class CardsController < ApplicationController
   end
 
   def new
+    @@previous_page = request.referrer
   end
 
   def pay
@@ -57,13 +59,11 @@ class CardsController < ApplicationController
       customer_id: customer.id,
       card_id: customer.default_card
     )
-    
-    if @card.save
-      redirect_to cards_path
-    else
-      redirect_to action: "create"
+    if @@previous_page.include?("purchase")
+      @card.save ? (redirect_to @@previous_page) : (render :new)
+    elsif @@previous_page2.include?("purchase")
+      @card.save ? (redirect_to @@previous_page2) : (render :new)
     end
-
   end
 
   def destroy

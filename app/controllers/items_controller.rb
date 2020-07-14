@@ -68,8 +68,6 @@ class ItemsController < ApplicationController
       end
     end
 
-  @item_buyer = Item.find(params[:id])
-  @item_buyer.update( buyer_id: current_user.id)
   end
 
   private

@@ -77,8 +77,7 @@
               %span.required
                 必須
               %br/
-              = f.text_field :birthday, class: 'input-type', placeholder: '例）20000101'
-                
+              = raw sprintf(f.date_select(:birthday, autofocus: true, prompt:"--",use_month_numbers: true, start_year:Time.now.year,end_year:(1900),date_separator:'%s'), '年 ', '月 ') + '日'             
             %p.text ※本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。
             .form-btn
               = f.submit :"次へ", class: "btn",  id:"btn"

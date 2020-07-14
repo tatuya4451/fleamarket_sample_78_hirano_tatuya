@@ -30,7 +30,7 @@
             padding-left:10px;
           }
           .search-btn{
-            background-color: #3CCACE;
+            // background-color: #3CCACE;
             width:36px;
             height:36px;
             padding:8px;
@@ -868,4 +868,25 @@ a{
       }
     }
   }
+}
+#fbtn{
+  height: 36px;
+  width: 36px;
+  position: relative;
+  bottom: 8px;
+  right: 8px;
+  background-color: #3CCACE;
+  border: none;
+  cursor: pointer;
+}
+.imgfm{
+  position: relative;
+  bottom: 39px;
+}
+.fa-search:before{
+  position: absolute;
+  top: 18px;
+  color: white;
+  cursor: pointer;
+  font-size: 22px;
 }

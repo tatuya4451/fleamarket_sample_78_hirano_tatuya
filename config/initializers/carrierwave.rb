@@ -15,3 +15,5 @@
 #   config.fog_directory  = 'fleamarketsample78d'
 #   config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/fleamarketsample78d'
 # end
+
+#S3にアップロードしないためコメントアウトしてます

@@ -23,4 +23,10 @@ class Item < ApplicationRecord
   end
   validates_associated :images
   validates :images, presence: true
+
+  def self.search(search)
+    return Item.all unless search
+      Item.where('name LILE(?)', "%#{search}")
+  end
+  
 end

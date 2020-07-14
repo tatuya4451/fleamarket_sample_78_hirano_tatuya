@@ -2,6 +2,21 @@
   .account__header
     .account__header__logo
       = image_tag 'logo/logo.png',class:'account__header--logo', alt:"FURIMA", width:"200px"
+    .memberStatus
+      .memberStatus__line
+      %ol.memberStatus__list
+        %li
+          .memberStatus__listItem.memberStatus__listItem--active
+            %p 会員情報
+            %p.memberStatus__listItem--point ●
+        %li
+          .memberStatus__listItem.memberStatus__listItem--next
+            %p 住所情報
+            %p.memberStatus__listItem--point ●
+        %li
+          .memberStatus__listItem.memberStatus__listItem--last
+            %p 完了
+            %p.memberStatus__listItem--point ●
   .account__main
     .account__main__area
       %h2.single 会員情報入力
@@ -44,16 +59,14 @@
 
             .form-group
               =f.label :お名前（全角）
-              %span.required
-                必須
+              %span.required 必須
               %br/
               = f.text_field :last_name, placeholder: "例）山田", class: "input-type"
               = f.text_field :first_name,  placeholder: "例）太郎", class: "input-type"
 
             .form-group
               = f.label :お名前カナ（全角）
-              %span.required
-                必須
+              %span.required 必須
               %br/
               .form-name
               =f.text_field :last_name_kana, placeholder: "例）ヤマダ", class: "input-type"

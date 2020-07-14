@@ -48,10 +48,11 @@ $(document).on('turbolinks:load',function(){
       .fail(function(){
         alert('カテゴリー取得に失敗しました');
       })
-    }else{
-      $('#children_wrapper').remove(); 
-      $('#grandchildren_wrapper').remove();
     }
+    if (parentCategory = "選択してください"){
+      $('#children_wrapper').remove(); 
+        $('#grandchildren_wrapper').remove();
+    };
   });
 
   $('.listing-product-detail__category').on('change', '#child_category', function(){

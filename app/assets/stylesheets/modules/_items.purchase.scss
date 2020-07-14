@@ -34,6 +34,17 @@
         max-width: 375px;
         margin: 0px auto;
 
+        .PurchaseDone{
+          text-align: center;
+          font-weight: 600;
+          color: white;
+          background-color:#2bccd1;
+          border-radius: 4px;
+          padding: 5px 0;
+        }
+
+
+
         .BuySiteTitle{
           text-align: center;
           font-weight: 600;
@@ -156,6 +167,10 @@
           outline: none;
           padding: 0px;
           transition: all 0.3s ease-out 0s;
+          .DoneBtn{
+            text-decoration: none;
+            color: white;
+          }
         }
 
         .GuideLink{
@@ -179,7 +194,53 @@
       .Contents:last-of-type{
         padding: 24px 16px 48px;
       }
+      
+      .NoLogin{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-bottom: 24px;
+        max-width: 375px;
+        margin: 0px auto;
 
+        .Msg{
+          color: red;
+          font-weight: 600;
+          text-align: center;
+          font-size: 16px;
+        }
+        .SelectBtns{
+          margin-top: 10px;
+          width: 80%;
+          display: flex;
+          justify-content: space-between;
+          .Btn{
+            font-size: 20px;
+            background-color: #2bccd1;
+            border-radius: 4px;
+            padding: 6px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+          }
+        }
+      }
+
+    }
+    .GotoTop{
+      display: block;
+      margin-top: 10px;
+      text-align: center;
+      &__link{
+        text-decoration: none;
+        color: #0095ee;
+        cursor: pointer;
+      }
+
+      .GotoTop__link:hover{
+        text-decoration: underline;
+        opacity: 0.5;
+      }
 
     }
   }

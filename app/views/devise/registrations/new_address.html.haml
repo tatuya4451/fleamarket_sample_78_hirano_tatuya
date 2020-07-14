@@ -2,9 +2,24 @@
   .destination__header
     .destination__header__logo
       = image_tag 'logo/logo.png',class:'account__header--logo', alt:"FURIMA", width:"200px"
+    .memberStatus
+      .memberStatus__line
+      %ol.memberStatus__list
+        %li
+          .memberStatus__listItem
+            %p 会員情報
+            %p.memberStatus__listItem--point ●
+        %li
+          .memberStatus__listItem.memberStatus__listItem--next.memberStatus__listItem--active
+            %p 住所情報
+            %p.memberStatus__listItem--point ●
+        %li
+          .memberStatus__listItem.memberStatus__listItem--last
+            %p 完了
+            %p.memberStatus__listItem--point ●
   .destination__main
     .destination__main__area
-      %h2 住所情報登録
+      %h2.single2 住所情報登録
       .destination__main__area__form
         .destination__main__area__form__input
           = form_for @address do |f|
@@ -13,54 +28,54 @@
               = f.label :お名前
               %span.require 必須
               %br/
-              = f.text_field :destination_last_name, autofocus: true, placeholder: '例) 山田'
-              = f.text_field :destination_first_name, autofocus: true, placeholder: '例) 太郎'
+              = f.text_field :destination_last_name, autofocus: true, placeholder: '例) 山田', class: 'input-type2'
+              = f.text_field :destination_first_name, autofocus: true, placeholder: '例) 太郎', class: 'input-type2'
 
             .field
               = f.label :お名前カナ
               %span.require 必須
               %br/
-              = f.text_field :destination_last_name_kana, autofocus: true,placeholder: '例) ヤマダ'
-              = f.text_field :destination_first_name_kana, autofocus: true,placeholder: '例) タロウ'
+              = f.text_field :destination_last_name_kana, autofocus: true,placeholder: '例) ヤマダ', class: 'input-type2'
+              = f.text_field :destination_first_name_kana, autofocus: true,placeholder: '例) タロウ', class: 'input-type2'
 
             .field
               = f.label :郵便番号
               %span.require 必須
               %br/
-              = f.text_field :post_code, autofocus: true,placeholder: '例) 1000005'
+              = f.text_field :post_code, autofocus: true,placeholder: '例) 1000005', class: 'input-type2'
 
             .field
               = f.label :都道府県
               %span.require 必須
               %br/
-              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, class: 'input-type2'
 
             .field
               = f.label :市区町村
               %span.require 必須
               %br/
-              = f.text_field :city, autofocus: true,placeholder: '例) 千代田区丸の内'
+              = f.text_field :city, autofocus: true,placeholder: '例) 千代田区丸の内', class: 'input-type2'
 
             .field
               = f.label :番地 
               %span.require 必須
               %br/
-              = f.text_field :address, autofocus: true,placeholder: '例) 三丁目3番1号'
+              = f.text_field :address, autofocus: true,placeholder: '例) 三丁目3番1号', class: 'input-type2'
 
             .field
               = f.label :建物名
               %span.Any 任意
               %br/
-              = f.text_field :buliding_name, autofocus: true,placeholder: '例) 新東京ビル４F'
+              = f.text_field :buliding_name, autofocus: true,placeholder: '例) 新東京ビル４F', class: 'input-type2'
 
             .field
               = f.label :電話
               %span.Any 任意
               %br/
-              = f.text_field :phone_number, autofocus: true,placeholder: '例) 090×××××××××'
+              = f.text_field :phone_number, autofocus: true,placeholder: '例) 090×××××××××', class: 'input-type2'
 
             .actions
-              = f.submit "登録する"
+              = f.submit "登録する",class: "btn2",  id:"btn"
   .account__footer
     .Notice
       %ul

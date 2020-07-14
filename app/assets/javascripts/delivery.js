@@ -36,8 +36,9 @@ $(document).on('turbolinks:load',function(){
       .fail(function(){
         alert('カテゴリー取得に失敗しました');
       })
-    }else{
-      $('#children_wrap').remove(); 
-    }
+      if (parentDelivery = "選択してください"){
+        $('#children_wrap').remove(); 
+      };
+    };
   });
 });

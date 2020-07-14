@@ -1,0 +1,13 @@
+.mypage
+  .mypage__side
+    .mypage__side__list
+      %ul.title 
+        %li.active
+        = link_to "マイページ", user_path(current_user)
+        %li.activ 
+        = link_to "支払い方法", cards_users_path
+        %li.active 
+        = link_to "ログアウト", logout_users_path
+  .mypage__right
+    .mypage__right__logout
+      = link_to "ログアウト", destroy_user_session_path, method: :delete

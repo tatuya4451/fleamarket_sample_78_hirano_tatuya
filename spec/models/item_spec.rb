@@ -2,15 +2,15 @@ require 'rails_helper'
 
 describe Item do
   describe '#create' do
-    # context 'can save' do
-      # it "全て入力していると保存できること" do
-      #   user = create(:user)
-      #   expect(build(:item, saler_id: user[:id])).to be_valid
-      # end 
-    # end
+    context 'can save' do
+      it "全て入力していると保存できること" do
+        user = create(:user)
+        expect(build(:item, saler_id: user[:id])).to be_valid
+      end 
+    end
 
 
-    # context 'can not save' do
+    context 'can not save' do
       
       it "商品名が空の場合保存できないこと" do
         item = build(:item, name: nil)
@@ -64,6 +64,13 @@ describe Item do
         item.valid?
         expect(item.errors[:saler]).to include("を入力してください")
       end 
-    # end
+    end
   end
+    describe '#search' do
+      it "レディースで検索した場合" do
+        item = build(:item)
+        expect(Item.search("レディース")).to include(item)
+      end
+    end
 end
+

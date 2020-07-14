@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :item do
     id              {1}
-    name            {"シャツ"}
+    name            {"シャツ レディース"}
     introduce       {"ユニクロのシャツです"}
     brand           {"ユニクロ"}
     condition_id    {1}

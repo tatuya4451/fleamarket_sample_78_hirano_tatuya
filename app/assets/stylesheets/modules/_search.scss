@@ -1,8 +1,14 @@
 .search{
   width: 100%;
-  height: 500px;
+  height: 2000px;
   display: flex;
   background-color: #f8f8f8;
+  .search__all__text-field{
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    
+  }
   &__box{
     background-color: white;
     width: 70%;
@@ -10,20 +16,22 @@
     margin-left: 80px;
     margin-top: 50px;
     border-radius: 10px;
+    &__in{
+      height: 100%;
+      width: 80%;
+      margin: auto;
+    }
   }
+
   &__search{
-    height: 500px;
     width: 30%;
   }
   &__content{
-    height: 500px;
     width: 70%;
     background-color: #f8f8f8;
     &__top{
       display: flex;
-      position: relative;
-      top: 50px;
-      left: 50px;
+      margin: 50px;
     }
     &__word{
       font-weight: bold;

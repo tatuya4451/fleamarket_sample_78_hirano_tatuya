@@ -25,8 +25,11 @@ class Item < ApplicationRecord
   validates :images, presence: true
 
   def self.search(search)
-    return Item.all unless search
-      Item.where('name LILE(?)', "%#{search}")
+      if search
+        Item.where('name LIKE(?)', "%#{search}%")
+      else
+        Item.all  
+      end
   end
   
 end

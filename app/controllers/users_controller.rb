@@ -6,6 +6,11 @@ class UsersController < ApplicationController
   end
 
   def logout
+    @parents = Category.where(ancestry: nil)
   end
 
+  def cards
+    @parents = Category.where(ancestry: nil)
+  end
+  
 end

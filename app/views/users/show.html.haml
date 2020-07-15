@@ -85,7 +85,10 @@
 
   .mypage__right
     .mypage__right__title
-      = current_user.nickname
-      さんのマイページ 
+      %i.fas.fa-user-alt
+        = current_user.nickname 
+        .mypage__right__title__sub
+          %h1 評価 0
+          %h1 出品数 0
 .mypage__footer
 = render partial: 'items/Toppage-footer'  

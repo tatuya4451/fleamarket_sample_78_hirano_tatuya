@@ -10,21 +10,21 @@
 
       %section.Contents
         .BuyItem
-          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png",class:"BuyItem__image", alt: "商品画像"
+          = image_tag "#{@image.url.url}", alt: '商品画像',class:"BuyItem__image"
           .BuyItem__Info
             %p.BuyItem__Info__Name
-              冷凍パック 焼き魚定食
+              = @item.name
             %p.BuyItem__Info__Price
               %span.PriceDetail
                 送料込み (税込)
               %span.Price
-                ¥1,700
+                ="¥#{@item.price}"
       %section.Contents
         .PayPrice
           %span
             支払い金額
           %span.Price
-            ¥1,700
+            ="¥ #{@item.price}"
       %section.Contents
         .GotoTop
           =link_to items_path, class:'GotoTop__link' do

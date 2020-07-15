@@ -13,7 +13,11 @@ class CardsController < ApplicationController
       customer: card.customer_id, #支払うユーザのpayjp顧客ID
       currency: 'jpy', #通貨の指定
     )
-    
+
+    @item_buyer = Item.find(3)
+    # あとでparams[:id]にする
+    @item_buyer.update( buyer_id: current_user.id)
+
     redirect_to purchase_done_items_path
  
   end

@@ -44,7 +44,11 @@ class ItemsController < ApplicationController
   end
 
   def purchase
-    
+    @item = Item.find(3)
+    #あとでparams[:id]にする
+    @address = Address.find_by(id:current_user.id)
+    @image = Image.find_by(item_id: @item.id)
+
     if user_signed_in?
       Payjp.api_key = Rails.application.credentials.PAYJP[:PRIVATE_KEY]
       
@@ -72,7 +76,12 @@ class ItemsController < ApplicationController
         end
       end
     end
+  end
 
+  def purchase_done
+    @item = Item.find(3)
+    #あとでparams[:id]にする
+    @image = Image.find_by(item_id: @item.id)
   end
 
   private

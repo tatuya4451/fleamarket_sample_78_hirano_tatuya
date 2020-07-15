@@ -5,10 +5,13 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end
   root 'items#index'
-  resources :users, only: [:show, :logout] do
+  resources :users, only: [:show, :logout,:destroy] do
     collection do
       get 'logout'
-      get 'cards'
+      get 'cardindex'
+      get 'cardnew'
+      post 'cardcreate'
+      
     end
   end
   resources :items, only: [:index, :show, :new, :create] do
@@ -22,10 +25,8 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, only: [:index]
-  resources :cards, only: [:index, :new, :create, :destroy] do
-    collection do
-      post 'pay'
-    end
-  end
+
+  post 'pay', to:'cards#pay'
+
 end
 

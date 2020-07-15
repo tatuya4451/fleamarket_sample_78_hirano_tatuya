@@ -1,0 +1,7 @@
+=render partial: 'items/Toppage-header'
+
+.mypage
+  =render partial: 'users/side-bar'
+  .mypage__right
+    .mypage__right__logout
+      = link_to "ログアウト", destroy_user_session_path, method: :delete

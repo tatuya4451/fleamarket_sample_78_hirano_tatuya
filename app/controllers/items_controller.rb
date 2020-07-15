@@ -1,8 +1,10 @@
 class ItemsController < ApplicationController
   require 'payjp'
-  
+  before_action :index_category_set, only: :index
+
   def index
     @parents = Category.where(ancestry: nil)
+    @latest_items = Item.limit(4).order("id DESC")
   end
 
   def new
@@ -31,6 +33,11 @@ class ItemsController < ApplicationController
       render "new"
      end
     
+  end
+
+  def search
+    @items = Item.search(params[:keyword])
+    @parents = Category.where(ancestry: nil)
   end
 
   def show
@@ -65,11 +72,25 @@ class ItemsController < ApplicationController
         end
       end
     end
+
   end
 
   private
   def item_params
     params.require(:item).permit(:name, :introduce, :brand, :price, :prefecture_id, :preparation_id, :condition_id,:category_id, :delivery_id, images_attributes: [:url],).merge(saler_id:current_user.id)
-  end  
+  end
+
+  def index_category_set
+    array = [1, 200]
+      for num in array do
+        search_anc = Category.where('ancestry LIKE(?)', "#{num}/%")
+        ids = []
+        search_anc.each do |i|
+          ids << i[:id]
+        end
+        items = Item.where(category_id: ids).order("id DESC").limit(4)
+        instance_variable_set("@cat_no#{num}", items)
+      end
+   end
 end
 

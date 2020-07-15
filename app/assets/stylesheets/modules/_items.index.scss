@@ -30,7 +30,7 @@
             padding-left:10px;
           }
           .search-btn{
-            background-color: #3CCACE;
+            // background-color: #3CCACE;
             width:36px;
             height:36px;
             padding:8px;
@@ -574,8 +574,11 @@
         &__list{
           width: 220px;
           display: inline-block;
+          margin: 8px;
           float: left;
+          height: 242px;
           a{
+            box-shadow: rgba(0,0,0,0.4);
             background-color: #fff; 
             color: #333;
             display: inline-block;
@@ -603,6 +606,8 @@
               background-color: white;
               color: #333;
               padding: 16px;
+              font-size: 18px;
+              text-align: initial;
               h3{
                 overflow: hidden;
                 line-height: 1.5;
@@ -629,6 +634,25 @@
                   text-align: left;
                 }
               }
+            }
+          }
+          .items-box_photo__sold{
+            width: 0;
+            height: 0;
+            border-top: 65px solid #ea352d ;
+            border-right: 60px solid transparent;
+            border-bottom: 60px solid transparent;
+            border-left: 60px solid #ea352d ;
+            z-index: 5;
+            position: relative;
+            top:-242px;
+            &__inner{
+              transform: rotate(-45deg);
+              font-size: 28px;
+              margin:-35px 0px 0px -55px;
+              color: #fff;
+              letter-spacing: 2px;
+              font-weight: 600;
             }
           }
         }
@@ -844,4 +868,25 @@ a{
       }
     }
   }
+}
+#fbtn{
+  height: 36px;
+  width: 36px;
+  position: relative;
+  bottom: 8px;
+  right: 8px;
+  background-color: #3CCACE;
+  border: none;
+  cursor: pointer;
+}
+.imgfm{
+  position: relative;
+  bottom: 39px;
+}
+.fa-search:before{
+  position: absolute;
+  top: 18px;
+  color: white;
+  cursor: pointer;
+  font-size: 22px;
 }

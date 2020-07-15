@@ -35,10 +35,14 @@ class CardsController < ApplicationController
   end
 
   def new
-    # 直打ちでcards/newに移動できないようにする（直打ちはrequest.referrer = nil）
-    previous_page2 = request.referrer
-    if previous_page2.blank?
-      redirect_to cards_path
+    if user_signed_in?
+      # 直打ちでcards/newに移動できないようにする（直打ちはrequest.referrer = nil）
+      previous_page2 = request.referrer
+      if previous_page2.blank?
+        redirect_to cards_path
+      end
+    else
+      redirect_to items_path
     end
   end
 
@@ -53,9 +57,7 @@ class CardsController < ApplicationController
       customer: card.customer_id, #支払うユーザのpayjp顧客ID
       currency: 'jpy', #通貨の指定
     )
-
-    @item_buyer = Item.find(params[:id])
-    @item_buyer.update( buyer_id: current_user.id)
+    
 
     redirect_to purchase_done_items_path
  
@@ -64,9 +66,8 @@ class CardsController < ApplicationController
   def create
     customer = Payjp::Customer.create(
       card: params['card_token'],
-      metadata: {user_id:current_user.id},
+      metadata: {user_id: current_user.id},
     )
-    
     @card = CreditCard.new(
       user_id: current_user.id,
       customer_id: customer.id,

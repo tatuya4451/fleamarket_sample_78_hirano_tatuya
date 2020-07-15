@@ -1,43 +1,76 @@
 require 'rails_helper'
 
 describe CardsController do
+  let(:user) { create(:user) }
+  let(:credit_card) { create(:credit_card) }
+
   describe 'GET #index' do
-    it "登録カードの情報を表示" do
-      context 'ログイン時' do
-        before do
-          login user
-        end
-      
-      
+
+    context 'ログイン時' do
+      before do
+        login user
+      end
+
+      it "カード情報を表示" do
+        get :index
+        expect(response).to render_template :index
+      end
     end
 
-    it "ログインしていない時、トップページを表示" do
+    context 'ログインしていない時' do
+      it "トップページを表示" do
+        get :index
+        expect(response).to redirect_to "http://test.host/items"
+      end
     end
+
   end
 
   describe 'GET #new' do
-    it "直接アクセスする時、登録カードの情報を表示" do
+    context 'ログイン時' do
+      before do
+        login user  
+      end
+        
+      it "直接アクセスする時、登録カードの情報を表示" do
+        get :new
+        expect(response).to redirect_to "http://test.host/cards"
+      end
     end
-
-    it "すでにカードが登録されている時、登録カードの情報を表示" do
-    end
-
-    it "ログインしていない時、トップページを表示" do
-    end
-  end
-
-  describe 'post #create' do
-    it "カード番号が不正の時、保存されない" do
-    end
-
-    it "カード期限が過去の時、保存されない" do
-    end
-
-    it "セキュリティ番号が不正な時、保存されない" do
-    end
-
-    it "登録完了後、登録画面の直線にいた画面に戻る" do
+    
+    context 'ログインしていない時' do
+      it "トップページを表示" do
+        get :new
+        expect(response).to redirect_to "http://test.host/items"
+      end
     end
   end
-
+  context "createアクションにアクセスした時" do
+    context 'ログイン時' do
+      before do
+        login user
+        @user = User.first
+        allow(Payjp::Customer).to receive(:create).and_return(PayjpMock.prepare_customer_information)
+        allow(controller).to receive(:current_user).and_return(@user) 
+      end
+    
+      it "カード情報が正しく保存されるか" do
+        post :create, params: {token: "tok_xxxxxxxx", customer_id: "cus_ca9d1d98900ec1f2595aebefd9a6"}
+        card = create(:credit_card, user_id: user.id, customer_id: "cus_ca9d1d98900ec1f2595aebefd9a6")
+        expect(assigns(:card).customer_id).to eq(card.customer_id)
+        # コントローラ(モック含む)を経由して生成したcustomer_id（左）と、テストで生成したcustomer_id（右）が
+        # 同じ形で保存されているか確認
+        
+        #---------------------------------！注意！---------------------------------
+        # Payjpモックはハッシュでデータ生成、実際のPayjpはインスタンスでデータ生成のため、
+        # このままコードを通すとfailureとなります。
+        # このテストを確認するには、一時的にcards_controllerのcreateアクションの
+        # 以下を変更する必要があります。
+        #  current_user.id => current_user[:id]
+        #  customer.id => customer[:id]
+        #  customer.default_card => customer[:default_card]
+        # ------------------------------------------------------------------------
+      end
+    end
+  end
 end

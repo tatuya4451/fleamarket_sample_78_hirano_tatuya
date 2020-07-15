@@ -37,7 +37,7 @@
       %ul.Toppage-header__content__bottom__button__right-menu
         - if user_signed_in?
           %li.Toppage-header__content__bottom__button__right-menu_mypage
-            = link_to "マイページ", edit_user_registration_path, method: :get
+            = link_to "マイページ", user_path(current_user)
         - else
           %li.Toppage-header__content__bottom__button__right-menu__login
             = link_to "ログイン", new_user_session_path, method: :get

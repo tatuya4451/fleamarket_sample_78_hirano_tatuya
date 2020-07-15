@@ -1,6 +1,6 @@
 $(function(){
   $('#scroll').click(function() {
-    var headerHight = 100;
+    var headerHight = 130;
     var speed = 500;
     var href= $(this).attr("href");
     var target = $(href == "#" || href == "" ? 'html' : href);

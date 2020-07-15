@@ -5,10 +5,11 @@
   font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
 
   .CardInfo{
-    padding-top: 10px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: white;
     
     &__Title{
       text-align: center;

@@ -25,10 +25,8 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, only: [:index]
-  resources :cards, only: [:index, :new, :create, :destroy] do
-    collection do
-      post 'pay'
-    end
-  end
+
+  post 'pay', to:'cards#pay'
+
 end
 

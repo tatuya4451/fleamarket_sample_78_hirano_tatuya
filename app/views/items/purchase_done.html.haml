@@ -1,7 +1,5 @@
 .BuyWrapper
-  .Header.ResponsiveHeader
-    = link_to items_path do
-      = image_tag 'logo/logo.png',class:'ResponsiveLogo', alt:"FURIMA", height:"33px", width:"120px"
+  = render 'item-header'
   .ItemField
     .ItemInfo
       %section.Contents
@@ -29,20 +27,4 @@
         .GotoTop
           =link_to items_path, class:'GotoTop__link' do
             トップページにもどる
-  .Footer
-    .Notice
-      %ul
-        %li
-          = link_to "#",class:"link" do
-            プライバシーポリシー
-        %li
-          = link_to "#",class:"link" do
-            FURIMA利用規約
-        %li
-          = link_to "#",class:"link" do
-            特定商取引に関する表記
-    .Logo
-      = link_to "#",class:"link" do
-        = image_tag 'logo/logo.png', alt:"FURIMA", height:"33px", width:"120px"
-      %p.CompanyName
-        ©︎ FURIMA, Inc.
+  = render 'item-footer'

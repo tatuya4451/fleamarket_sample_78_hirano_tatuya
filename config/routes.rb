@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       get 'cardindex'
       get 'cardnew'
       post 'cardcreate'
-      
+      get 'bookmarks'
     end
   end
   resources :items, only: [:index, :show, :new, :create] do
@@ -22,10 +22,10 @@ Rails.application.routes.draw do
       get 'get_category_grandchildren', defaults: { format: 'json' }
       get 'get_delivery_children', defaults: { format: 'json'}
       get 'search'
+      resouces :bookmarks, only:[:create, :destroy]
     end
   end
   resources :categories, only: [:index]
-
   post 'pay', to:'cards#pay'
 
 end

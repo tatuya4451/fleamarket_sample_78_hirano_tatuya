@@ -12,11 +12,7 @@ Rails.application.routes.draw do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
       get 'get_delivery_children', defaults: { format: 'json'}
-      get 'search' do
-        get 'get_category_children', defaults: { format: 'json' }
-        get 'get_category_grandchildren', defaults: { format: 'json' }
-        get 'get_delivery_children', defaults: { format: 'json'}
-      end
+      get 'search'
     end
   end
   resources :categories, only: [:index]

@@ -1,0 +1,8 @@
+ja:
+  enums:
+    item:
+      trading_status:
+        exhibiting: "出品中"
+        duringTrading: "取引中"
+        transacted: "取引済"
+  activerecord:

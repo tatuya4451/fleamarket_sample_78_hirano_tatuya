@@ -81,6 +81,7 @@ gem 'mini_magick'
 gem 'ancestry'
 gem 'payjp'
 gem 'rails-i18n' 
+gem 'ransack'
 
 group :production do
   gem 'unicorn'

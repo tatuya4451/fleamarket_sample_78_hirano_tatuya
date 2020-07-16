@@ -4,15 +4,55 @@
   display: flex;
   background-color: #f8f8f8;
   .search__all__text-field{
-    width: 80%;
+    width: 100%;
     border: 1px solid #ccc;
     border-radius: 4px;
-    
+    height: 40px;
   }
+  .search__head{
+    font-size: 14px;
+    vertical-align: middle;
+    font-weight: bold;
+  }
+  #q_sorts{
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 30px;
+    height: 40px;
+  }
+.search__heading{
+  display: flex;
+  margin-top: 15px;
+}
+.search__label{
+  display: flex;
+}
+.search__condition__box{
+  display: flex;
+}
+.new__all-submit{
+  width: 100%;
+  font-size: 17px;
+  min-height: 48px;
+  padding: 0 24px;
+  border-radius: 4px;
+  font-weight: 600;
+  margin: 25px 0;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background-color:#ea352b ;
+  color: white;
+}
+.search__price{
+  display: flex;
+}
+.search__conditions{
+  display: flex;
+}
   &__box{
     background-color: white;
     width: 70%;
-    height: 100%;
     margin-left: 80px;
     margin-top: 50px;
     border-radius: 10px;

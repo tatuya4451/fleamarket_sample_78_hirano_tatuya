@@ -21,5 +21,10 @@ class ApplicationController < ActionController::Base
     Rails.env.production?
   end
 
+  def set_item_search_query
+    @search = Item.ransack(params[:q])
+    @search_items = @search.result(distinct: true)
+  end
+
 
 end

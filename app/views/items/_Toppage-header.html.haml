@@ -4,10 +4,10 @@
       =link_to '/' , target: '_self' do
         =image_tag 'logo/logo.png' ,alt:"画像表示エラー" ,width: 140,height: 41
     .Toppage-header__content__top__form
-      =form_with  url: search_items_path,method: :get, local:true do |form|
-        =form.text_field :keyword, placeholder: 'キーワードから探す',class: 'search-box'
+      = search_form_for @search,url: search_items_path do |f|
+        =f.search_field :name_or_introduce_cont, placeholder: 'キーワードから探す',class: 'search-box'
         .search-btn
-          = form.submit "", {:id=>"fbtn"}
+          = f.submit "", {:id=>"fbtn"}
           %label{for: "fbtn" }
             %i.fas.fa-search
   .Toppage-header__content__bottom

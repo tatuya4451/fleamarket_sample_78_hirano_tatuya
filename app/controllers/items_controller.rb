@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   require 'payjp'
   before_action :index_category_set, only: :index
   before_action :set_item_search_query
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show, :search]
 
   def index
     @parents = Category.where(ancestry: nil)
@@ -96,7 +96,7 @@ class ItemsController < ApplicationController
       redirect_to action: :index
     end
   end
-  
+
   def index_category_set
     array = [1, 200]
       for num in array do

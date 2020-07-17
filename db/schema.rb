@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_07_16_020835) do
 
+
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "destination_last_name", null: false
     t.string "destination_first_name", null: false
@@ -86,6 +87,7 @@ ActiveRecord::Schema.define(version: 2020_07_16_020835) do
     t.bigint "delivery_id", null: false
     t.integer "saler_id", null: false
     t.integer "buyer_id"
+    t.integer "trading_status", null: false
     t.index ["category_id"], name: "index_items_on_category_id"
     t.index ["delivery_id"], name: "index_items_on_delivery_id"
   end

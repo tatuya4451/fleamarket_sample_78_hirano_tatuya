@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   require 'payjp'
   before_action :index_category_set, only: :index
+  before_action :set_item_search_query
+  before_action :move_to_index, except: [:index, :show, :search]
 
   def index
     @parents = Category.where(ancestry: nil)
@@ -31,14 +33,15 @@ class ItemsController < ApplicationController
       redirect_to root_path
      else
       render "new"
-     end
-    
+     end  
   end
 
   def search
-    @items = Item.search(params[:keyword])
     @parents = Category.where(ancestry: nil)
+    @search = Item.ransack(params[:q])
+    @search_items = @search.result(distance: true).order(created_at: "DESC") 
   end
+  
 
   def show
     @item = Item.find(3)
@@ -49,7 +52,11 @@ class ItemsController < ApplicationController
   end
 
   def purchase
-    
+    @item = Item.find(3)
+    #あとでparams[:id]にする
+    @address = Address.find_by(id:current_user.id)
+    @image = Image.find_by(item_id: @item.id)
+
     if user_signed_in?
       Payjp.api_key = Rails.application.credentials.PAYJP[:PRIVATE_KEY]
       
@@ -77,16 +84,27 @@ class ItemsController < ApplicationController
         end
       end
     end
+  end
 
-    def bookmarks
-      @items = current_user.bookmark_items.include(:user)
-    end
+  def bookmarks
+    @items = current_user.bookmark_items.include(:user)
+  end
 
+  def purchase_done
+    @item = Item.find(3)
+    #あとでparams[:id]にする
+    @image = Image.find_by(item_id: @item.id)
   end
 
   private
   def item_params
     params.require(:item).permit(:name, :introduce, :brand, :price, :prefecture_id, :preparation_id, :condition_id,:category_id, :delivery_id, images_attributes: [:url],).merge(saler_id:current_user.id)
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
   end
 
   def index_category_set

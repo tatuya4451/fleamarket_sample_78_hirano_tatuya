@@ -80,8 +80,11 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'ancestry'
 gem 'payjp'
+gem 'rails-i18n' 
+gem 'ransack'
 gem 'rails-i18n'
 gem "gretel"
+gem 'enum_help'
 
 group :production do
   gem 'unicorn'

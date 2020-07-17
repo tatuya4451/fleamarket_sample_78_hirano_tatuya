@@ -2,6 +2,78 @@
   box-sizing: border-box;
 }
 
+// _item-header用
+.ItemHeader{
+  -webkit-box-align: center;
+  align-items: center;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  height: 56px;
+  background-color: #f8f8f8;
+}
+
+// _item-footer用
+.ItemFooter{
+  margin-top: auto;
+  text-align: center;
+  padding: 40px 0px 11px;
+  background-color: #f8f8f8;
+
+  .Notice{
+    ul{
+      display: inline-block;
+      margin: -16px 0px 40px -16px;
+      font-size: 12px;
+
+      li{
+        display: block;
+        margin: 16px 0px 0px 16px;
+
+        .link{
+          font-size: 12px;
+          text-decoration: none;
+          color: inherit;
+        }
+      }
+    }
+  }
+
+  .Logo{
+    .CompanyName{
+      font-size: 12px;
+    }
+  }
+
+  li:hover{
+    text-decoration: underline;
+    opacity: 0.5;
+    }
+}
+
+// レスポンシブデザイン用
+@media(min-width: 768px){
+  .ResponsiveTitle{
+    font-size: 24px;
+    line-height: 34px;
+  }
+  .ResponsiveLogo{
+    height: 49px;
+    width: 185px;
+  }
+  .ResponsiveHeader{
+    height: 128px !important;
+  }
+}
+@media(max-width: 767px){
+  .ResponsiveTitle{
+    font-size: 17px;
+    line-height: 24px;
+  }
+}
+
+
+
 .BuyWrapper{
   display: flex;
   flex-direction: column;
@@ -9,14 +81,7 @@
   background-color: #f8f8f8;
   font-family: "Arial","游ゴシック体","YuGothic","メイリオ","Meiryo","sans-serif";
   
-  .Header{
-    -webkit-box-align: center;
-    align-items: center;
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    height: 56px;
-  }
+
 
   .ItemField{
     max-width: 700px;
@@ -242,62 +307,6 @@
         opacity: 0.5;
       }
 
-    }
-  }
-
-  .Footer{
-    margin-top: auto;
-    text-align: center;
-    padding: 40px 0px 11px;
-
-    .Notice{
-      ul{
-        display: inline-block;
-        margin: -16px 0px 40px -16px;
-        font-size: 12px;
-
-        li{
-          display: block;
-          margin: 16px 0px 0px 16px;
-
-          .link{
-            font-size: 12px;
-            text-decoration: none;
-            color: inherit;
-          }
-        }
-      }
-    }
-
-    .Logo{
-      .CompanyName{
-        font-size: 12px;
-      }
-    }
-
-    li:hover{
-      text-decoration: underline;
-      opacity: 0.5;
-      }
-  }
-
-  @media(min-width: 768px){
-    .ResponsiveTitle{
-      font-size: 24px;
-      line-height: 34px;
-    }
-    .ResponsiveLogo{
-      height: 49px;
-      width: 185px;
-    }
-    .ResponsiveHeader{
-      height: 128px !important;
-    }
-  }
-  @media(max-width: 767px){
-    .ResponsiveTitle{
-      font-size: 17px;
-      line-height: 24px;
     }
   }
 }

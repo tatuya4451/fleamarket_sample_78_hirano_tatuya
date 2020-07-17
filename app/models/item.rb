@@ -34,9 +34,11 @@ class Item < ApplicationRecord
         Item.all  
       end
   end
-  
+
   def bookmark_by?(user)
     bookmarks.where(user_id: user.id).exists?
   end
+  
+  enum trading_status: { exhibiting: 0, duringTrading: 1, transacted: 2 }
 
 end

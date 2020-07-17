@@ -1,7 +1,5 @@
 .BuyWrapper
-  .Header.ResponsiveHeader
-    = link_to items_path do
-      = image_tag 'logo/logo.png',class:'ResponsiveLogo', alt:"FURIMA", height:"33px", width:"120px"
+  = render 'item-header'
   .ItemField
     .ItemInfo
       %section.Contents
@@ -9,21 +7,21 @@
           購入内容の確認
       %section.Contents
         .BuyItem
-          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png",class:"BuyItem__image", alt: "商品画像"
+          = image_tag "#{@image.url.url}", alt: '商品画像',class:"BuyItem__image"
           .BuyItem__Info
             %p.BuyItem__Info__Name
-              冷凍パック 焼き魚定食
+              = @item.name
             %p.BuyItem__Info__Price
               %span.PriceDetail
                 送料込み (税込)
               %span.Price
-                ¥1,700
+                ="¥#{@item.price}"
       %section.Contents
         .PayPrice
           %span
             支払い金額
           %span.Price
-            ¥1,700
+            ="¥ #{@item.price}"
       - if user_signed_in?
         %section.Contents
           - if @default_card_information.blank?
@@ -60,11 +58,13 @@
 
           .AddressInfo
             %p
-              〒123-4567
+              - post_area = @address.post_code.to_s.slice(0,3)
+              - post_block = @address.post_code.to_s.slice(3,6)
+              = "〒#{post_area}-#{post_block}"
             %p
-              東京都 板橋区 志村三丁目 20
+              = "#{@address.prefecture.name} #{@address.city} #{@address.address} #{@address.buliding_name}"
             %p
-              振魔 太郎
+              = "#{@address.destination_last_name} #{@address.destination_first_name}"
         - if  @default_card_information.blank?
           %section.Contents
             .BuyBtn
@@ -86,21 +86,4 @@
             .Btn
               = link_to new_user_registration_path, class: "Btn", method: :get do
                 新規登録
-
-  .Footer
-    .Notice
-      %ul
-        %li
-          = link_to "#",class:"link" do
-            プライバシーポリシー
-        %li
-          = link_to "#",class:"link" do
-            FURIMA利用規約
-        %li
-          = link_to "#",class:"link" do
-            特定商取引に関する表記
-    .Logo
-      = link_to "#",class:"link" do
-        = image_tag 'logo/logo.png', alt:"FURIMA", height:"33px", width:"120px"
-      %p.CompanyName
-        ©︎ FURIMA, Inc.
+  = render 'item-footer'

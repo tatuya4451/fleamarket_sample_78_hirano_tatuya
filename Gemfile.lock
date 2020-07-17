@@ -120,6 +120,8 @@ GEM
     diff-lcs (1.4.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    enum_help (0.0.17)
+      activesupport (>= 3.0.0)
     erubi (1.9.0)
     erubis (2.7.0)
     excon (0.75.0)
@@ -220,6 +222,8 @@ GEM
       ast (~> 2.4.1)
     payjp (0.0.7)
       rest-client (~> 2.0)
+    polyamorous (2.3.2)
+      activerecord (>= 5.2.1)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -268,6 +272,11 @@ GEM
     rainbow (3.0.0)
     raindrops (0.19.1)
     rake (13.0.1)
+    ransack (2.3.2)
+      activerecord (>= 5.2.1)
+      activesupport (>= 5.2.1)
+      i18n
+      polyamorous (= 2.3.2)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -406,6 +415,7 @@ DEPENDENCIES
   devise
   devise-i18n
   devise-i18n-views
+  enum_help
   factory_bot_rails
   faker (~> 2.8)
   fog-aws
@@ -423,6 +433,7 @@ DEPENDENCIES
   rails (~> 6.0.0)
   rails-controller-testing
   rails-i18n
+  ransack
   rspec-rails (~> 4.0.0.beta2)
   rubocop
   sass-rails (~> 5)

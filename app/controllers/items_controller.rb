@@ -41,6 +41,9 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(3)
+    #あとで変える
+    @items = Item.all.includes(:user)
   end
 
   def purchase
@@ -71,6 +74,10 @@ class ItemsController < ApplicationController
           @card_src = "cards/discover.png"
         end
       end
+    end
+
+    def bookmarks
+      @items = current_user.bookmark_items.include(:user)
     end
 
   end

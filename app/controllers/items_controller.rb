@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+
      @item = Item.new(item_params)
      if @item.save
       redirect_to root_path
@@ -43,6 +44,11 @@ class ItemsController < ApplicationController
   
 
   def show
+    @item = Item.find(3)
+    #あとで3をitems_idに変える
+    @items = Item.all.includes(:user)
+    @bookmarks_num = Bookmark.where(item_id: 3).count
+    #あとで3をitems_idに変える
   end
 
   def purchase
@@ -78,6 +84,10 @@ class ItemsController < ApplicationController
         end
       end
     end
+  end
+
+  def bookmarks
+    @items = current_user.bookmark_items.include(:user)
   end
 
   def purchase_done

@@ -69,14 +69,19 @@
                 4-7日で発送                        
             
       .show__main__option
-        = link_to "#", class:'favorite__link show-link' do
-          %ul.show__favorite
-            %li.show__favorite__child
-              = icon('fas','star', class:'show__favorite__icon')
-            %li.show__favorite__child
-              お気に入り
-            %li.show__favorite__child
-              0 
+        %ul.show__favorite
+          %li.show__favorite__child
+            - if @item
+              - if @item.bookmark_by?(current_user)
+                %span お気に入り解除
+                = link_to bookmark_path, method: :delete, id:"js-bookmark-button-for-item" do
+                  = icon('fas','star', class:'show__favorite__icon')
+              - else
+                %span お気に入り
+                = link_to bookmarks_path, method: :post, id:"js-bookmark-button-for-item" do
+                  = icon('far','star', class:'show__favorite__icon') 
+          %li.show__favorite__child
+            = @bookmarks_num
         = link_to "#", class:'optional__link' do
           %ul.show__optional
             %li.show__optional__child 

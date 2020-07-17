@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   require 'payjp'
   before_action :index_category_set, only: :index
-
+  before_action :set_item_search_query
   def index
     @parents = Category.where(ancestry: nil)
     @latest_items = Item.limit(4).order("id DESC")
@@ -25,20 +25,20 @@ class ItemsController < ApplicationController
   end
 
   def create
-    
      @item = Item.new(item_params)
      if @item.save
       redirect_to root_path
      else
       render "new"
-     end
-    
+     end  
   end
 
   def search
-    @items = Item.search(params[:keyword])
     @parents = Category.where(ancestry: nil)
+    @search = Item.ransack(params[:q])
+    @search_items = @search.result(distance: true).order(created_at: "DESC") 
   end
+  
 
   def show
   end

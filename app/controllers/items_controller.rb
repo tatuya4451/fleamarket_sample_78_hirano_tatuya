@@ -43,6 +43,46 @@ class ItemsController < ApplicationController
   
 
   def show
+    @item = Item.find(params[:id])
+    @grandchild = Category.find(@item.category_id)
+    @child = @grandchild.parent
+    @parent = @child.parent if @child
+    @parents = Category.where(ancestry: nil)
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+    @item.images.new
+    # # @brand = Brand.find(params[:id])
+    @grandchild_category = Category.find(@item.category_id)
+    @parents = Category.where(ancestry: nil)
+    # item.edit(item_params)
+
+    @child_delivery = Delivery.find(@item.delivery_id)
+    @parents_delivery = Delivery.where(ancestry: nil)
+    
+    # if user_signed_in? &&  current_user.id = @item.saler_id 
+    #   redirect_to edit_item_path
+    # else 
+    #   redirect_to item_path
+    # end
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    @delivery = Delivery.all
+    redirect_to root_path
+  end
+
+  def update
+    item = Item.find(params[:id])
+    item.update!(update_params)
+    if item.saler_id == current_user.id
+      redirect_to item_path
+    else
+      render :edit
+    end
   end
 
   def purchase
@@ -109,5 +149,9 @@ class ItemsController < ApplicationController
         instance_variable_set("@cat_no#{num}", items)
       end
    end
+
+   def update_params
+    params.require(:item).permit(:name, :introduce, :brand, :price, :prefecture_id, :preparation_id, :condition_id,:category_id, :delivery_id, images_attributes: [:url , :id , :_destroy]).merge(saler_id:current_user.id)
+  end
 end
 

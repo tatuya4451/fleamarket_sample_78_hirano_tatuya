@@ -1,23 +1,34 @@
+.Toppage-header
+  =render partial: 'Toppage-header'
+
+
+
 .shows
   .show
     .show__main
       .show__main__name
-        product3
-      = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png", class: "show__main__image", alt: "イメージ1"
-      %ul.show__main__list
-        %li.show__main__child
-          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png", class: "show__main__child__image", alt: "イメージ2"  
-        %li.show__main__child
-          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/14/a001.png", class: "show__main__child__image", alt: "イメージ3" 
-        %li.show__main__child
-          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/15/a003.png", class: "show__main__child__image", alt: "イメージ4"
+        =@item.name
+      .show__main__image
+        .show__flexbox
+          = image_tag @item.images.first.url.to_s, class: "main-image",alt: "メインイメージ", size:500
+          .sub-image
+            - @item.images.each do |image|
+              = image_tag image.url.url, alt: "イメージ1",size:150
+
       .show__main__box
         .show__main__box__price
-          ¥30000
+          =@item.price 
+          円
         .show__main__box__detail
-          (税込) 送料込み
+          (税込)  送料込み
+
+      -if user_signed_in? &&  current_user.id != @item.saler_id 
+        .show__main__purchase-btn
+          =link_to purchase_item_path do
+            %p 購入画面に進む
+
       .show__main__explanation
-        親譲りの無鉄砲で小供の時から損ばかりしている。小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。弱虫やーい。と囃したからである。小使に負ぶさって帰って来た時、おやじが大きな眼をして二階ぐらいから飛び降りて腰
+        =@item.introduce
       .show__main__table
         %table
           %tbody
@@ -25,49 +36,65 @@
               %th
                 出品者
               %td
-                hoge
+                aaaa
             %tr
               %th
                 カテゴリー
               %td
-                = link_to "#", class: 'category__link show-link' do
-                  ベビー・キッズ
-                %br
-                = link_to "#", class: 'category__link show-link' do
-                  ベビー服(男女兼用) ~95cm
-                %br
-                = link_to "#", class: 'category__link show-link' do
-                  アウター
+                -if @parent
+                  =link_to categories_path(@parent), class:"category__link show-link" do
+                    %p.category-btn
+                      =@parent.name
+                  %p.space
+                - if @child
+                  =link_to categories_path(@child), class:"category__link show-link" do
+                    %p.category-btn
+                      =@child.name
+                  %p.space
+                =link_to categories_path(@grandchild), class:"category__link show-link" do
+                  %p.category-btn
+                    =@grandchild.name
+                %p.space
+                %p.category-btn
+                  =@item.name
             %tr
               %th
                 ブランド
               %td
-            %tr
-              %th
-                商品のサイズ
-              %td
+                =@item.brand
+            -# %tr
+              -# %th
+              -#   商品のサイズ
+              -# %td
             %tr
               %th
                 商品の状態
               %td
-                未使用に近い
+                =@item.condition.name
+                
             %tr
               %th
                 配送料の負担
               %td
-                送料込み（出品者負担）
+                =@item.delivery.method
             %tr
               %th
                 発送元の地域
               %td
                 = link_to "#", class: 'category__link show-link' do
-                  岩手県
+                  = @item.prefecture.name
             %tr
               %th
                 発送の目安
               %td
-                4-7日で発送                        
-            
+                =@item.preparation.days
+      - if user_signed_in? && current_user.id == @item.saler_id
+        = link_to  edit_item_path(@item.id),data:{turbolinks: false} do
+          .show__main__btns
+            .show__main__btns__edit
+              %p 商品を編集する
+
+
       .show__main__option
         = link_to "#", class:'favorite__link show-link' do
           %ul.show__favorite
@@ -92,7 +119,7 @@
             %br
             不快な言葉遣いなどは利用制限や退会処分となることがあります。
           = icon('fas','comment', class:'show__comment__icon')
-          = f.submit 'コメントする', class: 'show__comment__btn'     
+          = f.submit 'コメントする', class: 'show__comment__btn'
     .show__pagenation
       = link_to "#", class: 'show-link' do
         .show__pagenation__prev
@@ -102,11 +129,12 @@
         .show__pagenation__next
           後ろの商品
           = icon('fas','angle-right', class:'show__next__icon')
+    
     .show__bottom
       = link_to "#", class: 'show-link' do
         .show__bottom__msg
           ベビー ・ キッズをもっと見る
-      = link_to "#", class: 'show-link' do    
+      = link_to "#", class: 'show-link' do
         .show__bottom__content
           = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/16/IMG_9072.JPG", class: "show__bottom__content__image", alt: "商品イメージ"
           .content__row
@@ -121,5 +149,12 @@
                     = icon('fas','star', class:'content__row-fav__icon')
                   .content__row-count
                     0     
-            .content__row-tax       
+            .content__row-tax 
               (税込)
+
+.Main__banner
+  =render partial: 'Toppage-banner'
+
+.Toppage-footer
+  =render partial: 'Toppage-footer'
+

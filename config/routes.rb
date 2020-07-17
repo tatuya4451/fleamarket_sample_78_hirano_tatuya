@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       
     end
   end
-  resources :items, only: [:index, :show, :new, :create] do
+  resources :items do
     collection do
       get 'purchase'
       get 'purchase_done'

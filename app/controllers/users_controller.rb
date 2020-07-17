@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   require 'payjp'
+  before_action :set_item_search_query
   Payjp.api_key = Rails.application.credentials.PAYJP[:PRIVATE_KEY]
 
   def show

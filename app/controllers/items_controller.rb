@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
   require 'payjp'
   before_action :index_category_set, only: :index
   before_action :set_item_search_query
+  before_action :move_to_index, except: [:index, :show]
+
   def index
     @parents = Category.where(ancestry: nil)
     @latest_items = Item.limit(4).order("id DESC")
@@ -89,6 +91,12 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :introduce, :brand, :price, :prefecture_id, :preparation_id, :condition_id,:category_id, :delivery_id, images_attributes: [:url],).merge(saler_id:current_user.id)
   end
 
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
+  end
+  
   def index_category_set
     array = [1, 200]
       for num in array do

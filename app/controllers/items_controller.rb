@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    
+
      @item = Item.new(item_params)
      if @item.save
       redirect_to root_path
@@ -41,7 +41,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(2)
+    @item = Item.find(3)
     #あとで3をitems_idに変える
     @items = Item.all.includes(:user)
     @bookmarks_num = Bookmark.where(item_id: 3).count

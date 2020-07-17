@@ -4,4 +4,15 @@
   =render partial: 'users/side-bar'
   .mypage__right
     .mypage__right__logout
-      = link_to "ログアウト", destroy_user_session_path, method: :delete
+      .mypage__right__logout__box
+        = link_to "ログアウト", destroy_user_session_path, method: :delete , class: 'btn'
+
+=link_to new_item_path  do
+  .purchase-btn
+    %span.purchase-btn__text 
+      出品する
+    .purchase-btn__img
+      =image_tag 'icon/icon_camera.png',alt:"画像表示エラー" ,size:54
+
+.Toppage-footer      
+  = render partial: 'items/Toppage-footer' 

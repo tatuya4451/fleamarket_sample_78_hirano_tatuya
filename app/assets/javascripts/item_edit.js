@@ -209,7 +209,7 @@
                   });
               
                   // 画像の削除
-                  $('.delete-box').on('click', function() {
+                  $('.delete-btn').on('click', function() {
                     var count = $('.preview-box').length;
                     setLabel(count);
                     var id = $(this).attr('id').replace(/[^0-9]/g, '');
@@ -233,7 +233,6 @@
               
                       }
                     } else {
-              
                       //投稿編集時
                       $(`#item_images_attributes_${id}__destroy`).prop('checked',true);
                       //5個めが消されたらラベルを表示

@@ -3,9 +3,10 @@ class ItemsController < ApplicationController
   before_action :index_category_set, only: :index
   before_action :set_item_search_query
   before_action :move_to_index, except: [:index, :show, :search]
+  before_action :set_parent
 
   def index
-    @parents = Category.where(ancestry: nil)
+    
     @latest_items = Item.limit(4).order("id DESC")
   end
 
@@ -36,7 +37,6 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @parents = Category.where(ancestry: nil)
     @search = Item.ransack(params[:q])
     @search_items = @search.result(distance: true).order(created_at: "DESC") 
   end
@@ -47,7 +47,6 @@ class ItemsController < ApplicationController
     @grandchild = Category.find(@item.category_id)
     @child = @grandchild.parent
     @parent = @child.parent if @child
-    @parents = Category.where(ancestry: nil)
   end
 
   def edit
@@ -55,7 +54,6 @@ class ItemsController < ApplicationController
     @item.images.new
     # # @brand = Brand.find(params[:id])
     @grandchild_category = Category.find(@item.category_id)
-    @parents = Category.where(ancestry: nil)
     # item.edit(item_params)
 
     @child_delivery = Delivery.find(@item.delivery_id)

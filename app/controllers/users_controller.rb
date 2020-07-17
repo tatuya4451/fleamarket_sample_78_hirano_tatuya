@@ -1,18 +1,19 @@
 class UsersController < ApplicationController
   require 'payjp'
+  before_action :set_parent
   before_action :set_item_search_query
   Payjp.api_key = Rails.application.credentials.PAYJP[:PRIVATE_KEY]
 
   def show
-    @parents = Category.where(ancestry: nil)
+    
   end
 
   def logout
-    @parents = Category.where(ancestry: nil)
+    
   end
   
   def cardindex
-    @parents = Category.where(ancestry: nil)
+    
 
     if user_signed_in?
       # インデックスの直前のページ情報を取得
@@ -83,6 +84,9 @@ class UsersController < ApplicationController
     customer.delete
     card.delete
     redirect_to cardnew_users_path
+  end
+
+  def edit
   end
 
 end

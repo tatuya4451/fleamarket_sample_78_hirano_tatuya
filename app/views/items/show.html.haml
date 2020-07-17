@@ -69,7 +69,6 @@
                 4-7日で発送                        
             
       .show__main__option
-        -# = link_to "#", class:'favorite__link show-link' do
         %ul.show__favorite
           %li.show__favorite__child
             - if @item.bookmark_by?(current_user)
@@ -81,7 +80,7 @@
               = link_to bookmarks_path, method: :post, id:"js-bookmark-button-for-item" do
                 = icon('far','star', class:'show__favorite__icon') 
           %li.show__favorite__child
-            0 
+            = @bookmarks_num
         = link_to "#", class:'optional__link' do
           %ul.show__optional
             %li.show__optional__child 

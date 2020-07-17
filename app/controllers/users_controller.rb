@@ -84,4 +84,8 @@ class UsersController < ApplicationController
     redirect_to cardnew_users_path
   end
 
+  def bookmarks
+    @parents = Category.where(ancestry: nil)
+    @bookmarks = Bookmark.where(user_id: current_user)
+  end
 end

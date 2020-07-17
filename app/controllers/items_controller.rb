@@ -41,9 +41,11 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(3)
-    #あとで変える
+    @item = Item.find(2)
+    #あとで3をitems_idに変える
     @items = Item.all.includes(:user)
+    @bookmarks_num = Bookmark.where(item_id: 3).count
+    #あとで3をitems_idに変える
   end
 
   def purchase

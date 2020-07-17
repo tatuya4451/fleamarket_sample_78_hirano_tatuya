@@ -1,0 +1,13 @@
+=render partial: 'items/Toppage-header'
+
+.mypage
+  =render partial: 'users/side-bar'
+  .BookmarkTitle
+    お気に入り一覧
+    .BookmarkItems
+      - @bookmarks.each do |bookmark|
+        .BookmarkItem
+          -# = bookmark.item.images
+          - image = Image.find(bookmark.item_id)
+          = image_tag "#{image.url.url}" , alt: '商品画像',class:"Bookmark__image"
+          = bookmark.item.name

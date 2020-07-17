@@ -1,7 +1,7 @@
 .CardRegWrapper
   .CardInputForm
     %h2.MainTitle クレジットカード情報入力
-    = form_with url: cards_path, html:{class: 'InputBox'}, id: "charge-form", local: true, method: :post do |f|
+    = form_with url: cardcreate_users_path, html:{class: 'InputBox'}, id: "charge-form", local: true, method: :post do |f|
       .CardInput
         .InputTitle
           %h2.Title カード番号

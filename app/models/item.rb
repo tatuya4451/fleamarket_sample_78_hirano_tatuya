@@ -32,4 +32,6 @@ class Item < ApplicationRecord
       end
   end
   
+  enum trading_status: { exhibiting: 0, duringTrading: 1, transacted: 2 }
+
 end

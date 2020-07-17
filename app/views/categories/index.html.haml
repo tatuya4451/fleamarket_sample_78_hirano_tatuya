@@ -1,7 +1,8 @@
 %body
   .Toppage-header
     =render 'items/Toppage-header'
-
+    - breadcrumb :category_index
+    = render "layouts/breadcrumbs"
 .category__container
   .search__section
     %h2.search__section--title カテゴリー一覧

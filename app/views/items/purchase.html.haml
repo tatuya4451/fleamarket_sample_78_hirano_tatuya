@@ -1,7 +1,5 @@
 .BuyWrapper
-  .Header.ResponsiveHeader
-    = link_to items_path do
-      = image_tag 'logo/logo.png',class:'ResponsiveLogo', alt:"FURIMA", height:"33px", width:"120px"
+  = render 'item-header'
   .ItemField
     .ItemInfo
       %section.Contents
@@ -9,21 +7,21 @@
           購入内容の確認
       %section.Contents
         .BuyItem
-          = image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/13/a007.png",class:"BuyItem__image", alt: "商品画像"
+          = image_tag "#{@image.url.url}", alt: '商品画像',class:"BuyItem__image"
           .BuyItem__Info
             %p.BuyItem__Info__Name
-              冷凍パック 焼き魚定食
+              = @item.name
             %p.BuyItem__Info__Price
               %span.PriceDetail
                 送料込み (税込)
               %span.Price
-                ¥1,700
+                ="¥#{@item.price}"
       %section.Contents
         .PayPrice
           %span
             支払い金額
           %span.Price
-            ¥1,700
+            ="¥ #{@item.price}"
       - if user_signed_in?
         %section.Contents
           - if @default_card_information.blank?
@@ -32,7 +30,7 @@
             .PayMethod
               %h3
                 支払い方法
-              = link_to cards_path, class:"GuideLink" do
+              = link_to cardindex_users_path, class:"GuideLink" do
                 変更する
                 %svg.style_right__2qI2e{"aria-hidden" => "true", :fill => "#0095ee", "fill-rule" => "evenodd", :height => "16", :viewbox => "0 0 24 24", :width => "16"}
                   %path{:d => "M9,19a.7.7,0,0,1-.49-.2.69.69,0,0,1,0-1l5.62-5.63a.28.28,0,0,0,.09-.21.27.27,0,0,0-.09-.2L8.6,6.19a.7.7,0,1,1,1-1l5.58,5.58A1.71,1.71,0,0,1,15.66,12a1.73,1.73,0,0,1-.49,1.2L9.54,18.8A.74.74,0,0,1,9,19Z"}
@@ -60,20 +58,22 @@
 
           .AddressInfo
             %p
-              〒123-4567
+              - post_area = @address.post_code.to_s.slice(0,3)
+              - post_block = @address.post_code.to_s.slice(3,6)
+              = "〒#{post_area}-#{post_block}"
             %p
-              東京都 板橋区 志村三丁目 20
+              = "#{@address.prefecture.name} #{@address.city} #{@address.address} #{@address.buliding_name}"
             %p
-              振魔 太郎
+              = "#{@address.destination_last_name} #{@address.destination_first_name}"
         - if  @default_card_information.blank?
           %section.Contents
             .BuyBtn
-              = link_to cards_path, class: "DoneBtn", method: :get do
+              = link_to cardindex_users_path, class: "DoneBtn", method: :get do
                 カード情報を登録する
         - else
           %section.Contents
             .BuyBtn
-              = link_to pay_cards_path, class: "DoneBtn", method: :post do
+              = link_to pay_path, class: "DoneBtn", method: :post do
                 購入する
       - else
         .NoLogin
@@ -86,21 +86,4 @@
             .Btn
               = link_to new_user_registration_path, class: "Btn", method: :get do
                 新規登録
-
-  .Footer
-    .Notice
-      %ul
-        %li
-          = link_to "#",class:"link" do
-            プライバシーポリシー
-        %li
-          = link_to "#",class:"link" do
-            FURIMA利用規約
-        %li
-          = link_to "#",class:"link" do
-            特定商取引に関する表記
-    .Logo
-      = link_to "#",class:"link" do
-        = image_tag 'logo/logo.png', alt:"FURIMA", height:"33px", width:"120px"
-      %p.CompanyName
-        ©︎ FURIMA, Inc.
+  = render 'item-footer'

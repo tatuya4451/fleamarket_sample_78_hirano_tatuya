@@ -31,7 +31,7 @@ $(document).on('turbolinks:load',function(){
     var parentCategory = document.getElementById('parent_category').value; 
     if (parentCategory != "選択してください"){
       $.ajax({
-        url: '/item/get_category_children',
+        url: 'get_category_children',
         type: 'GET',
         data: { parent_id: parentCategory },
         dataType: 'json'

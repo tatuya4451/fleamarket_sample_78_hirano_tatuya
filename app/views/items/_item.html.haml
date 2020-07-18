@@ -13,7 +13,8 @@
                   = "¥#{item.price.to_s(:delimited)}"
                 %li
                   =icon('fa','star',class: 'like-icon')
-                  0
+                  - bookmarks_num = Bookmark.where(item_id: item.id).count
+                  = bookmarks_num
               %p (税込)
         -if item.buyer_id.present? 
           .items-box_photo__sold

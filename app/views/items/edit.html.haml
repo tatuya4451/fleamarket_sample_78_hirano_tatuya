@@ -29,8 +29,8 @@
             = f.fields_for :images do |i|
               = i.file_field :image, class: "hidden-field" 
               = i.check_box :_destroy, class: "hidden-checkbox" 
-            - @item.images.length.upto(3) do |i|
 
+            - @item.images.length.upto(4) do |i|
               %input{name: "item[images_attributes][#{i}][url]", id: "item_images_attributes_#{i}_image", class:"hidden-field", type:"file"}
                     
       .edit__explanation
@@ -52,7 +52,7 @@
           %span.edit__length-child
             0/1000
           .edit__length-par
-          -# ーーーーーーーーーーーーーーーーカテゴリーーーーーーーーーーーーーーーーーーーーーーーー
+          
       .edit__show
         .edit__show__pop
           商品の詳細

@@ -144,12 +144,9 @@ class ItemsController < ApplicationController
       customer: card.customer_id, #支払うユーザのpayjp顧客ID
       currency: 'jpy', #通貨の指定
     )
-    
-
     @item = Item.find(params[:id])
     @item.update( buyer_id: current_user.id)
     redirect_to purchase_done_item_path(@item.id)
- 
   end
 
   private

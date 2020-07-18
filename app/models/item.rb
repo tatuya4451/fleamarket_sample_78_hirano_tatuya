@@ -50,4 +50,6 @@ class Item < ApplicationRecord
       query = '(SELECT COUNT(bookmarks.item_id) FROM bookmarks where bookmarks.item_id = items.id GROUP BY bookmarks.item_id)'
       Arel.sql(query)
     end
+
+
 end

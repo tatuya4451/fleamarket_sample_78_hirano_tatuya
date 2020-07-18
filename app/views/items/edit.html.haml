@@ -107,11 +107,11 @@
         .listing-form-delivery
           .listing-item-detail__delivery
             .listing-select-wrap__box.edit__all-box
-            -#   = f.collection_select :delivery_id, @item.delivery.parent.siblings, :id , :method, {include_blank: "選択してください", selected: @item.delivery.parent.id}, {class: 'edit__all__text-field',id:'parent_delivery'}
-            -# #children_wrap.listing-select-wrap__added
-            -#   .listing-select-wrap__box
-            -#     #child_delivery.listing-select-wrap__box--select.edit__all-box
-            -#       = f.collection_select :delivery_id, @child_delivery.siblings, :id , :method, {include_blank: "選択してください", selected: @item.delivery_id}, {class: 'edit__all__text-field',id:'children_wrapper'}
+              = f.collection_select :delivery_id, @item.delivery.parent.siblings, :id , :method, {include_blank: "選択してください", selected: @item.delivery.parent.id}, {class: 'edit__all__text-field',id:'parent_delivery'}
+            #children_wrap.listing-select-wrap__added
+              .listing-select-wrap__box
+                #child_delivery.listing-select-wrap__box--select.edit__all-box
+                  = f.collection_select :delivery_id, @child_delivery.siblings, :id , :method, {include_blank: "選択してください", selected: @item.delivery_id}, {class: 'edit__all__text-field',id:'children_wrapper'}
 
         .edit__all-heading
           %label.edit__all-terop

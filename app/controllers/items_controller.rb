@@ -3,9 +3,11 @@ class ItemsController < ApplicationController
   before_action :index_category_set, only: :index
   before_action :set_item_search_query
   before_action :move_to_index, except: [:index, :show, :search]
+  before_action :set_parent
+  before_action :set_item_find,only: [:show, :edit, :destroy]
 
   def index
-    @parents = Category.where(ancestry: nil)
+    
     @latest_items = Item.limit(4).order("id DESC")
   end
 
@@ -37,13 +39,48 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @parents = Category.where(ancestry: nil)
     @search = Item.ransack(params[:q])
     @search_items = @search.result(distance: true).order(created_at: "DESC") 
   end
   
 
   def show
+    @grandchild = Category.find(@item.category_id)
+    @child = @grandchild.parent
+    @parent = @child.parent if @child
+  end
+
+  def edit
+    @item.images.new
+    # # @brand = Brand.find(params[:id])
+    @grandchild_category = Category.find(@item.category_id)
+    # item.edit(item_params)
+
+    @child_delivery = Delivery.find(@item.delivery_id)
+    @parents_delivery = Delivery.where(ancestry: nil)
+    
+    # if user_signed_in? &&  current_user.id = @item.saler_id 
+    #   redirect_to edit_item_path
+    # else 
+    #   redirect_to item_path
+    # end
+  end
+
+  def destroy
+    @item.destroy
+    @delivery = Delivery.all
+    redirect_to root_path
+  end
+
+  def update
+    item = Item.find(params[:id])
+    item.update!(update_params)
+    if item.saler_id == current_user.id
+      redirect_to item_path
+    else
+      render :edit
+    end
+
     @item = Item.find(3)
     #あとで3をitems_idに変える
     @items = Item.all.includes(:user)
@@ -119,5 +156,14 @@ class ItemsController < ApplicationController
         instance_variable_set("@cat_no#{num}", items)
       end
    end
+
+   def update_params
+    params.require(:item).permit(:name, :introduce, :brand, :price, :prefecture_id, :preparation_id, :condition_id,:category_id, :delivery_id, images_attributes: [:url , :id , :_destroy]).merge(saler_id:current_user.id)
+  end
+
+  def set_item_find
+    @item = Item.find(params[:id])
+  end
+
 end
 

@@ -169,14 +169,7 @@
                   %p (税込)
 
     .Main__banner
-      .Main__banner__inner
-        %h2.Main__banner__inner__title だれでもかんたん、人生を変えるフリマアプリ
-        %p.Main__banner__inner__text 今すぐ無料ダウンロード！
-        .Main__banner__inner__icon
-          =link_to '#'  do
-            =image_tag 'logo/app-store-9c5e28e8f81bd9912e0ded2f78821e04778a1356c05dc7c7bf1e88614be37c34.svg', alt:"画像表示エラー" ,width: 180,height: 53
-          =link_to  '#'  do
-            =image_tag 'logo/google-play-469c63f1269e456307c4dde176b33cc3bbbbf142ac4d7369656010130149db1a.svg', alt:"画像表示エラー",width: 180,height: 53
+      =render partial: 'Toppage-banner'
   
   .Toppage-footer
     =render partial: 'Toppage-footer'

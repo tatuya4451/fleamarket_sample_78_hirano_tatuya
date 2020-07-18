@@ -4,9 +4,14 @@ class Item < ApplicationRecord
   has_many :images
   belongs_to :category
   belongs_to :delivery
-  accepts_nested_attributes_for :images, allow_destroy: true
   belongs_to :user
   has_many :bookmarks, dependent: :destroy
+  accepts_nested_attributes_for :images, allow_destroy: true, update_only: true, reject_if: :no_image
+  def no_image(image_attributes)
+    image_attributes[:url].blank?
+  end
+
+
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture

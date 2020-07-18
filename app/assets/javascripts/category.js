@@ -59,7 +59,7 @@ $(document).on('turbolinks:load',function(){
     var childId = $('#child_category option:selected').data('category'); 
     if (childId != "選択してください"){ 
       $.ajax({
-        url: '/items/get_category_grandchildren',
+        url: 'get_category_grandchildren',
         type: 'GET',
         data: { child_id: childId },
         dataType: 'json'

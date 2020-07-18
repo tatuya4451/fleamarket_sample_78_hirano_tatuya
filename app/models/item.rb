@@ -4,7 +4,6 @@ class Item < ApplicationRecord
   has_many :images, dependent: :destroy
   belongs_to :category
   belongs_to :delivery
-  belongs_to :user
   has_many :bookmarks, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true, update_only: true, reject_if: :no_image
   def no_image(image_attributes)
@@ -50,4 +49,6 @@ class Item < ApplicationRecord
       query = '(SELECT COUNT(bookmarks.item_id) FROM bookmarks where bookmarks.item_id = items.id GROUP BY bookmarks.item_id)'
       Arel.sql(query)
     end
+
+
 end

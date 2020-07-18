@@ -1,5 +1,6 @@
 
 .shows{
+  padding-top:98px;
   background-color:#f8f8f8 ;
   display: -webkit-box;
   font-family: "Source Sans Pro", Helvetica, Arial, "游ゴシック体", "YuGothic", "メイリオ", "Meiryo", sans-serif;
@@ -11,7 +12,8 @@
     width: 700px;
     margin: 0 auto;
     height: 100%;
-    padding: 40px;
+    padding-top:40px;
+
 
 
     &__main{
@@ -26,11 +28,35 @@
       }
 
       &__image{
-        margin: 16px 0 0;
-        height: 346px;
-        width: 100%;
-        object-fit: cover;
+        text-align: center;
+        .show__flexbox{
+          justify-content: center;
+          text-align: center;
+          display: flex;
+          margin: 16px 0;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          img{
+          margin: 16px 0 0;
+          }
+          .main-image{
+            justify-content: center;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom:10px;
+
+          }
+          .sub-image{
+            display: flex;
+
+          }
+        }
+
       }
+
 
       &__list{
         display: flex;
@@ -54,7 +80,10 @@
         margin: 24px 0 24px;
         text-align: center;
         display: flex;
-        flex-direction: column;
+        // flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
         height: 77px;
         &__price{
           font-size: 46px;
@@ -64,6 +93,25 @@
         &__detail{
           font-size: 16px;
         }
+      }
+
+      &__purchase-btn{
+        font-size: 24px;
+        line-height: 60px;
+        display: block;
+        margin-top: 16px;
+        background: #3ccace;
+        
+        
+        line-height: 56px;
+        text-align: center;
+        font-weight: 600;
+        a{
+          text-decoration: none;
+          color: #ffffff;
+          font-size: 24px;
+        }
+
       }
 
       &__explanation{
@@ -108,6 +156,38 @@
         }  
       }
 
+      &__btns{
+        width: 100%;
+        font-size: 17px;
+        min-height: 48px;
+        border-radius: 4px;
+        font-weight: 600;
+        border: 1px solid transparent;
+        cursor: pointer;
+        background-color: #3ccace;
+        text-align: center;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin-bottom:10px;
+        color:#ccc;
+
+        &__edit{
+          margin-right:20px;
+          padding: 4px 8px;
+          color: #fff;
+          a{
+            text-decoration: none;
+          }
+        }
+        &__edit:hover{
+          opacity: 0.5;
+        }
+
+
+
+      }
+
       &__option{
         display: flex;
         justify-content: space-between;
@@ -122,8 +202,7 @@
           margin: 10px 0 0;
           display: flex;
           border-radius: 40px;
-          border: 1px solid #ffb340;
-          width: 135px;
+          border: 1px solid #3ccace;
           align-items: center;
           justify-content: center;
           padding: 4px 8px;
@@ -156,12 +235,12 @@
 
 
     &__middle{
-      padding: 24px;
+      padding: 0 24px;
       background-color :white;
-      margin: 10px 0;
+      margin-bottom: 10px ;
       height: 270px;
       text-align: center;
-
+      
       &__form{
         .show__comment{
           &__form{
@@ -172,7 +251,6 @@
           &__msg{
             padding: 8px;
             font-size: 14px;
-            background-color: #f8f8f8;
             margin: 10px 0;
             text-align: left;
           }   
@@ -184,7 +262,8 @@
             width: 60%;
             font-size: 18px;
             border-radius: 100px;
-            margin-top: 10px;
+            margin: 10px 0;
+            
           }
           &__icon{
             color: white;
@@ -221,9 +300,9 @@
         text-decoration: none;
         background-color: white;
         font-weight: bold;
-        &-image{
+        &__image{
           width: 100%;
-          height: 150px;
+          height: 135px;
           object-fit: cover;
         }
         .content__row{
@@ -255,4 +334,8 @@
     }
   }
 }
+  
+
+
+
 

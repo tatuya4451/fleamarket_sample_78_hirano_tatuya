@@ -16,7 +16,7 @@ Rails.application.routes.draw do
       get 'bookmarks'
     end
   end
-  resources :items, only: [:index, :show, :new, :create] do
+  resources :items do
     collection do
       get 'purchase'
       get 'purchase_done'

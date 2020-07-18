@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
   before_action :configure_permitted_parameters, if: :devise_controller?
+  
 
   protected
 
@@ -24,6 +25,10 @@ class ApplicationController < ActionController::Base
   def set_item_search_query
     @search = Item.ransack(params[:q])
     @search_items = @search.result(distinct: true)
+  end
+
+  def set_parent
+    @parents = Category.where(ancestry: nil)
   end
 
 

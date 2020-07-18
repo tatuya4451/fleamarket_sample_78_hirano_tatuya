@@ -24,7 +24,7 @@
 
       -if user_signed_in? &&  current_user.id != @item.saler_id 
         .show__main__purchase-btn
-          =link_to purchase_items_path do
+          =link_to purchase_item_path(@item.id) do
             %p 購入画面に進む
 
       .show__main__explanation

@@ -147,8 +147,7 @@ class ItemsController < ApplicationController
     
 
     @item = Item.find(params[:id])
-    @item.update( buyer_id: current_user.id, trading_status: 2)
-    binding.pry
+    @item.update( buyer_id: current_user.id)
     redirect_to purchase_done_item_path(@item.id)
  
   end

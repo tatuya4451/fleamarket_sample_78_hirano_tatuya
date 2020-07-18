@@ -31,7 +31,6 @@ Rails.application.routes.draw do
     end
   end
   resources :categories, only: [:index]
-  # post 'pay', to:'cards#pay'
 
 end
 

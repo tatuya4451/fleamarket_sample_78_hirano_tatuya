@@ -20,7 +20,7 @@ $(document).on('turbolinks:load',function(){
     var parentDelivery = document.getElementById('parent_delivery').value; 
     if (parentDelivery != "選択してください"){
       $.ajax({
-        url: '/items/get_delivery_children',
+        url: 'get_delivery_children',
         type: 'GET',
         data: { parent_id: parentDelivery },
         dataType: 'json'

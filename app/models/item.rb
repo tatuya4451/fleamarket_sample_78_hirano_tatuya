@@ -4,10 +4,15 @@ class Item < ApplicationRecord
   has_many :images
   belongs_to :category
   belongs_to :delivery
+  belongs_to :user
+  has_many :bookmarks, dependent: :destroy
   accepts_nested_attributes_for :images, allow_destroy: true, update_only: true, reject_if: :no_image
   def no_image(image_attributes)
     image_attributes[:url].blank?
   end
+
+
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :condition
@@ -33,6 +38,10 @@ class Item < ApplicationRecord
       else
         Item.all  
       end
+  end
+
+  def bookmark_by?(user)
+    bookmarks.where(user_id: user.id).exists?
   end
   
   enum trading_status: { exhibiting: 0, duringTrading: 1, transacted: 2 }

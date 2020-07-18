@@ -41,4 +41,8 @@ class Item < ApplicationRecord
   
   enum trading_status: { exhibiting: 0, duringTrading: 1, transacted: 2 }
 
+    ransacker :bookmarks_count do
+      query = '(SELECT COUNT(bookmarks.item_id) FROM bookmarks where bookmarks.item_id = items.id GROUP BY bookmarks.item_id)'
+      Arel.sql(query)
+    end
 end

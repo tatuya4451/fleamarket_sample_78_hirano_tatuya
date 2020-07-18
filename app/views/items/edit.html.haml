@@ -61,19 +61,19 @@
             カテゴリー
           %span.edit__all-must
             必須
-        .edit__show__category
-          .listing-product-detail__category
-            .listing-select-wrapper
-              .listing-select-wrapper__box.edit__all-box
-                = f.collection_select :category_id, @item.category.parent.parent.siblings, :id , :name, {include_blank: "選択してください", selected: @item.category.parent.parent.id}, {class: 'edit__all__text-field',id:'parent_category'}
-                #children_wrapper.listing-select-wrapper__added
-                  .listing-select-wrapper__box
-                    #child_category.listing-select-wrapper__box--select.edit__all-box
-                      = f.collection_select :category_id, @item.category.parent.siblings, :id , :name, {include_blank: "選択してください", selected:  @item.category.parent.id}, {class: 'edit__all__text-field',id:'select-parent-category'}
-                      #grandchildren_wrapper.listing-select-wrapper__added
-                        .listing-select-wrapper__box
-                          #grandchild_category.listing-select-wrapper__box--select.edit__all-box
-                            = f.collection_select :category_id, @grandchild_category.siblings, :id , :name, {include_blank: "選択してください", selected: @item.category_id}, {class: 'edit__all__text-field',id:'grandchildren_wrapper'}
+        -# .edit__show__category
+        -#   .listing-product-detail__category
+        -#     .listing-select-wrapper
+        -#       .listing-select-wrapper__box.edit__all-box
+        -#         = f.collection_select :category_id, @item.category.parent.parent.siblings, :id , :name, {include_blank: "選択してください", selected: @item.category.parent.parent.id}, {class: 'edit__all__text-field',id:'parent_category'}
+        -#         #children_wrapper.listing-select-wrapper__added
+        -#           .listing-select-wrapper__box
+        -#             #child_category.listing-select-wrapper__box--select.edit__all-box
+        -#               = f.collection_select :category_id, @item.category.parent.siblings, :id , :name, {include_blank: "選択してください", selected:  @item.category.parent.id}, {class: 'edit__all__text-field',id:'select-parent-category'}
+        -#               #grandchildren_wrapper.listing-select-wrapper__added
+        -#                 .listing-select-wrapper__box
+        -#                   #grandchild_category.listing-select-wrapper__box--select.edit__all-box
+        -#                     = f.collection_select :category_id, @grandchild_category.siblings, :id , :name, {include_blank: "選択してください", selected: @item.category_id}, {class: 'edit__all__text-field',id:'grandchildren_wrapper'}
 
         .edit__all-heading
           %label.edit__all-terop

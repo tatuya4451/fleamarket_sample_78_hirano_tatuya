@@ -109,7 +109,6 @@
               display: flex;
               justify-content: center;
               margin-top: 50px;
-              border: 1px solid #ccc;
               height: 100px;
               align-items: center;
               background-color: #ccc;
@@ -490,7 +489,7 @@
     opacity:0.5;
   }
   .hidden-content{
-    // display: none;
+    display: none;
   }
 
 

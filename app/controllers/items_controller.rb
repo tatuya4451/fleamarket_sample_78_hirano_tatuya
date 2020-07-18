@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   before_action :set_item_search_query
   before_action :move_to_index, except: [:index, :show, :search]
   before_action :set_parent
+  before_action :set_item_find,only: [:show, :edit, :destroy]
 
   def index
     
@@ -43,14 +44,12 @@ class ItemsController < ApplicationController
   
 
   def show
-    @item = Item.find(params[:id])
     @grandchild = Category.find(@item.category_id)
     @child = @grandchild.parent
     @parent = @child.parent if @child
   end
 
   def edit
-    @item = Item.find(params[:id])
     @item.images.new
     # # @brand = Brand.find(params[:id])
     @grandchild_category = Category.find(@item.category_id)
@@ -67,7 +66,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
     @item.destroy
     @delivery = Delivery.all
     redirect_to root_path
@@ -151,5 +149,10 @@ class ItemsController < ApplicationController
    def update_params
     params.require(:item).permit(:name, :introduce, :brand, :price, :prefecture_id, :preparation_id, :condition_id,:category_id, :delivery_id, images_attributes: [:url , :id , :_destroy]).merge(saler_id:current_user.id)
   end
+
+  def set_item_find
+    @item = Item.find(params[:id])
+  end
+
 end
 

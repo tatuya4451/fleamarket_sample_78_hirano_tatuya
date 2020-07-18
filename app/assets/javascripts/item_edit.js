@@ -135,9 +135,9 @@
               
                   if (window.location.href.match(/\/items\/\d+\/edit/)){
                     //登録済み画像のプレビュー表示欄の要素を取得する
-                    var prevContent = $('.label-content').prev();
+                    // var prevContent = $('.label-content').prev();
                     // labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
-                    $('.label-content').css('width', labelWidth);
+                    // $('.label-content').css('width', labelWidth);
                     //プレビューにidを追加
                     $('.preview-box').each(function(index, box){
                       $(box).attr('id', `preview-box__${index}`);
@@ -154,12 +154,12 @@
                   }
                   //=============================================================================
               
-                  ラベルのwidth操作
+                  // ラベルのwidth操作
                   function setLabel() {
                     //プレビューボックスのwidthを取得し、maxから引くことでラベルのwidthを決定
-                    var prevContent = $('.label-content').prev();
-                    labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
-                    $('.label-content').css('width', labelWidth);
+                    // var prevContent = $('.label-content').prev();
+                    // labelWidth = (620 - $(prevContent).css('width').replace(/[^0-9]/g, ''));
+                    // $('.label-content').css('width', labelWidth);
                   }
               
                   // プレビューの追加
@@ -209,7 +209,8 @@
                   });
               
                   // 画像の削除
-                  $('.delete-btn').on('click', function() {
+                  $(document).on('click','.delete-box', function() {
+                    console.log("クリックされました")
                     var count = $('.preview-box').length;
                     setLabel(count);
                     var id = $(this).attr('id').replace(/[^0-9]/g, '');
@@ -223,7 +224,7 @@
                       //フォームの中身を削除 
                       $(`#item_images_attributes_${id}_image`).val("");
                       var count = $('.preview-box').length;
-                      //5個めが消されたらラベルを表示
+                      //4個めが消されたらラベルを表示
                       if (count == 4) {
                         $('.label-content').show();
                       }
@@ -235,7 +236,7 @@
                     } else {
                       //投稿編集時
                       $(`#item_images_attributes_${id}__destroy`).prop('checked',true);
-                      //5個めが消されたらラベルを表示
+                      //4個めが消されたらラベルを表示
                       if (count == 4) {
                         $('.label-content').show();
                       }

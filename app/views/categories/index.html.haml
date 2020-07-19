@@ -19,18 +19,18 @@
             = parent.name
         .category__box--inner
           .list__parent-all
-            = link_to "すべて", "category/#/", class: "parent--all"
+            = link_to "すべて", "#", class: "parent--all"
           .list__child
             - parent.children.each do |child|
               .list__child--name
                 = child.name
                 .list__child--box
                   .list__child--all
-                    = link_to "すべて", "category/#/", class: "child--all"
+                    = link_to "すべて", "#", class: "child--all"
                   .list__grandchild
                     - child.children.each do |grandchild|
                       .list__grandchild--name
-                        = link_to "#{grandchild.name}", "category/#/", class: "grandchild--name"
+                        = link_to "#{grandchild.name}", "#", class: "grandchild--name"
 
 .Toppage-footer
   =render 'items/Toppage-footer'

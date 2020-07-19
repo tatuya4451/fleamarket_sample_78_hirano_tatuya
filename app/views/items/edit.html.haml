@@ -1,0 +1,179 @@
+.edits
+  .edit
+    = form_with model:@item , local: true do |f|
+      .edit__photo
+        .edit__photo__pop
+          %label.edit__all-terop
+            出品画像
+          %span.edit__all-must
+            必須
+        .edit__photo__terop
+          最大4枚までアップロードできます
+          -#ーーーーーーーーーーーーーーーーーーーーーーーーー画像のアップロード------------------------------------
+        .post__drop__box__container
+          .prev-content
+            - @item.images.each do |image|
+              .preview-box
+                .upper-box
+                  = image_tag image.url.to_s , alt: "イメージ1" ,size:150
+                .lower-box
+                  .delete-box
+                    .delete-btn
+                      %span 削除
+          .label-content
+            = f.label :"images_attributes_#{@item.images.length}_image", class: "label-box", id: "label-box--#{@item.images.length}" do
+              %pre.label-box__text-visible 
+                %i.fas.fa-camera
+                クリックしてファイルをアップロード
+          .hidden-content
+            = f.fields_for :images do |i|
+              = i.file_field :image, class: "hidden-field" 
+              = i.check_box :_destroy, class: "hidden-checkbox" 
+
+            - @item.images.length.upto(4) do |i|
+              %input{name: "item[images_attributes][#{i}][url]", id: "item_images_attributes_#{i}_image", class:"hidden-field", type:"file"}
+                    
+      .edit__explanation
+        .edit__explanation__pop
+          %label.edit__all-terop
+            商品名
+          %span.edit__all-must
+            必須  
+        .edit__all-box
+          = f.text_field :name, class:"edit__all__text-field", placeholder: "40文字まで", maxlength: 40
+        .edit__all-heading
+          %label.edit__all-terop
+            商品の説明
+          %span.edit__all-must
+            必須  
+        .edit__explanation__area
+          = f.text_area :introduce, class: "edit__all__text-field edit__explanation__area-field", placeholder: "商品の説明 （必須 1,000文字以内)&#13;&#10;(色、素材、重さ、定価、注意点など)&#13;&#10;&#13;&#10;例) 2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでお勧めです。".html_safe
+        .edit__explanation__length
+          %span.edit__length-child
+            0/1000
+          .edit__length-par
+          
+      .edit__show
+        .edit__show__pop
+          商品の詳細
+        .edit__all-heading
+          %label.edit__all-terop
+            カテゴリー
+          %span.edit__all-must
+            必須
+        .edit__show__category
+          .listing-product-detail__category
+            .listing-select-wrapper
+              .listing-select-wrapper__box.edit__all-box
+                = f.collection_select :category_id, @item.category.parent.parent.siblings, :id , :name, {include_blank: "選択してください", selected: @item.category.parent.parent.id}, {class: 'edit__all__text-field',id:'parent_category'}
+                #children_wrapper.listing-select-wrapper__added
+                  .listing-select-wrapper__box
+                    #child_category.listing-select-wrapper__box--select.edit__all-box
+                      = f.collection_select :category_id, @item.category.parent.siblings, :id , :name, {include_blank: "選択してください", selected:  @item.category.parent.id}, {class: 'edit__all__text-field',id:'select-parent-category'}
+                      #grandchildren_wrapper.listing-select-wrapper__added
+                        .listing-select-wrapper__box
+                          #grandchild_category.listing-select-wrapper__box--select.edit__all-box
+                            = f.collection_select :category_id, @grandchild_category.siblings, :id , :name, {include_blank: "選択してください", selected: @item.category_id}, {class: 'edit__all__text-field',id:'grandchildren_wrapper'}
+
+        .edit__all-heading
+          %label.edit__all-terop
+            ブランド
+          %span.edit__any
+            任意  
+        .edit__all-box
+          = f.text_field :brand, class: "edit__all__text-field", placeholder: "例) シャネル"
+
+        .edit__all-heading
+          %label.edit__all-terop
+            商品の状態
+          %span.edit__all-must
+            必須  
+        .edit__all-box
+          = f.collection_select :condition_id, Condition.all, :id, :name, {prompt: "選択してください"}, {class:"edit__all__text-field"}
+
+      .edit__send
+        .edit__send__pop
+          .edit__send__pop-msg
+            配送について
+          .edit__send__pop-question
+            = link_to "#", class:'edit__send__pop-question edit__all-link' do
+              = icon('far','question-circle', class:'send__question__icon')
+        .edit__all-heading
+          %label.edit__all-terop
+            配送料の負担
+          %span.edit__all-must
+            必須
+        
+        .listing-form-delivery
+          .listing-item-detail__delivery
+            .listing-select-wrap__box.edit__all-box
+              = f.collection_select :delivery_id, @item.delivery.parent.siblings, :id , :method, {include_blank: "選択してください", selected: @item.delivery.parent.id}, {class: 'edit__all__text-field',id:'parent_delivery'}
+            #children_wrap.listing-select-wrap__added
+              .listing-select-wrap__box
+                #child_delivery.listing-select-wrap__box--select.edit__all-box
+                  = f.collection_select :delivery_id, @child_delivery.siblings, :id , :method, {include_blank: "選択してください", selected: @item.delivery_id}, {class: 'edit__all__text-field',id:'children_wrapper'}
+
+        .edit__all-heading
+          %label.edit__all-terop
+            発送元の地域
+          %span.edit__all-must
+            必須
+        .edit__all-box
+          = f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択してください"}, {class:"edit__all__text-field"}
+        .edit__all-heading
+          %label.edit__all-terop
+            発送までの日数
+          %span.edit__all-must  
+            必須
+        .edit__all-box
+          = f.collection_select :preparation_id, Preparation.all, :id, :days, {prompt: "選択してください"}, {class:"edit__all__text-field"}
+      .edit__price
+        .edit__price__pop
+          .edit__price__pop
+            .edit__price__pop-msg
+              価格 (¥300〜9,999,999)
+            .edit__price__pop-question
+              = link_to "#", class:'edit__send__pop-question edit__all-link' do
+                = icon('far','question-circle', class:'price__question__icon')
+        .edit__price__price
+          %label.edit__all-terop
+            販売価格
+          %span.edit__all-must
+            必須 
+          = f.number_field :price, class: "edit__price__field"  
+          %span.span__price
+            ¥  
+        .edit__price__fee
+          .edit__price__fee-price
+            販売手数料 (10%)
+          %span.edit__price__fee-data
+            ー
+        .edit__price__profit
+          販売利益
+          %span.edit__price__profit-data
+            ー
+      .edit__form
+        -# =link_to item_path(@item.id),method: :update do
+        = f.submit :"変更する", class: "edit__form-submit edit__all-submit",method: :patch
+        
+        = link_to item_path(@item.id), method: :delete do
+          = f.submit "この商品を削除する", class: "edit__form-draft edit__all-submit"
+        .edit__form-back
+          = link_to "もどる",:back, {class:'edit__form-back__link edit__all-link'}
+      .edit__bottom
+        禁止されている
+        %a{ href:"#", class:"edit__all-link"}
+          行為
+        および
+        %a{ href:"#", class:"edit__all-link"}
+          出品物
+        を必ずご確認ください。
+        %a{ href:"#", class:"edit__all-link"}
+          偽ブランド品
+        や
+        %a{ href:"#", class:"edit__all-link"}
+          盗品物
+        などの販売は犯罪であり、法律により処罰される可能性があります。また、出品を持ちまして
+        %a{ href:"#", class:"edit__all-link"}        
+          加盟店規約
+        に同意したことになります。

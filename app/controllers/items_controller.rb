@@ -1,9 +1,15 @@
 class ItemsController < ApplicationController
   require 'payjp'
+  Payjp.api_key = Rails.application.credentials.PAYJP[:PRIVATE_KEY]
+
   before_action :index_category_set, only: :index
   before_action :set_item_search_query
+  before_action :move_to_index, except: [:index, :show, :search]
+  before_action :set_parent
+  before_action :set_item_find,only: [:show, :edit, :destroy]
+
   def index
-    @parents = Category.where(ancestry: nil)
+    
     @latest_items = Item.limit(4).order("id DESC")
   end
 
@@ -25,6 +31,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+
      @item = Item.new(item_params)
      if @item.save
       redirect_to root_path
@@ -34,18 +41,62 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @parents = Category.where(ancestry: nil)
     @search = Item.ransack(params[:q])
     @search_items = @search.result(distance: true).order(created_at: "DESC") 
   end
   
 
   def show
+    @grandchild = Category.find(@item.category_id)
+    @child = @grandchild.parent
+    @parent = @child.parent if @child
+    @item = Item.find(params[:id])
+    #あとで3をitems_idに変える
+    @items = Item.all.includes(:user)
+    @bookmarks_num = Bookmark.where(item_id: params[:id]).count
+    #あとで3をitems_idに変える
+  end
+
+  def edit
+    # @item.images.new
+    @grandchild_category = Category.find(@item.category_id)
+    @parents_category = Category.where(ancestry: nil)
+    # item.edit(item_params)
+
+    @child_delivery = Delivery.find(@item.delivery_id)
+    @parents_delivery = Delivery.where(ancestry: nil)
+    
+    # if user_signed_in? &&  current_user.id = @item.saler_id 
+    #   redirect_to edit_item_path
+    # else 
+    #   redirect_to item_path
+    # end
+  end
+
+  def destroy
+    @item.destroy
+    @delivery = Delivery.all
+    redirect_to root_path
+  end
+
+  def update
+    item = Item.find(params[:id])
+    item.update(update_params)
+    if item.saler_id == current_user.id
+      redirect_to item_path
+    else
+      render :edit
+    end
+
+    # @item = Item.find(3)
+    # #あとで3をitems_idに変える
+    # @items = Item.all.includes(:user)
+    # @bookmarks_num = Bookmark.where(item_id: 3).count
+    # #あとで3をitems_idに変える
   end
 
   def purchase
-    @item = Item.find(3)
-    #あとでparams[:id]にする
+    @item = Item.find(params[:id])
     @address = Address.find_by(id:current_user.id)
     @image = Image.find_by(item_id: @item.id)
 
@@ -78,15 +129,44 @@ class ItemsController < ApplicationController
     end
   end
 
+  def bookmarks
+    @items = current_user.bookmark_items.include(:user)
+  end
+
   def purchase_done
-    @item = Item.find(3)
-    #あとでparams[:id]にする
+    @item = Item.find(params[:id])
     @image = Image.find_by(item_id: @item.id)
+  end
+
+  def pay
+    # 支払い情報の作成
+    card = CreditCard.find_by(user_id: current_user.id)
+    @item = Item.find(params[:id])
+    #保管した顧客IDでpayjpから情報取得
+    customer = Payjp::Customer.retrieve(card.customer_id)
+    #保管したカードIDでpayjpから情報取得、カード情報表示のためインスタンス変数に代入
+    Payjp::Charge.create(
+      amount: @item.price, #支払い金額
+      customer: card.customer_id, #支払うユーザのpayjp顧客ID
+      currency: 'jpy', #通貨の指定
+    )
+    
+
+    @item = Item.find(params[:id])
+    @item.update( buyer_id: current_user.id)
+    redirect_to purchase_done_item_path(@item.id)
+ 
   end
 
   private
   def item_params
     params.require(:item).permit(:name, :introduce, :brand, :price, :prefecture_id, :preparation_id, :condition_id,:category_id, :delivery_id, images_attributes: [:url],).merge(saler_id:current_user.id)
+  end
+
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
   end
 
   def index_category_set
@@ -101,5 +181,14 @@ class ItemsController < ApplicationController
         instance_variable_set("@cat_no#{num}", items)
       end
    end
+
+   def update_params
+    params.require(:item).permit(:name, :introduce, :brand, :price, :prefecture_id, :preparation_id, :condition_id,:category_id, :delivery_id, images_attributes: [:url , :id , :_destroy]).merge(saler_id:current_user.id)
+  end
+
+  def set_item_find
+    @item = Item.find(params[:id])
+  end
+
 end
 

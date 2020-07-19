@@ -56,7 +56,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    # @item.images.new
     @grandchild_category = Category.find(@item.category_id)
     @parents_category = Category.where(ancestry: nil)
     # item.edit(item_params)

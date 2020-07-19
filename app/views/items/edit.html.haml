@@ -9,29 +9,28 @@
             必須
         .edit__photo__terop
           最大4枚までアップロードできます
-          -#ーーーーーーーーーーーーーーーーーーーーーーーーー画像のアップロード------------------------------------
         .post__drop__box__container
           .prev-content
             - @item.images.each do |image|
               .preview-box
                 .upper-box
-                  = image_tag image.url.to_s , alt: "イメージ1" ,size:150
+                  = image_tag image.url.to_s , alt: "イメージ1" ,size:150,class:'edit_item_image'
                 .lower-box
                   .delete-box
                     .delete-btn
                       %span 削除
           .label-content
-            = f.label :"images_attributes_#{@item.images.length}_image", class: "label-box", id: "label-box--#{@item.images.length}" do
+            = f.label :"images_attributes_#{@item.images.length}_url", class: "label-box", id: "label-box--#{@item.images.length}" do
               %pre.label-box__text-visible 
                 %i.fas.fa-camera
                 クリックしてファイルをアップロード
           .hidden-content
             = f.fields_for :images do |i|
-              = i.file_field :image, class: "hidden-field" 
+              = i.file_field :url, class: "hidden-field" 
               = i.check_box :_destroy, class: "hidden-checkbox" 
 
             - @item.images.length.upto(4) do |i|
-              %input{name: "item[images_attributes][#{i}][url]", id: "item_images_attributes_#{i}_image", class:"hidden-field", type:"file"}
+              %input{name: "item[images_attributes][#{i}][url]", id: "item_images_attributes_#{i}_url", class:"hidden-field", type:"file"}
                     
       .edit__explanation
         .edit__explanation__pop

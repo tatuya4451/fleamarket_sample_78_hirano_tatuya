@@ -50,7 +50,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item.images.new
     @grandchild_category = Category.find(@item.category_id)
     @parents_category = Category.where(ancestry: nil)
     # item.edit(item_params)
@@ -73,7 +72,7 @@ class ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
-    item.update!(update_params)
+    item.update(update_params)
     if item.saler_id == current_user.id
       redirect_to item_path
     else

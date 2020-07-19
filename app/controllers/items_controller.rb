@@ -30,13 +30,14 @@ class ItemsController < ApplicationController
   end
 
   def create
-
+  
      @item = Item.new(item_params)
      if @item.save
-      redirect_to root_path
+  
      else
       render "new"
      end  
+     @image = Image.find_by(item_id: @item.id)
   end
 
   def search

@@ -9,7 +9,6 @@ class ItemsController < ApplicationController
   before_action :set_item_find,only: [:show, :edit, :destroy]
 
   def index
-    
     @latest_items = Item.limit(4).order("id DESC")
   end
 
@@ -51,10 +50,8 @@ class ItemsController < ApplicationController
     @child = @grandchild.parent
     @parent = @child.parent if @child
     @item = Item.find(params[:id])
-    #あとで3をitems_idに変える
     @items = Item.all.includes(:user)
     @bookmarks_num = Bookmark.where(item_id: params[:id]).count
-    #あとで3をitems_idに変える
   end
 
   def edit
@@ -150,12 +147,9 @@ class ItemsController < ApplicationController
       customer: card.customer_id, #支払うユーザのpayjp顧客ID
       currency: 'jpy', #通貨の指定
     )
-    
-
     @item = Item.find(params[:id])
     @item.update( buyer_id: current_user.id)
     redirect_to purchase_done_item_path(@item.id)
- 
   end
 
   private

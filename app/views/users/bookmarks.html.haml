@@ -7,7 +7,7 @@
       お気に入り一覧
     .BookmarkItems
       - @bookmarks.each do |bookmark|
-        -if @bookmark.item.buyer_id == nil
+        -if bookmark.item.buyer_id == nil
           .BookmarkItem
             .Image
               - image = Image.find_by(item_id: bookmark.item_id)

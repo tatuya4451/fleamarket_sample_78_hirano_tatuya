@@ -35,6 +35,8 @@
           アカウントをお持ちでない方はこちら
           %span ---------
         = link_to "FURIMAのアカウントを作成", new_user_registration_path
+        = link_to 'Facebookでログイン', user_facebook_omniauth_authorize_path, method: :post
+        = link_to 'Googleでログイン', user_google_oauth2_omniauth_authorize_path, method: :post
   .account__footer
     .Notice
       %ul

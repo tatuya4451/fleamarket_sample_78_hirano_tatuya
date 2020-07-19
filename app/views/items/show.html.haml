@@ -98,7 +98,9 @@
       .show__main__option
         %ul.show__favorite
           %li.show__favorite__child
-            - if @item
+            - if @item.saler_id == current_user.id
+              %span お気に入り
+            - else
               - if @item.bookmark_by?(current_user)
                 %span お気に入り解除
                 = link_to bookmark_path(@item.id), method: :delete, id:"js-bookmark-button-for-item" do

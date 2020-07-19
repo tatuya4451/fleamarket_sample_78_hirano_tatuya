@@ -21,11 +21,15 @@
           円
         .show__main__box__detail
           (税込)  送料込み
-
-      -if user_signed_in? &&  current_user.id != @item.saler_id 
+      
+      -if @item.buyer_id == nil
+        -if user_signed_in? &&  current_user.id != @item.saler_id 
+          .show__main__purchase-btn
+            =link_to purchase_item_path(@item.id) do
+              %p 購入画面に進む
+      -else
         .show__main__purchase-btn
-          =link_to purchase_item_path(@item.id) do
-            %p 購入画面に進む
+          %p 売り切れました
 
       .show__main__explanation
         =@item.introduce

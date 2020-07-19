@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   require 'payjp'
+  Payjp.api_key = Rails.application.credentials.PAYJP[:PRIVATE_KEY]
+
   before_action :index_category_set, only: :index
   before_action :set_item_search_query
   before_action :move_to_index, except: [:index, :show, :search]
@@ -7,7 +9,6 @@ class ItemsController < ApplicationController
   before_action :set_item_find,only: [:show, :edit, :destroy]
 
   def index
-    
     @latest_items = Item.limit(4).order("id DESC")
   end
 
@@ -29,12 +30,14 @@ class ItemsController < ApplicationController
   end
 
   def create
+  
      @item = Item.new(item_params)
      if @item.save
-      redirect_to root_path
+  
      else
       render "new"
      end  
+     @image = Image.find_by(item_id: @item.id)
   end
 
   def search
@@ -47,6 +50,9 @@ class ItemsController < ApplicationController
     @grandchild = Category.find(@item.category_id)
     @child = @grandchild.parent
     @parent = @child.parent if @child
+    @item = Item.find(params[:id])
+    @items = Item.all.includes(:user)
+    @bookmarks_num = Bookmark.where(item_id: params[:id]).count
   end
 
   def edit
@@ -78,11 +84,16 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
+
+    # @item = Item.find(3)
+    # #あとで3をitems_idに変える
+    # @items = Item.all.includes(:user)
+    # @bookmarks_num = Bookmark.where(item_id: 3).count
+    # #あとで3をitems_idに変える
   end
 
   def purchase
-    @item = Item.find(3)
-    #あとでparams[:id]にする
+    @item = Item.find(params[:id])
     @address = Address.find_by(id:current_user.id)
     @image = Image.find_by(item_id: @item.id)
 
@@ -115,10 +126,30 @@ class ItemsController < ApplicationController
     end
   end
 
+  def bookmarks
+    @items = current_user.bookmark_items.include(:user)
+  end
+
   def purchase_done
-    @item = Item.find(3)
-    #あとでparams[:id]にする
+    @item = Item.find(params[:id])
     @image = Image.find_by(item_id: @item.id)
+  end
+
+  def pay
+    # 支払い情報の作成
+    card = CreditCard.find_by(user_id: current_user.id)
+    @item = Item.find(params[:id])
+    #保管した顧客IDでpayjpから情報取得
+    customer = Payjp::Customer.retrieve(card.customer_id)
+    #保管したカードIDでpayjpから情報取得、カード情報表示のためインスタンス変数に代入
+    Payjp::Charge.create(
+      amount: @item.price, #支払い金額
+      customer: card.customer_id, #支払うユーザのpayjp顧客ID
+      currency: 'jpy', #通貨の指定
+    )
+    @item = Item.find(params[:id])
+    @item.update( buyer_id: current_user.id)
+    redirect_to purchase_done_item_path(@item.id)
   end
 
   private

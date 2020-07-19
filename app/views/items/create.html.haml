@@ -1,0 +1,26 @@
+.BuyWrapper
+  = render 'item-header'
+  .ItemField
+    .ItemInfo
+      %section.Contents
+        .PurchaseDone.ResponsiveTitle
+          出品しました
+
+      %section.Contents
+        .BuyItem
+          = image_tag "#{@image.url.url}", alt: '商品画像',class:"BuyItem__image"
+          .BuyItem__Info
+            %p.BuyItem__Info__Name
+              = @item.name
+            %p.BuyItem__Info__Price
+              %span.PriceDetail
+                送料込み (税込)
+              %span.Price
+                ="¥#{@item.price}"
+      %section.Contents
+        .PayPrice
+      %section.Contents
+        .GotoTop
+          =link_to items_path, class:'GotoTop__link' do
+            トップページにもどる
+  = render 'item-footer'

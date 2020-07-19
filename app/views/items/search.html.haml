@@ -48,7 +48,7 @@
     .search__box
       .search__box__in
         = search_form_for @search,url: search_items_path do |f|
-          = f.select( :sorts, { '並び替え': 'id desc', '価格の安い順':'price asc', ' 価格の高い順': 'price desc', '出品の新しい順': 'updated_at'},{ selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'})
+          = f.select( :sorts, { '並び替え': 'id desc', '価格の安い順':'price asc', ' 価格の高い順': 'price desc', '出品の新しい順': 'updated_at desc', 'お気に入りの多い順': 'bookmarks_count desc'},{ selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'})
           .search__heading
             %i.fas.fa-plus
             .search__head

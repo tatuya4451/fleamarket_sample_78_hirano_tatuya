@@ -101,7 +101,7 @@
         display: block;
         margin-top: 16px;
         background: #3ccace;
-        
+        color: #ffffff;
         
         line-height: 56px;
         text-align: center;
@@ -208,6 +208,10 @@
           padding: 4px 8px;
           &__child{
             margin: 2px;
+          }
+          &__icon{
+            text-decoration: none;
+            color: black;
           }
         }
         .optional__link{

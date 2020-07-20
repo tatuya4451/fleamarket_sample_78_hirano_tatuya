@@ -27,19 +27,13 @@ Things you may want to cover:
 ### Association
 - has_many :seller_items, foreign_key: "seller_id", class_name: "items"
 - has_many :buyer_items, foreign_key: "buyer_id", class_name: "items"
-- has_one :profile, dependent: :destroy
+- has_many :bookmarks, dependent: :destroy
+- has_many :bookmark_items, through: :bookmarks, source: :item
 - has_one :sending_destination, dependent: :destroy
 - has_one :credit_card, dependent: :destroy
+- hsa_one :sns_authentication, dependent: destroy
 
-##  profilesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|introduction|text||
-|user|references|null: false, foreign_key: true|
-### Association
-- belongs_to :user
-
-##  sending_destinationsテーブル
+##  addressesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |destination_last_name|string|null: false|
@@ -47,12 +41,12 @@ Things you may want to cover:
 |destination_last_name_kana|string|null: false|
 |destination_first_name_kana|string|null: false|
 |post_code|integer(7)|null: false|
-|prefecture|references|null: false, foreign_key: true|
+|prefecture_id|integer|null: false|
 |city|string|null: false|
 |address|string|null: false|
 |building_name|string||
-|phone_number|integer|unique: true|
-|user|references|null: false, foreign_key: true|
+|phone_number|bigint|unique: true|
+|user|references|null: false|
 ### Association
 - belongs_to :user
 - belongs_to_active_hash :prefecture
@@ -60,10 +54,8 @@ Things you may want to cover:
 ##  credit_cardsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|card_number|integer|null: false, unique: true|
-|expirations_month|integer|null: false|
-|expirations_year|integer|null: false|
-|security_code|integer|null: false|
+|customer_id|string|null: false|
+|card_id|integer|null: false|
 |user|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
@@ -71,36 +63,30 @@ Things you may want to cover:
 ##  itemsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|item_image|references|null: false, foreign_key: true|
 |name|string|null: false|
 |introduce|text|null: false|
-|category|references|null: false, foreign_key: true|
-|size|references|null: false, foreign_key: true|
+|category_id|references|null: false|
 |brand|references||
-|item_condition|references|null: false, foreign_key: true|
-|postage_payer|references|null: false, foreign_key: true|
-|delivery_method|references|null: false, foreign_key: true|
-|prefecture|references|null: false, foreign_key: true|
-|preparation_days|references|null: false, foreign_key: true|
-|buyer|references|foreign_key: true|
-|seller|references|null: false, foreign_key: true|
+|condition_id|string|null: false|
+|delivery|references|null: false, foreign_key: true|
+|prefecture_id|integer|null: false|
+|preparation_id|integer|null: false|
+|buyer_id|integer||
+|seller_id|integer|null: false|
 |price|integer|null: false|
-|trading_status|enum|null: false|
-|deal_closed_date|timestamp||
 ### Association
-- has_many: item_images, dependent: :destroy
+- has_many: images, dependent: :destroy
+- has_many: bookmarks, dependent: :destroy
 - belongs_to :category
-- belongs_to_active_hash :size
 - belongs_to :brand
-- belongs_to_active_hash :item_condition
-- belongs_to_active_hash :postage_payer
-- belongs_to_active_hash :delivery_method
-- belongs_to_active_hash :preparation_day
+- belongs_to_active_hash :condition
+- belongs_to :delivery
+- belongs_to_active_hash :preparation
 - belongs_to :seller, class_name: "User"
 - belongs_to :buyer, class_name: "User
 - belongs_to_active_hash :prefecture
 
-##  item_imagesテーブル
+##  imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |item|references|null: false, foreign_key: true|
@@ -116,13 +102,6 @@ Things you may want to cover:
 ### Association
 - has_many: items
 
-##  sizesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|size|string|null: false|
-### Association
-- has_many: items
-
 ##  brandsテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -130,31 +109,25 @@ Things you may want to cover:
 ### Association
 - has_many: items
 
-##  item_conditionsテーブル
+##  conditionsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|item_condition|string|null: false|
+|condition|string|null: false|
 ### Association
 - has_many: items
 
-##  postage_payersテーブル
+##  deliveriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|postage_payer|string|null: false|
+|method|string|null: false|
+|ancestry|string|null: false|
 ### Association
 - has_many: items
 
-##  delivery_methodsテーブル
+##  preparationsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|delivery_method|string|null: false|
-### Association
-- has_many: items
-
-##  preparation_daysテーブル
-|Column|Type|Options|
-|------|----|-------|
-|preparation_days|string|null: false|
+|preparation|string|null: false|
 ### Association
 - has_many: items
 
@@ -164,7 +137,18 @@ Things you may want to cover:
 |prefecture|string|null: false|
 ### Association
 - has_many: items
-- has_many: sending_destinations
+- has_many: addresses
+
+##  bookmarksテーブル
+|Column|Type|Options|
+|------|----|-------|
+|user|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
+### Association
+- belongs_to: user
+- belongs_to: item
+
+
 
 * Database initialization
 

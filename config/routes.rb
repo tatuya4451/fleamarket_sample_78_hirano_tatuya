@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       post 'cardcreate'
       get 'bookmarks'
       get 'sellitem'
+      get 'sellitem_trade'
+      get 'sellitem_sold'
     end
   end
   resources :items do

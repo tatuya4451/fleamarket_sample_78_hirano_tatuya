@@ -92,7 +92,11 @@ class UsersController < ApplicationController
 
 
   def bookmarks
-    @parents = Category.where(ancestry: nil)
     @bookmarks = Bookmark.where(user_id: current_user)
   end
+
+  def sellitem
+    @items = Item.where(saler_id: current_user)
+  end
+
 end

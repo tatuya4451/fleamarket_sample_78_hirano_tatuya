@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       get 'cardnew'
       post 'cardcreate'
       get 'bookmarks'
+      get 'sellitem'
     end
   end
   resources :items do

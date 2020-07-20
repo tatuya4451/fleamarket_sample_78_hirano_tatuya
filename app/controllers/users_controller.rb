@@ -99,4 +99,13 @@ class UsersController < ApplicationController
     @items = Item.where(saler_id: current_user)
   end
 
+  def sellitem_sold
+    @items = Item.where(saler_id: current_user)
+  end
+
+  def sellitem_trade
+    @items = Item.where(saler_id: current_user)
+  end
+  
+
 end

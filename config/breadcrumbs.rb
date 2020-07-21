@@ -4,36 +4,62 @@ end
 
 crumb :category_index do
   link "カテゴリー一覧", categories_path
+  parent :root
 end
 
-# 親カテゴリーのパンくず
-crumb :parent_category do |category|
-  category = Category.find(params[:id]).root
-  link "#{category.name}", category_path(category)
-  parent :category_index
+crumb :user do
+  link "マイページ", user_path(current_user)
+  parent :root
 end
-# -----------------------------------------------------------------
-# 子カテゴリーのパンくず
-crumb :child_category do |category|
-  category = Category.find(params[:id])
-  # 表示しているページが子カテゴリーの一覧ページの場合
-  if category.has_children?
-    link "#{category.name}", category_path(category)
-    parent :parent_category
 
-  # 表示しているページが孫カテゴリーの一覧ページの場合
-  else
-    link "#{category.parent.name}", category_path(category.parent)
-    parent :parent_category
-  end
+crumb :items_show do
+  link "商品詳細"
+  parent :root
 end
-# -----------------------------------------------------------------
-# 孫カテゴリーのパンくず
-crumb :grandchild_category do |category|
-  category = Category.find(params[:id])
-  link "#{category.name}", category_path(category)
-  parent :child_category
+
+crumb :sellitem do
+  link "出品した商品-出品中"
+  parent :root
 end
+
+crumb :bookmarks do
+  link "お気に入り一覧"
+  parent :root
+end
+
+crumb :cardindex do
+  link "支払い方法"
+  parent :root
+end
+
+crumb :logout do
+  link "ログアウト"
+  parent :root
+end
+
+# crumb :parent_category do |category|
+#   category = Category.find(params[:id]).root
+#   link "#{category.name}", category_path(category)
+#   parent :category_index
+# end
+
+# crumb :child_category do |category|
+#   category = Category.find(params[:id])
+#   if category.has_children?
+#     link "#{category.name}", category_path(category)
+#     parent :parent_category
+
+#   else
+#     link "#{category.parent.name}", category_path(category.parent)
+#     parent :parent_category
+#   end
+# end
+
+# crumb :grandchild_category do |category|
+#   category = Category.find(params[:id])
+#   link "#{category.name}", category_path(category)
+#   parent :child_category
+# end
 
 # crumb :projects do
 #   link "Projects", projects_path

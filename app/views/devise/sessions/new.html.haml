@@ -4,8 +4,19 @@
       = image_tag 'logo/logo.png',class:'account__header--logo', alt:"FURIMA", width:"200px"
   .login__box
     .login__box__inner
+      -# = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "Contents__btn Contents__btn--google" do
+      -#   = icon('fab', 'google',  class: "Contents__btn--icon")
+      -#   Googleでログイン
+      = link_to "#", class: "Contents__btn Contents__btn--google" do
+        = icon('fab', 'google',  class: "Contents__btn--icon")
+        Googleでログイン
+      -# = link_to user_facebook_omniauth_authorize_path, method: :post, class: "Contents__btn Contents__btn--facebook" do
+      -#   = icon('fab', 'facebook',  class: "Contents__btn--icon")
+      -#   Facebookでログイン
+      = link_to "#", class: "Contents__btn Contents__btn--facebook" do
+        = icon('fab', 'facebook',  class: "Contents__btn--icon")
+        Facebookでログイン
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-        %h1 ログイン
         .box-email
           = f.label :email, "Eメール"
           %br/
@@ -19,22 +30,12 @@
           = f.password_field :password, autocomplete: "current-password"
         .box-login
           = f.submit "ログイン"
-          .legal-text
-            続行することで、FURIMAの
-            \#{link_to "利用規約", "#"}
-            および
-            \#{link_to "プライバシー規約", "#"}
-            に同意するものとみなされます。
-          - if devise_mapping.rememberable?
-            .remember
-              = f.check_box :remember_me
-              = f.label :remember, "ログインしたままにする"
       .box-newusr
         %p
           %span ---------
           アカウントをお持ちでない方はこちら
           %span ---------
-        = link_to "FURIMAのアカウントを作成", new_user_registration_path
+        = link_to "新規会員登録", new_user_path
   .account__footer
     .Notice
       %ul

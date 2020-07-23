@@ -85,6 +85,9 @@ gem 'ransack'
 gem 'rails-i18n'
 gem "gretel"
 gem 'enum_help'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection"
 
 group :production do
   gem 'unicorn'

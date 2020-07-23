@@ -1,0 +1,42 @@
+
+.create
+  .create__header
+    .create__header__logo
+      = image_tag 'logo/logo.png',class:'account__header--logo', alt:"FURIMA", width:"200px"
+  .account__main
+    .account__main__area
+      %h2.single 新規会員登録
+      .account__main__area__form
+        .account__main__area__form__input
+          = link_to new_user_registration_path, class: "Contents__btn Contents__btn--mail" do
+            = icon('fa fa-envelope',  class: "Contents__btn--icon")
+            メールアドレスで登録する
+          -# = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "Contents__btn Contents__btn--google" do
+          -#   = icon('fab', 'google',  class: "Contents__btn--icon")
+          -#   Googleで登録する
+          = link_to "#",  class: "Contents__btn Contents__btn--google" do
+            = icon('fab', 'google',  class: "Contents__btn--icon")
+            Googleで登録する
+          -# = link_to user_facebook_omniauth_authorize_path, method: :post, class: "Contents__btn Contents__btn--facebook" do
+          -#   = icon('fab', 'facebook',  class: "Contents__btn--icon")
+          -#   Facebookで登録する
+          = link_to "#", class: "Contents__btn Contents__btn--facebook" do
+            = icon('fab', 'facebook',  class: "Contents__btn--icon")
+            Facebookで登録する
+  .account__footer
+    .Notice
+      %ul
+        %li
+          = link_to "#",class:"link" do
+            プライバシーポリシー
+        %li
+          = link_to "#",class:"link" do
+            FURIMA利用規約
+        %li
+          = link_to "#",class:"link" do
+            特定商取引に関する表記
+    .Logo
+      = link_to "#",class:"link" do
+        = image_tag "logo/logo-white.png",class:'account__header__Logo', alt:"FURIMA", width:"200px"
+      %p.CompanyName
+        ©︎ FURIMA, Inc.

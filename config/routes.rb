@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers:{
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks'}
   get 'bookmarks/create'
   get 'bookmarks/destroy'
-  devise_for :users, controllers:{sessions: 'users/sessions',  registrations: 'users/registrations',}
   devise_scope :user do
     get 'addresses', to: 'users/registrations#new_address'
     post 'addresses', to: 'users/registrations#create_address'
   end
   root 'items#index'
-  resources :users, only: [:show, :logout,:destroy] do
+  resources :users, only: [:show, :logout, :destroy, :new] do
     collection do
       get 'logout'
       get 'cardindex'

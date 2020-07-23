@@ -7,15 +7,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   
   # GET /resource/sign_up
   def new
-    @user =User.new
+    session.delete("sns") if session[:sns]
+    super if !session[:sns]
   end
 
   def show
     @user = User.find(params[:id]) 
   end
-
-  # POST /resource
+  
   def create
+    if params[:sns_auth] == 'true'
+      pass = Devise.friendly_token
+      params[:user][:password] = pass
+      params[:user][:password_confirmation] = pass
+    end
     @user = User.new(sign_up_params)
     unless @user.valid?
       flash.now[:alert] = @user.errors.full_messages
@@ -24,7 +29,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session["devise.regist_data"] = {user: @user.attributes}
     session["devise.regist_data"][:user]["password"] = params[:user][:password]
     @address = @user.build_address
-    render :new_address
+    render :new_address 
   end
 
   def create_address
@@ -36,7 +41,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
     @user.build_address(@address.attributes)
     @user.save
-    session["devise.regist_data"]["user"].clear
+    SnsCredential.create(provider: session[:sns]["provider"], uid: session[:sns]["uid"], user_id: @user.id) if session[:sns] 
     sign_in(:user, @user)
   end
 

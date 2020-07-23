@@ -11,10 +11,16 @@
           = link_to new_user_registration_path, class: "Contents__btn Contents__btn--mail" do
             = icon('fa fa-envelope',  class: "Contents__btn--icon")
             メールアドレスで登録する
-          = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "Contents__btn Contents__btn--google" do
+          -# = link_to user_google_oauth2_omniauth_authorize_path, method: :post, class: "Contents__btn Contents__btn--google" do
+          -#   = icon('fab', 'google',  class: "Contents__btn--icon")
+          -#   Googleで登録する
+          = link_to "#",  class: "Contents__btn Contents__btn--google" do
             = icon('fab', 'google',  class: "Contents__btn--icon")
             Googleで登録する
-          = link_to user_facebook_omniauth_authorize_path, method: :post, class: "Contents__btn Contents__btn--facebook" do
+          -# = link_to user_facebook_omniauth_authorize_path, method: :post, class: "Contents__btn Contents__btn--facebook" do
+          -#   = icon('fab', 'facebook',  class: "Contents__btn--icon")
+          -#   Facebookで登録する
+          = link_to "#", class: "Contents__btn Contents__btn--facebook" do
             = icon('fab', 'facebook',  class: "Contents__btn--icon")
             Facebookで登録する
   .account__footer

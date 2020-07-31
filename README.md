@@ -1,17 +1,28 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+■ URL
+IPアドレス：http://18.177.162.161/
+Github（最終課題のリポジトリ）：fleamarket_sample_78d
 
-Things you may want to cover:
+■ Basic認証
+ID：admin
+Pass：password
 
-* Ruby version
+■ テスト用アカウント
+◯ 購入者用
+メールアドレス：buyer123@gmail.com
+パスワード：buyer123
 
-* System dependencies
+◯ 購入用カード情報
+番号：4242424242424242
+期限：2025/9
+セキュリティカード：123
 
-* Configuration
+◯ 出品者用
+メールアドレス：saler123@gmail.com
+パスワード：saler123
 
-* Database creation
+
 
 ##  usersテーブル
 |Column|Type|Options|
